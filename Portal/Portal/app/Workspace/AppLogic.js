@@ -5,7 +5,8 @@ Ext.define('Workspace.AppLogic', {
 
     requires: [
         'Workspace.Views.Modules',
-        'Workspace.Views.Center'
+        'Workspace.Views.Center',
+        'Workspace.Controllers.SignalRClient'
     ],
 
     
@@ -45,8 +46,6 @@ Ext.define('Workspace.AppLogic', {
             $('#_ul-modules').width(width - 10);
         }, this);
 
-
-
         this.centerView = Ext.create('Workspace.Views.Center', {
             title: '666',
             region: 'center',
@@ -56,6 +55,15 @@ Ext.define('Workspace.AppLogic', {
                 backgroundColor: 'yellow'
             }
         });
+
+        var signalRController = Ext.create('Workspace.Controllers.SignalRClient', {
+            signalRHubUrl: signalRHubsUrl, // global set in Index.cshtml
+            hubName: hubName // global set in Index.cshtml
+        });
+
+        console.warn('signalRHubsUrl', signalRHubsUrl);
+        //signalRController.initSignalR(signalRHubUrl, hubName);
+
 
         
         var me = this;

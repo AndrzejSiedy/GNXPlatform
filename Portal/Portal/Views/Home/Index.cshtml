@@ -1,27 +1,28 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+
+    TempData["signalRHubsUrl"] = System.Configuration.ConfigurationManager.AppSettings["signalRHubsUrl"];
+    TempData["hubName"] = System.Configuration.ConfigurationManager.AppSettings["hubName"];
+    TempData["roomId"] = Guid.NewGuid();
 }
+
+
+@*load hubs*@
+<script src="@TempData["signalRHubsUrl"]" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+    // set some global variables
+    var signalRHubsUrl = '@TempData["signalRHubsUrl"]';
+    var hubName = '@TempData["hubName"]';
+    var roomId = '@TempData["roomId"]';
+
+</script>
+
 
 @if (User.Identity.IsAuthenticated)
 {
- 
-    @*<script>
-        function allowDrop(ev) {
-            ev.preventDefault();
-        }
 
-        function drag(ev) {
-            ev.dataTransfer.setData("Text", ev.target.id);
-        }
-
-        function drop(ev) {
-            ev.preventDefault();
-            var data = ev.dataTransfer.getData("Text");
-            ev.target.appendChild(document.getElementById(data));
-        }
-    </script>*@
-    
-           
     @Scripts.Render("~/app/JakasNazwa")
     
     <div id="_HomeContent">
@@ -42,3 +43,4 @@ else
     </div>
 
 }
+

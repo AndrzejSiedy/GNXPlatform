@@ -30,6 +30,9 @@ namespace Portal
             bundles.Add(new ScriptBundle("~/bundles/gridsterJs").Include(
                         "~/Scripts/ducksboard-gridster/dist/jquery.gridster.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/signalR").Include(
+                        "~/Scripts/jquery.signalR-2.1.0.js"));
+
 
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

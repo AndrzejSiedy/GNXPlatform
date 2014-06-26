@@ -15,8 +15,22 @@
     <script src="http://localhost/jsLibs/ExtJs/4.2.2/resources/js/azzurra.js"></script>
 
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/jqueryUiJs")
+    @Styles.Render("~/bundles/jqueryUiCss")
+
+    @Styles.Render("~/bundles/gridsterCss")
+    @Scripts.Render("~/bundles/gridsterJs")
+
+    @Styles.Render("~/toastrCss")
+    @Scripts.Render("~/toastrJs")
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/signalR")
 
 </head>
 <body>
@@ -49,17 +63,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
 
-    @Scripts.Render("~/bundles/jqueryUiJs")
-    @Styles.Render("~/bundles/jqueryUiCss")
-
-    @Styles.Render("~/bundles/gridsterCss")
-    @Scripts.Render("~/bundles/gridsterJs")
-
-    @Styles.Render("~/toastrCss")
-    @Scripts.Render("~/toastrJs")
 
 
     @RenderSection("scripts", required: false)
