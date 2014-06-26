@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+ 
+    @*<script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("Text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("Text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>*@
+    
+           
+    @Scripts.Render("~/app/JakasNazwa")
+    
+    <div id="_HomeContent">
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="_5iyx">
+                Gnx Platform pomaga kontaktować się z innymi osobami i udostępniać im różne informacje i treści.
+            </div>
+            <img class="img" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/yx/r/pyNVUg5EM0j.png" alt="" height="195" width="537" />
+        </div>
+        <div class="col-lg-5">
+            @Html.Partial("~/Views/Account/Login.cshtml")
+        </div>
+    </div>
+
+}
