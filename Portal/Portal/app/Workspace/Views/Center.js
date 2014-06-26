@@ -42,7 +42,7 @@ Ext.define('Workspace.Views.Center', {
                     console.warn('dropped', ddSource, e, data);
                     
 
-                    me.generateModuleWindow(data.recordData);
+                    me.generateModuleWindow(data.recordData, e.browserEvent.clientX, e.browserEvent.clientY);
                     return true;
                 }
             });
@@ -51,13 +51,15 @@ Ext.define('Workspace.Views.Center', {
 
     },
 
-    generateModuleWindow: function (record) {
+    generateModuleWindow: function (record, x, y) {
 
         var w = Ext.create('Ext.window.Window', {
             constrain: true,
             constrainTo: this.getEl(),
             width: 300,
             height: 300,
+            x: x,
+            y: y,
             html: '<div style="margin-bottom: 10px;" class="thumb-wrap">' +
                     '<img src="' + record.get('ImgUrl') + '" />' +
                     '<br/><span>' + record .get('Name') + '</span>' +
