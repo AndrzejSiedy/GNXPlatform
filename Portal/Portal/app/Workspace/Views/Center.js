@@ -14,15 +14,42 @@ Ext.define('Workspace.Views.Center', {
             handler: Ext.bind(this.onBtnLoadMapModule, this)
         });
 
-        this.btnLoadGridModule = Ext.create('Ext.button.Button', {
-            text: 'load Grid Module',
-            handler: Ext.bind(this.onBtnLoadGridModule, this)
-        });
+        //this.btnLoadGridModule = Ext.create('Ext.button.Button', {
+        //    text: 'load Grid Module',
+        //    handler: Ext.bind(this.onBtnLoadGridModule, this)
+        //});
 
-        this.tbar = [
-            this.btnLoadMapModule,
-            this.btnLoadGridModule
-        ];
+        //this.tbar = [
+        //    this.btnLoadMapModule,
+        //    this.btnLoadGridModule
+        //];
+
+        this.layout = 'fit';
+
+        //this.leftContainer = Ext.create('Ext.panel.Panel', {
+        //    title: 'map?',
+        //    flex: 1
+        //});
+        //this.rightContainer = Ext.create('Ext.panel.Panel', {
+        //    title: 'grid?',
+        //    flex: 1
+        //});
+
+        //this.items = [
+        //    this.leftContainer,
+        //    this.rightContainer
+        //];
+
+
+        var gridsterHtml =
+       '<div id="_center" class="gridster" style="width: 100%; height:100%;">' +
+           '<ul id="_ul-modules">' +
+           '<li class="gridster-border" data-row="1" data-col="3" data-sizex="2" data-sizey="1"><div id="_map" style="width:100%; height:100%;"></div></li>' +
+           '<li class="gridster-border" data-row="2" data-col="3" data-sizex="2" data-sizey="1"><div id="_grid" style="width:100%; height:100%;"></div></li>' +
+           '</ul>' +
+       '</div>';
+
+        this.html = gridsterHtml;
 
 
         this.callParent([config]);
@@ -30,19 +57,90 @@ Ext.define('Workspace.Views.Center', {
 
         this.on('render', function () {
             var me = this;
-            var formPanelDropTarget = Ext.create('Ext.dd.DropTarget', this.body.dom, {
+
+            var jQIdPartial = '#' + this.getId();
+            var jQIdFull = '#' + this.getId() + ' > ul';
+
+            //this.gridster = $(jQIdFull).gridster({
+            //    max_size_x: 400,
+            //    avoid_overlapped_widgets: true,
+            //    widget_base_dimensions: [400, 400],
+            //    widget_margins: [5, 5],
+            //    helper: 'clone',
+            //    resize: {
+            //        enabled: true
+            //    },
+            //    namespace: jQIdPartial
+            //}).data('gridster');
+
+            this.gridster = $("#_center > ul").gridster({
+                max_size_x: 400,
+                avoid_overlapped_widgets: true,
+                widget_base_dimensions: [300, 55],
+                widget_margins: [5, 5],
+                helper: 'clone',
+                resize: {
+                    enabled: true,
+                    start: function (e, ui, $widget) {
+                        
+                    },
+                    stop: function (e, ui, $widget) {
+                        var newHeight = this.resize_coords.data.height;
+                        var newWidth = this.resize_coords.data.width;
+                        if (me.modulesContainers.length > 0) {
+                            for (var i = 0; i < me.modulesContainers.length; i++) {
+                                me.modulesContainers[i].doLayout();
+                            }
+                        }
+                    }
+                },
+                namespace: '#_center'
+            }).data('gridster');
+
+
+            //var formPanelDropTarget = Ext.create('Ext.dd.DropTarget', this.body.dom, {
+            //    //ddGroup: 'GridExample',
+            //    notifyEnter: function (ddSource, e, data) {
+
+            //        //Add some flare to invite drop.
+            //        me.body.stopAnimation();
+            //        me.body.highlight();
+            //    },
+            //    notifyDrop: function (ddSource, e, data) {
+            //        me.generateModuleWindow(data.recordData, e.browserEvent.clientX, e.browserEvent.clientY);
+            //        return true;
+            //    }
+            //});
+
+
+            var mapDom = Ext.get('_map')
+            Ext.create('Ext.dd.DropTarget', mapDom.dom, {
                 //ddGroup: 'GridExample',
                 notifyEnter: function (ddSource, e, data) {
 
                     //Add some flare to invite drop.
-                    me.body.stopAnimation();
-                    me.body.highlight();
+                    mapDom.stopAnimation();
+                    mapDom.highlight();
                 },
                 notifyDrop: function (ddSource, e, data) {
-                    console.warn('dropped', ddSource, e, data);
-                    
+                    //me.generateModuleWindow(data.recordData, e.browserEvent.clientX, e.browserEvent.clientY);
+                    me.renderModule(data.recordData, '_map')
+                    return true;
+                }
+            });
 
-                    me.generateModuleWindow(data.recordData, e.browserEvent.clientX, e.browserEvent.clientY);
+            var gridDom = Ext.get('_grid')
+            Ext.create('Ext.dd.DropTarget', gridDom.dom, {
+                //ddGroup: 'GridExample',
+                notifyEnter: function (ddSource, e, data) {
+
+                    //Add some flare to invite drop.
+                    gridDom.stopAnimation();
+                    gridDom.highlight();
+                },
+                notifyDrop: function (ddSource, e, data) {
+                    //me.generateModuleWindow(data.recordData, e.browserEvent.clientX, e.browserEvent.clientY);
+                    me.renderModule(data.recordData, '_grid')
                     return true;
                 }
             });
@@ -51,149 +149,65 @@ Ext.define('Workspace.Views.Center', {
 
     },
 
+    modulesContainers: [],
+
+    renderModule: function(record, containerId){
+
+        // fake logic here - need to be read from modules config
+        var html;
+        var modName = record.get('Name');
+        if (modName == 'Map') {
+            html = '<iframe src="http://localhost/ol3Map/?_roomId_=' + this.roomId + '"  width="100%" height="100%" frameBorder="0"></iframe>';
+        }
+        else if (modName == 'Cities Grid') {
+            html = '<iframe src="http://localhost/Grid/?_roomId_=' + this.roomId + '" width="100%" height="100%" frameBorder="0"></iframe>';
+        }
+
+        var container = Ext.create('Ext.panel.Panel', {
+            border: true,
+            title: modName,
+            layout: 'fit',
+            width: '100%',
+            height: '100%',
+            renderTo: containerId,
+            html: html
+        });
+
+        this.modulesContainers.push(container);
+
+    },
+
     generateModuleWindow: function (record, x, y) {
+
+        // fake logic here - need to be read from modules config
+        var html;
+        var modName = record.get('Name');
+        if (modName == 'Map') {
+            html = '<iframe src="http://localhost/ol3Map/?_roomId_=' + this.roomId + '"  width="100%" height="100%" frameBorder="0"></iframe>';
+        }
+        else if (modName == 'Cities Grid') {
+            html = '<iframe src="http://localhost/Grid/?_roomId_=' + this.roomId + '" width="100%" height="100%" frameBorder="0"></iframe>';
+        }
+
 
         var w = Ext.create('Ext.window.Window', {
             constrain: true,
             constrainTo: this.getEl(),
-            width: 300,
-            height: 300,
+            width: 400,
+            height: 500,
             x: x,
             y: y,
-            html: '<div style="margin-bottom: 10px;" class="thumb-wrap">' +
-                    '<img src="' + record.get('ImgUrl') + '" />' +
-                    '<br/><span>' + record .get('Name') + '</span>' +
-                '</div>'
+            html: html
         });
         w.show();
     },
 
-    getModules: function () {
-
-        var __RequestVerificationToken = $.getAntiForgeryToken(window.parent).value;
-        var iFrameSrc = '';
-
-        var iFrameSrc = 'api/ModuleModelsApi';
-        var token = __RequestVerificationToken;
-
-        function addRequestVerificationToken(data) {
-            data.__RequestVerificationToken = token;
-            return data;
-        };
-        $.ajax({
-            type: "GET",
-            url: iFrameSrc,
-            dataType: "json",
-            traditional: true,
-            data: addRequestVerificationToken({
-                // add some extra data to do proper logoff
-                token: token
-            })
-        }).done(function (result) {
-            if (result) {
-                // Do something
-                console.warn('Neo4j', result);
-            } else {
-                // Log or show an error message
-            }
-            return false;
-        });
-
-    },
-
-    getModulesServer: function () {
-
-        var __RequestVerificationToken = $.getAntiForgeryToken(window.parent).value;
-        var iFrameSrc = '';
-
-        var iFrameSrc = 'api/ModuleModelsApiServer';
-        var token = __RequestVerificationToken;
-
-        function addRequestVerificationToken(data) {
-            data.__RequestVerificationToken = token;
-            return data;
-        };
-        $.ajax({
-            type: "GET",
-            url: iFrameSrc,
-            dataType: "json",
-            traditional: true,
-            data: addRequestVerificationToken({
-                // add some extra data to do proper logoff
-                token: token
-            })
-        }).done(function (result) {
-            if (result) {
-                // Do something
-                console.warn('MS SQL Server', result);
-            } else {
-                // Log or show an error message
-            }
-            return false;
-        });
-
-        //ModuleModelsApiServer
-
-    },
-
-
-    loadDataMSServer: function () {
-        var __RequestVerificationToken = $.getAntiForgeryToken(window.parent).value;
-        var iFrameSrc = '';
-
-        var iFrameSrc = '/DataLoad';
-        var token = __RequestVerificationToken;
-
-        function addRequestVerificationToken(data) {
-            data.__RequestVerificationToken = token;
-            return data;
-        };
-        $.ajax({
-            type: "GET",
-            url: iFrameSrc,
-            dataType: "json",
-            traditional: true,
-            data: addRequestVerificationToken({
-                // add some extra data to do proper logoff
-                token: token
-            })
-        }).done(function (result) {
-            if (result) {
-                // Do something
-                console.warn('MS SQL Server', result);
-            } else {
-                // Log or show an error message
-            }
-            return false;
-        });
-    },
-
-    getHeaders: function (includeAuth) {
-
-        if (this.accessData.Token && !includeAuth) {
-            return {
-                "Authorization": "Bearer " + this.accessData.Token,
-                "Content-Type": "application/json;charset=utf-8",
-                "Access-Control-Allow-Origin": "*",
-                "Accept": "application/json",// REQUIRED for FF in order to do proper JSON reuqest
-                "Origin": window.location.host
-            }
-        }
-
-        if (includeAuth) {
-            return {
-                "Content-Type": "application/json;charset=utf-8",
-                "Accept": "application/json" // REQUIRED for FF in order to do proper JSON reuqest
-            }
-        }
-    },
-
     onBtnLoadMapModule: function () {
-        console.warn('x');
+        this.leftContainer.update('<iframe src="http://localhost/ol3Map/?_roomId_=' + this.roomId + '"  width="100%" height="100%" frameBorder="0"></iframe>');
     },
 
     onBtnLoadGridModule: function () {
-        console.warn('y');
+        this.rightContainer.update('<iframe src="http://localhost/Grid/?_roomId_=' + this.roomId + '" width="100%" height="100%" frameBorder="0"></iframe>');
     }
 
 });
