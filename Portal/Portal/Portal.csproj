@@ -229,7 +229,6 @@
     <Content Include="app\Workspace\Views\Center.js" />
     <Content Include="app\Workspace\Views\Modules - Copy.js" />
     <Content Include="app\Workspace\Views\Modules.js" />
-    <Content Include="app\Workspace\Views\Login.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
