@@ -24,11 +24,6 @@ Ext.define('Workspace.Controllers.SignalRClient', {
         Ext.apply(this, config);
         this.callParent([config]);
 
-        this.addEvents([
-			'joinedSignalR'
-        ]);
-
-
         if (this.signalRHubUrl) {
             this.initSignalR();
         }
@@ -49,11 +44,7 @@ Ext.define('Workspace.Controllers.SignalRClient', {
         // set url to SignalR hub
         $.connection.hub.url = this.signalRHubUrl;
 
-        console.warn('this.signalRHubUrl', this.signalRHubUrl);
-        console.warn('this.hubName', this.hubName);
-
         // Declare a proxy to reference the hub. 
-
         // Hub name read from global variable
         this.chat = $.connection[this.hubName];
 
@@ -67,19 +58,7 @@ Ext.define('Workspace.Controllers.SignalRClient', {
         $.connection.logging = true;
 
         $.connection.hub.start().done(function () {
-
-            // SignalR room id should be available from global and should be set in default.aspx.cs
-            // all sub apps/modules, will recive groupId
-            // call method on SignalR service to create new group for this app instance
-            //console.warn('has client id?', self.clientId);
-            //if (!self.clientId) {
-            //    return;
-            //}
-
-            console.warn('WTF?', self.roomId, self.clientName);
-
             self.chat.server.joinRoom(self.roomId, self.clientName);
-
         });
     },
 

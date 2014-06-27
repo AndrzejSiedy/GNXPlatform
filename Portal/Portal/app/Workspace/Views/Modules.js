@@ -36,10 +36,10 @@ Ext.define('Workspace.Views.Modules', {
 
         this.layout = "border";
 
-        this.tbar = [
-            btnTest,
-            btnTest2
-        ];
+        //this.tbar = [
+        //    btnTest,
+        //    btnTest2
+        //];
 
         this.moduleStore = Ext.create('Ext.data.Store', {
             model: 'Workspace.Data.ModuleModel'
@@ -89,6 +89,7 @@ Ext.define('Workspace.Views.Modules', {
         );
 
         this.modulesView = Ext.create('Ext.view.View', {
+            border: false,
             autoScroll: true,
             store: this.moduleStore,
             tpl: imageTpl,
@@ -100,8 +101,9 @@ Ext.define('Workspace.Views.Modules', {
         });
 
         this.internalNorthView = Ext.create('Ext.panel.Panel', {
-            title: 'North',
+            border: false,
             region: 'north',
+            minHeight: 500,
             height: 400,
             width: '100%',
             layout: 'fit',
@@ -112,7 +114,6 @@ Ext.define('Workspace.Views.Modules', {
         this.internalNorthView.on('render', this.getModules, this);
 
         this.internalCenterView = Ext.create('Ext.panel.Panel', {
-            title: 'Center',
             region: 'center',
             width: '100%'
         });
@@ -149,14 +150,11 @@ Ext.define('Workspace.Views.Modules', {
             })
         }).done(function (result) {
             if (result) {
-                // assigne fake icons for modules
-
+                // assign fake icons for modules
                 for (var i = 0; i < result.length; i++) {
                     result[i].ImgUrl = me.getModuleIcon(i);
                 }
-
                 me.moduleStore.loadData(result);
-                console.warn('Neo4j', result);
             } else {
                 // Log or show an error message
             }
@@ -199,7 +197,6 @@ Ext.define('Workspace.Views.Modules', {
         //ModuleModelsApiServer
 
     },
-
 
     loadDataMSServer: function () {
         var __RequestVerificationToken = $.getAntiForgeryToken(window.parent).value;
@@ -254,8 +251,8 @@ Ext.define('Workspace.Views.Modules', {
     },
 
     icons: [
-        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTVkIhYq7O8nBrm19zQ3uLIzEzqBmK5XfvEXv8EaIEhb05JEYO8UQ',
-        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQMACy7rkwhpNzkpd54Wq4n5IGjhcFJX9Pb_tz9Fk-cyN02PdDMVg',
+        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSQdLTeJPGZyNDwUAI2aQx1DtSlLMRSdZ1S2cVlsk7vZTaw87bY7A',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQACOYEQBgjA8X0j05bH7A3MwEyw24_s13hgchCgchTnI8ZCDbYFg',
         'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQLBc-4mKwK1VU0wwVD9oebbc8esJ1Yziqc3J-owgDFvhtirvQc',
         'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRClX6P-zML6-AGwTVsJyaCJFcQPjuNzvQ95lyLy8Y1gak1lMeE',
         'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTZgsLxxV1Pn7c9Yohpu0t8ge9evzgkg4UUQ_MRy8C4SwyKLgXZ',
