@@ -97,9 +97,6 @@ Ext.define('Workspace.Views.Login', {
     },
 
     onUserLoggedIn: function (evtName, response) {
-
-        console.warn('logoin token', response);
-
         this.accessData = response.data;
 
         this.accessToken = response.data.Token;
@@ -198,7 +195,6 @@ Ext.define('Workspace.Views.Login', {
             data: JSON.stringify(data),
             headers: this.getHeaders(true)
         }).always(function (response) {
-            console.warn('isAuthenticated?', response);
             if (response.success) {
                 toastr["info"]("Authentication", "User is authenticated");
             }
@@ -211,11 +207,9 @@ Ext.define('Workspace.Views.Login', {
     },
 
     logoffCallbackSuccess: function (response) {
-        console.warn('logged off successfuly', response)
     },
 
     logoffCallbackFailure: function (response) {
-        console.warn('logged off failed', response)
     },
 
     getHeaders: function (includeAuth) {
