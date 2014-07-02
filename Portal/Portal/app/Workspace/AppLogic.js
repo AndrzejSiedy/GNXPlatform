@@ -47,6 +47,7 @@ Ext.define('Workspace.AppLogic', {
         }, this);
 
         this.centerView = Ext.create('Workspace.Views.Center', {
+            roomId: roomId,
             region: 'center',
             style: {
                 backgroundColor: 'yellow'
