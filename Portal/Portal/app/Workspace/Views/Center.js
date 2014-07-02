@@ -44,13 +44,23 @@ Ext.define('Workspace.Views.Center', {
         var gridsterHtml =
        '<div id="_center" class="gridster" style="width: 100%; height:100%;">' +
            '<ul id="_ul-modules">' +
-           '<li class="gridster-border" data-row="1" data-col="3" data-sizex="2" data-sizey="1"><div id="_map" style="width:100%; height:100%;"></div></li>' +
-           '<li class="gridster-border" data-row="2" data-col="3" data-sizex="2" data-sizey="1"><div id="_grid" style="width:100%; height:100%;"></div></li>' +
+           '<li class="gridster-border" data-row="1" data-col="1" data-sizex="2" data-sizey="1"><div id="_map" style="width:100%; height:100%;"></div></li>' +
+           '<li class="gridster-border" data-row="1" data-col="3" data-sizex="1" data-sizey="1"><div id="_grid" style="width:100%; height:100%;"></div></li>' +
            '</ul>' +
        '</div>';
 
         this.html = gridsterHtml;
-
+        this.tbar = [
+            Ext.create('Ext.button.Button', {
+                text: 'Load Gadget',
+                handler: this.renderShinding
+            }),
+            Ext.create('Ext.button.Button', {
+                text: 'Load Google Gadget',
+                handler: this.renderGoogleGadget
+            })
+        ];
+            
 
         this.callParent([config]);
 
@@ -74,10 +84,11 @@ Ext.define('Workspace.Views.Center', {
             //}).data('gridster');
 
             this.gridster = $("#_center > ul").gridster({
-                max_size_x: 400,
+                max_size_x: 500,
+                max_size_y: 500,
                 avoid_overlapped_widgets: true,
-                widget_base_dimensions: [300, 55],
-                widget_margins: [5, 5],
+                widget_base_dimensions: [200, 150],
+                widget_margins: [2, 2],
                 helper: 'clone',
                 resize: {
                     enabled: true,
@@ -151,11 +162,36 @@ Ext.define('Workspace.Views.Center', {
 
     modulesContainers: [],
 
+    renderShinding: function(){
+        var w = Ext.create('Ext.window.Window', {
+            width: 500,
+            height: 500,
+            html: '<iframe src="http://localhost:8088/gadgets/ifr?url=http://www.labpixies.com/campaigns/calc/calc.xml" width="100%" height="100%" frameBorder="0"></iframe>'
+        });
+
+        w.show();
+    },
+
+    renderGoogleGadget: function () {
+        var w = Ext.create('Ext.window.Window', {
+            width: 500,
+            height: 500,
+            html: '<script src="//www.gmodules.com/ig/ifr?url=http://www.infosniper.net/plugin/gadget-worldmap.xml&amp;synd=open&amp;w=320&amp;h=100&amp;title=Visitor+Worldmap&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>'
+        });
+
+        w.show();
+    },
+
+    //<script src="//www.gmodules.com/ig/ifr?url=http://igwidgets.com/gw/f/z/1002/nasa/4/5/6/7/8/9.xml&amp;synd=open&amp;w=320&amp;h=200&amp;title=&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>
+
     renderModule: function(record, containerId){
 
         // fake logic here - need to be read from modules config
         var html;
         var modName = record.get('Name');
+
+        console.warn('has roomId?', this.roomId);
+
         if (modName == 'Map') {
             html = '<iframe src="http://localhost/ol3Map/?_roomId_=' + this.roomId + '"  width="100%" height="100%" frameBorder="0"></iframe>';
         }
