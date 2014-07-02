@@ -58,6 +58,10 @@ Ext.define('Workspace.Views.Center', {
             Ext.create('Ext.button.Button', {
                 text: 'Load Google Gadget',
                 handler: this.renderGoogleGadget
+            }),
+            Ext.create('Ext.button.Button', {
+                text: 'Load Local Gadget',
+                handler: this.renderLocalGadget
             })
         ];
             
@@ -177,6 +181,16 @@ Ext.define('Workspace.Views.Center', {
             width: 500,
             height: 500,
             html: '<script src="//www.gmodules.com/ig/ifr?url=http://www.infosniper.net/plugin/gadget-worldmap.xml&amp;synd=open&amp;w=320&amp;h=100&amp;title=Visitor+Worldmap&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>'
+        });
+
+        w.show();
+    },
+
+    renderLocalGadget: function(){
+        var w = Ext.create('Ext.window.Window', {
+            width: 500,
+            height: 500,
+            html: '<iframe src="http://localhost:8088/gadgets/ifr?url=http://localhost:8088/gadgets/url.xml" width="100%" height="100%" frameBorder="0"></iframe>'
         });
 
         w.show();
