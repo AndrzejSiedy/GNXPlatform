@@ -49,6 +49,8 @@ Ext.define('Workspace.Views.Center', {
            '</ul>' +
        '</div>';
 
+        $.hubConnection
+
         this.html = gridsterHtml;
         this.tbar = [
             Ext.create('Ext.button.Button', {
@@ -62,10 +64,17 @@ Ext.define('Workspace.Views.Center', {
             Ext.create('Ext.button.Button', {
                 text: 'Load Local Gadget',
                 handler: this.renderLocalGadget
+            }),
+            Ext.create('Ext.button.Button', {
+                text: 'Localtion',
+                handler: this.renderLocationGadget
+            }),
+            Ext.create('Ext.button.Button', {
+                text: 'PubSub',
+                handler: this.renderPubSubGadget
             })
         ];
             
-
         this.callParent([config]);
 
 
@@ -196,7 +205,32 @@ Ext.define('Workspace.Views.Center', {
         w.show();
     },
 
-    //<script src="//www.gmodules.com/ig/ifr?url=http://igwidgets.com/gw/f/z/1002/nasa/4/5/6/7/8/9.xml&amp;synd=open&amp;w=320&amp;h=200&amp;title=&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>
+    renderLocationGadget: function () {
+        var w = Ext.create('Ext.window.Window', {
+            width: 500,
+            height: 500,
+            html: '<iframe src="http://localhost:8088/gadgets/ifr?url=http://localhost:8088/gadgets/TestGeoLoc.xml" width="100%" height="100%" frameBorder="0"></iframe>'
+        });
+
+        w.show();
+    },
+
+    renderPubSubGadget: function () {
+        var w1 = Ext.create('Ext.window.Window', {
+            width: 500,
+            height: 500,
+            html: '<iframe src="http://localhost:8088/gadgets/ifr?url=http://localhost:8088/gadgets/sample-pubsub-2-publisher.xml" width="100%" height="100%" frameBorder="0"></iframe>'
+        });
+        w1.show();
+
+        var w2 = Ext.create('Ext.window.Window', {
+            width: 500,
+            height: 500,
+            html: '<iframe src="http://localhost:8088/gadgets/ifr?url=http://localhost:8088/gadgets/sample-pubsub-2-subscriber.xml" width="100%" height="100%" frameBorder="0"></iframe>'
+        });
+        w2.show();
+    },
+
 
     renderModule: function(record, containerId){
 
