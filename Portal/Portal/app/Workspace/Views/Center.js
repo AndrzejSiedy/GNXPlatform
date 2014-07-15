@@ -223,12 +223,12 @@ Ext.define('Workspace.Views.Center', {
         });
         w1.show();
 
-        var w2 = Ext.create('Ext.window.Window', {
-            width: 500,
-            height: 500,
-            html: '<iframe src="http://localhost:8088/gadgets/ifr?url=http://localhost:8088/gadgets/sample-pubsub-2-subscriber.xml" width="100%" height="100%" frameBorder="0"></iframe>'
-        });
-        w2.show();
+        //var w2 = Ext.create('Ext.window.Window', {
+        //    width: 500,
+        //    height: 500,
+        //    html: '<iframe src="http://localhost:8088/gadgets/ifr?url=http://localhost:8088/gadgets/sample-pubsub-2-subscriber.xml" width="100%" height="100%" frameBorder="0"></iframe>'
+        //});
+        //w2.show();
     },
 
 
