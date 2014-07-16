@@ -228,7 +228,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\SocialContainer.js" />
     <Content Include="app\Workspace\app.js" />
     <Content Include="app\Workspace\AppLogic.js" />
     <Content Include="app\Workspace\Controllers\SignalRClient.js" />
@@ -307,13 +306,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Sandbox\Scripts\assembler.js" />
-    <Content Include="Sandbox\Scripts\cconviews.js" />
-    <Content Include="Sandbox\Scripts\layout.js" />
-    <Content Include="Sandbox\Scripts\sample-views.xml" />
-    <Content Include="Sandbox\Scripts\search.js" />
-    <Content Include="Sandbox\Scripts\viewController.js" />
-    <Content Include="Sandbox\TestS.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\toastr.scss" />
@@ -329,9 +321,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Sandbox\Scripts\gadgetCollections.json" />
-    <Content Include="Sandbox\Scripts\pubsub2.json" />
-    <None Include="Sandbox\Scripts\viewsMenu.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\ducksboard-gridster\dist\jquery.gridster.css" />
     <Content Include="Scripts\ducksboard-gridster\dist\jquery.gridster.js" />
