@@ -83,7 +83,7 @@ Ext.define('Workspace.Views.Modules', {
             '<tpl for=".">',
                 '<a href="#" id="toDrag" draggable="true">This is a draggable item',
                     '<div style="margin-bottom: 10px;" class="thumb-wrap">',
-                      '<img src="{ImgUrl}" draggable="true"/>',
+                      '<img src="{ImgUrl}"/>',
                       '<br/><span>{Name}</span>',
                     '</div>',
                 '</a>',
@@ -157,6 +157,9 @@ Ext.define('Workspace.Views.Modules', {
                     result[i].ImgUrl = me.getModuleIcon(i);
                 }
                 me.moduleStore.loadData(result);
+
+                dragObject.init();
+
             } else {
                 // Log or show an error message
             }
@@ -270,5 +273,6 @@ Ext.define('Workspace.Views.Modules', {
 
         return this.icons[idx];
     }
+
 
 });
