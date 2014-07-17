@@ -81,10 +81,12 @@ Ext.define('Workspace.Views.Modules', {
 
         var imageTpl = new Ext.XTemplate(
             '<tpl for=".">',
-                '<div style="margin-bottom: 10px;" class="thumb-wrap">',
-                  '<img src="{ImgUrl}" />',
-                  '<br/><span>{Name}</span>',
-                '</div>',
+                '<a href="#" id="toDrag" draggable="true">This is a draggable item',
+                    '<div style="margin-bottom: 10px;" class="thumb-wrap">',
+                      '<img src="{ImgUrl}" draggable="true"/>',
+                      '<br/><span>{Name}</span>',
+                    '</div>',
+                '</a>',
             '</tpl>'
         );
 
@@ -94,10 +96,10 @@ Ext.define('Workspace.Views.Modules', {
             store: this.moduleStore,
             tpl: imageTpl,
             itemSelector: 'div.thumb-wrap',
-            emptyText: 'No images available',
-            listeners: {
-                render: initializePatientDragZone
-            }
+            emptyText: 'No images available'
+            //listeners: {
+            //    render: initializePatientDragZone
+            //}
         });
 
         this.internalNorthView = Ext.create('Ext.panel.Panel', {

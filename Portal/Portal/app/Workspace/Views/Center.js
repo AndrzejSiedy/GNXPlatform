@@ -41,17 +41,16 @@ Ext.define('Workspace.Views.Center', {
         //];
 
 
-        var gridsterHtml =
-       '<div id="_center" class="gridster" style="width: 100%; height:100%;">' +
-           '<ul id="_ul-modules">' +
-           '<li class="gridster-border" data-row="1" data-col="1" data-sizex="2" data-sizey="1"><div id="_map" style="width:100%; height:100%;"></div></li>' +
-           '<li class="gridster-border" data-row="1" data-col="3" data-sizex="1" data-sizey="1"><div id="_grid" style="width:100%; height:100%;"></div></li>' +
-           '</ul>' +
-       '</div>';
+       // var gridsterHtml =
+       //'<div id="_center" class="gridster" style="width: 100%; height:100%;">' +
+       //    '<ul id="_ul-modules">' +
+       //    '<li class="gridster-border" data-row="1" data-col="1" data-sizex="2" data-sizey="1"><div id="_map" style="width:100%; height:100%;"></div></li>' +
+       //    '<li class="gridster-border" data-row="1" data-col="3" data-sizex="1" data-sizey="1"><div id="_grid" style="width:100%; height:100%;"></div></li>' +
+       //    '</ul>' +
+       //'</div>';
 
-        $.hubConnection
+        this.html = '<iframe src="http://localhost:8088/containers/gnx-container/gnx-container/" width="100%" height="100%" frameBorder="0"></iframe>';
 
-        this.html = gridsterHtml;
         this.tbar = [
             Ext.create('Ext.button.Button', {
                 text: 'Load Gadget',
@@ -77,8 +76,11 @@ Ext.define('Workspace.Views.Center', {
             
         this.callParent([config]);
 
-
         this.on('render', function () {
+
+            return;
+
+
             var me = this;
 
             var jQIdPartial = '#' + this.getId();
@@ -170,6 +172,7 @@ Ext.define('Workspace.Views.Center', {
             });
 
         }, this);
+       
 
     },
 
