@@ -76,6 +76,8 @@ Ext.define('Workspace.Views.Center', {
             
         this.callParent([config]);
 
+
+
         this.on('render', function () {
 
             return;

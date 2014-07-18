@@ -158,8 +158,6 @@ Ext.define('Workspace.Views.Modules', {
                 }
                 me.moduleStore.loadData(result);
 
-                dragObject.init();
-
             } else {
                 // Log or show an error message
             }

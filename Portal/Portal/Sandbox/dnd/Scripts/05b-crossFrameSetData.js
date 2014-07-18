@@ -8,11 +8,10 @@ var dragObject = new function () {
     var dataTransferCommentString;
 
     me.init = function () {
-
+        
         if (EventHelpers.hasPageLoadHappened(arguments)) {
             return;
         }
-
 
         targetNode = document.getElementById('dropTarget');
         eventNoticeNode = document.getElementById('eventNotice');
@@ -20,7 +19,7 @@ var dragObject = new function () {
 
         /* These are events for the draggable objects */
         var dragNodes = cssQuery('[draggable=true]');
-        console.warn('ehhh', dragNodes);    
+        console.warn('ehhh', dragNodes);
         
         for (var i = 0; i < dragNodes.length; i++) {
             var dragNode = dragNodes[i]
@@ -29,25 +28,34 @@ var dragObject = new function () {
 
         /* These are events for the object to be dropped */
         if (targetNode) {
+            console.warn('got target node', targetNode);
             EventHelpers.addEvent(targetNode, 'dragover', dragOverEvent);
             EventHelpers.addEvent(targetNode, 'drop', dropEvent);
         }
     }
 
     function dragStartEvent(e) {
-        console.warn('dragStartEvent', this, e, sprintf('<img src="%s" alt="%s" /><br /><p class="caption">%s</p>',
-				this.src, this.alt, this.alt
-			));
+
+        var src;
+
+        if (e.explicitOriginalTarget) {
+            src = e.explicitOriginalTarget.src;
+        }
+        else if (e.srcElement) {
+            src = e.srcElement.src;
+        }
+
         e.dataTransfer.setData('Text',
-			sprintf('<img src="%s" alt="%s" /><br /><p class="caption">%s</p>',
-				e.explicitOriginalTarget.src, this.alt, this.alt
-			)
-		);
+            sprintf('<img src="%s" alt="%s" /><br /><p class="caption">%s</p>',
+            	src, this.alt, this.alt
+            )
+        );
 
     }
 
 
     function dragOverEvent(e) {
+        console.warn('ever here?');
         EventHelpers.preventDefault(e);
     }
 
@@ -59,5 +67,5 @@ var dragObject = new function () {
 
 }
 
-
-//EventHelpers.addPageLoadEvent('dragObject.init');
+// NOTE: moved to E:\_GitHub\GNXPlatform\Portal\Portal\app\Workspace\Views\Modules.js, getModules()
+EventHelpers.addPageLoadEvent('dragObject.init');
