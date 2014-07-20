@@ -208,8 +208,8 @@ Ext.define('Workspace.Views.Center', {
         }
 
         this.iFrameContainer = Ext.create('Ext.container.Container', {
-            y: 100,
-            width: '100%',
+            //y: 100,
+            width: 600,
             height: 400,
             style: {
                 backgroundColor: 'red'

@@ -48,8 +48,10 @@ Ext.define('Workspace.AppLogic', {
         }, this);
 
         this.centerView = Ext.create('Workspace.Views.Center', {
+            id: 'wmorde',
             roomId: roomId,
             region: 'center',
+            layout: 'fit',
             style: {
                 backgroundColor: 'yellow'
             }
@@ -74,6 +76,7 @@ Ext.define('Workspace.AppLogic', {
             me.mainContainer.setHeight($('#_footer').position().top - ($('#_header').height()));
             me.mainContainer.doLayout();
         });
+
 
     },
 
