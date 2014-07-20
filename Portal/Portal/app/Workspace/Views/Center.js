@@ -3,7 +3,7 @@
  */
 Ext.define('Workspace.Views.Center', {
 
-    extend: 'Ext.panel.Panel',
+    extend: 'Ext.container.Container',
 
     constructor: function (config) {
 
@@ -24,7 +24,7 @@ Ext.define('Workspace.Views.Center', {
         //    this.btnLoadGridModule
         //];
 
-        this.layout = 'fit';
+        this.layout = 'absolute';
 
         //this.leftContainer = Ext.create('Ext.panel.Panel', {
         //    title: 'map?',
@@ -49,7 +49,7 @@ Ext.define('Workspace.Views.Center', {
        //    '</ul>' +
        //'</div>';
 
-        this.html = '<iframe src="http://localhost:8088/containers/gnx-container/gnx-container/" width="100%" height="100%" frameBorder="0"></iframe>';
+        //this.html = '<iframe src="http://localhost:8088/containers/gnx-container/gnx-container/" width="100%" height="100%" frameBorder="0"></iframe>';
 
         this.tbar = [
             Ext.create('Ext.button.Button', {
@@ -77,13 +77,16 @@ Ext.define('Workspace.Views.Center', {
         this.callParent([config]);
 
 
-
         this.on('render', function () {
+
+            var me = this;
+
+            this.setupDivIframe();
 
             return;
 
 
-            var me = this;
+            
 
             var jQIdPartial = '#' + this.getId();
             var jQIdFull = '#' + this.getId() + ' > ul';
@@ -126,21 +129,6 @@ Ext.define('Workspace.Views.Center', {
             }).data('gridster');
 
 
-            //var formPanelDropTarget = Ext.create('Ext.dd.DropTarget', this.body.dom, {
-            //    //ddGroup: 'GridExample',
-            //    notifyEnter: function (ddSource, e, data) {
-
-            //        //Add some flare to invite drop.
-            //        me.body.stopAnimation();
-            //        me.body.highlight();
-            //    },
-            //    notifyDrop: function (ddSource, e, data) {
-            //        me.generateModuleWindow(data.recordData, e.browserEvent.clientX, e.browserEvent.clientY);
-            //        return true;
-            //    }
-            //});
-
-
             var mapDom = Ext.get('_map')
             Ext.create('Ext.dd.DropTarget', mapDom.dom, {
                 //ddGroup: 'GridExample',
@@ -174,8 +162,95 @@ Ext.define('Workspace.Views.Center', {
             });
 
         }, this);
-       
 
+    },
+
+
+    setupDivIframe: function () {
+
+        if (!this.coverWin) {
+            var me = this;
+            this.coverWin = Ext.create('Ext.window.Window', {
+                width: this.getWidth(),
+                height: this.getHeight(),
+                frame: true,
+                plain: true,
+                //style: 'background-color : transparent;',
+                bodyStyle: 'opacity:0.5;',
+                style: 'background-color : transparent;',
+                //style: 'background-color:"orange"',
+                listeners: {
+                    render: function (container, eOpts) {
+
+                        var cmp = Ext.get(container.getId())
+
+                        Ext.create('Ext.dd.DropTarget', cmp.dom, {
+                            //ddGroup: 'GridExample',
+                            notifyEnter: function (ddSource, e, data) {
+                                
+                                //Add some flare to invite drop.
+                                cmp.stopAnimation();
+                                cmp.highlight();
+                            },
+                            notifyDrop: Ext.bind(me.nofifyDrop, me) 
+                        });
+                    }
+                }
+            });
+        }
+
+
+
+
+        if (this.iFrameContainer) {
+            this.remove(this.iFrameContainer);
+            this.iFrameContainer.destroy();
+        }
+
+        this.iFrameContainer = Ext.create('Ext.container.Container', {
+            y: 100,
+            width: '100%',
+            height: 400,
+            style: {
+                backgroundColor: 'red'
+            },
+            html: '<iframe src="' + this.getSignalRParams() + '" width="100%" height="100%" frameBorder="0"></iframe>'
+        });
+
+
+        this.iFrameContainer.on('render', function () {
+            //this.divContainer.hide();
+        }, this);
+
+        this.add(this.iFrameContainer);
+
+    },
+
+    nofifyDrop: function (ddSource, e, data) {
+        this.fireEvent('moduledropped', data);
+        return true;
+    },
+
+    getSignalRParams: function(){
+        // pass signalR setup information
+        //var signalRHubsUrl = '@TempData["signalRHubsUrl"]';
+        //var hubName = '@TempData["hubName"]';
+        //var roomId = '@TempData["roomId"]';
+        return 'http://localhost:8088/containers/gnx-container/gnx-container/index.html?signalRHubsUrl=' + signalRHubsUrl + '&hubName=' + hubName + '&roomId=' + roomId;
+    },
+
+
+    dragStarted: function () {
+        var pos = this.getPosition();
+
+        this.coverWin.setWidth(this.getWidth());
+        this.coverWin.setHeight(this.getHeight());
+
+        this.coverWin.showAt(pos[0], pos[1]);
+    },
+
+    dragEnd: function(){
+        this.coverWin.hide();
     },
 
     modulesContainers: [],
@@ -242,8 +317,6 @@ Ext.define('Workspace.Views.Center', {
         // fake logic here - need to be read from modules config
         var html;
         var modName = record.get('Name');
-
-        console.warn('has roomId?', this.roomId);
 
         if (modName == 'Map') {
             html = '<iframe src="http://localhost/ol3Map/?_roomId_=' + this.roomId + '"  width="100%" height="100%" frameBorder="0"></iframe>';

@@ -42,6 +42,7 @@ Ext.define('Workspace.AppLogic', {
             split: true
         });
 
+        
         this.modulesView.on('resize', function (container, width, height, oldWidth, oldHeight, eOpts) {
             $('#_ul-modules').width(width - 10);
         }, this);
@@ -54,7 +55,13 @@ Ext.define('Workspace.AppLogic', {
             }
         });
 
-        var signalRController = Ext.create('Workspace.Controllers.SignalRClient', {
+        this.centerView.on('moduledropped', this.onModuleDropped, this);
+
+        this.modulesView.on('dragstart', this.centerView.dragStarted, this.centerView);
+        this.modulesView.on('dragend', this.centerView.dragEnd, this.centerView);
+
+
+        this.signalRController = Ext.create('Workspace.Controllers.SignalRClient', {
             signalRHubUrl: signalRHubsUrl, // global set in Index.cshtml
             hubName: hubName, // global set in Index.cshtml
             roomId: roomId // global set in Index.cshtml
@@ -68,6 +75,13 @@ Ext.define('Workspace.AppLogic', {
             me.mainContainer.doLayout();
         });
 
+    },
+
+    onModuleDropped: function (data) {
+        var recordData = data.recordData;
+        var xy = data.repairXY;
+
+        this.signalRController.gadgetDropped(recordData);
     },
 
 

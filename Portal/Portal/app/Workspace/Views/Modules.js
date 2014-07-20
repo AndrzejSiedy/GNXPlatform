@@ -36,17 +36,12 @@ Ext.define('Workspace.Views.Modules', {
 
         this.layout = "border";
 
-        //this.tbar = [
-        //    btnTest,
-        //    btnTest2
-        //];
-
         this.moduleStore = Ext.create('Ext.data.Store', {
             model: 'Workspace.Data.ModuleModel'
         });
 
-
-        function initializePatientDragZone(v) {
+        var me = this;
+        function initializeModuleDragZone(v) {
 
             v.dragZone = Ext.create('Ext.dd.DragZone', v.getEl(), {
 
@@ -55,6 +50,10 @@ Ext.define('Workspace.Views.Modules', {
                 //      data, but it should also contain a DOM element in the ddel property to provide
                 //      a proxy to drag.
                 getDragData: function (e) {
+
+                    // should be same as drag start
+                    me.dragStarted();
+
                     var sourceEl = e.getTarget(v.itemSelector, 10), d;
 
                     if (sourceEl) {
@@ -75,6 +74,10 @@ Ext.define('Workspace.Views.Modules', {
                 //      This is the original XY coordinates of the draggable element.
                 getRepairXY: function () {
                     return this.dragData.repairXY;
+                },
+
+                onMouseUp: function () {
+                    me.dragEnd();
                 }
             });
         }
@@ -96,10 +99,10 @@ Ext.define('Workspace.Views.Modules', {
             store: this.moduleStore,
             tpl: imageTpl,
             itemSelector: 'div.thumb-wrap',
-            emptyText: 'No images available'
-            //listeners: {
-            //    render: initializePatientDragZone
-            //}
+            emptyText: 'No images available',
+            listeners: {
+                render: initializeModuleDragZone
+            }
         });
 
         this.internalNorthView = Ext.create('Ext.panel.Panel', {
@@ -125,6 +128,14 @@ Ext.define('Workspace.Views.Modules', {
 
         this.callParent([config]);
 
+    },
+
+    dragStarted: function () {
+        this.fireEvent('dragstart');
+    },
+
+    dragEnd: function(){
+        this.fireEvent('dragend');
     },
 
     getModules: function () {

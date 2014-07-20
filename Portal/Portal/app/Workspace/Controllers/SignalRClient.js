@@ -30,13 +30,17 @@ Ext.define('Workspace.Controllers.SignalRClient', {
 
     },
 
-    initSignalR: function (signalRHubUrl, hubName) {
+    initSignalR: function (signalRHubUrl, hubName, roomId) {
 
         if (signalRHubUrl) {
             this.signalRHubUrl = signalRHubUrl;
         }
         if (hubName) {
             this.hubName = hubName;
+        }
+
+        if (roomId) {
+            this.roomId = roomId;
         }
 
         var self = this;
@@ -73,5 +77,16 @@ Ext.define('Workspace.Controllers.SignalRClient', {
 
     userLoggedOffSuccess: function () {
         toastr["info"]("userLoggedOffSuccess", "Main Module heard SignalR room");
+    },
+
+    // Call SignalR service to pass information to gnx-container that module should be loaded
+    gadgetDropped: function(data){
+
+        var signalRMessage = {
+            roomId: roomId,
+            data: data.getData()
+        }
+        this.chat.server.gadgetDropped(signalRMessage);
     }
+    
 });
