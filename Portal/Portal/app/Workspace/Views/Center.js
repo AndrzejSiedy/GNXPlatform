@@ -8,72 +8,6 @@ Ext.define('Workspace.Views.Center', {
     constructor: function (config) {
 
         Ext.apply(this, config);
-
-        this.btnLoadMapModule = Ext.create('Ext.button.Button', {
-            text: 'load Map Module',
-            handler: Ext.bind(this.onBtnLoadMapModule, this)
-        });
-
-        //this.btnLoadGridModule = Ext.create('Ext.button.Button', {
-        //    text: 'load Grid Module',
-        //    handler: Ext.bind(this.onBtnLoadGridModule, this)
-        //});
-
-        //this.tbar = [
-        //    this.btnLoadMapModule,
-        //    this.btnLoadGridModule
-        //];
-
-        this.layout = 'absolute';
-
-        //this.leftContainer = Ext.create('Ext.panel.Panel', {
-        //    title: 'map?',
-        //    flex: 1
-        //});
-        //this.rightContainer = Ext.create('Ext.panel.Panel', {
-        //    title: 'grid?',
-        //    flex: 1
-        //});
-
-        //this.items = [
-        //    this.leftContainer,
-        //    this.rightContainer
-        //];
-
-
-       // var gridsterHtml =
-       //'<div id="_center" class="gridster" style="width: 100%; height:100%;">' +
-       //    '<ul id="_ul-modules">' +
-       //    '<li class="gridster-border" data-row="1" data-col="1" data-sizex="2" data-sizey="1"><div id="_map" style="width:100%; height:100%;"></div></li>' +
-       //    '<li class="gridster-border" data-row="1" data-col="3" data-sizex="1" data-sizey="1"><div id="_grid" style="width:100%; height:100%;"></div></li>' +
-       //    '</ul>' +
-       //'</div>';
-
-        //this.html = '<iframe src="http://localhost:8088/containers/gnx-container/gnx-container/" width="100%" height="100%" frameBorder="0"></iframe>';
-
-        this.tbar = [
-            Ext.create('Ext.button.Button', {
-                text: 'Load Gadget',
-                handler: this.renderShinding
-            }),
-            Ext.create('Ext.button.Button', {
-                text: 'Load Google Gadget',
-                handler: this.renderGoogleGadget
-            }),
-            Ext.create('Ext.button.Button', {
-                text: 'Load Local Gadget',
-                handler: this.renderLocalGadget
-            }),
-            Ext.create('Ext.button.Button', {
-                text: 'Localtion',
-                handler: this.renderLocationGadget
-            }),
-            Ext.create('Ext.button.Button', {
-                text: 'PubSub',
-                handler: this.renderPubSubGadget
-            })
-        ];
-            
         this.callParent([config]);
 
 
@@ -192,14 +126,12 @@ Ext.define('Workspace.Views.Center', {
                                 cmp.stopAnimation();
                                 cmp.highlight();
                             },
-                            notifyDrop: Ext.bind(me.nofifyDrop, me) 
+                            notifyDrop: Ext.bind(me.notifyDrop, me) 
                         });
                     }
                 }
             });
         }
-
-
 
 
         if (this.iFrameContainer) {
@@ -208,9 +140,6 @@ Ext.define('Workspace.Views.Center', {
         }
 
         this.iFrameContainer = Ext.create('Ext.container.Container', {
-            //y: 100,
-            width: 600,
-            height: 400,
             style: {
                 backgroundColor: 'red'
             },
@@ -218,15 +147,11 @@ Ext.define('Workspace.Views.Center', {
         });
 
 
-        this.iFrameContainer.on('render', function () {
-            //this.divContainer.hide();
-        }, this);
-
         this.add(this.iFrameContainer);
 
     },
 
-    nofifyDrop: function (ddSource, e, data) {
+    notifyDrop: function (ddSource, e, data) {
         this.fireEvent('moduledropped', data);
         return true;
     },
@@ -236,7 +161,9 @@ Ext.define('Workspace.Views.Center', {
         //var signalRHubsUrl = '@TempData["signalRHubsUrl"]';
         //var hubName = '@TempData["hubName"]';
         //var roomId = '@TempData["roomId"]';
-        return 'http://localhost:8088/containers/gnx-container/gnx-container/index.html?signalRHubsUrl=' + signalRHubsUrl + '&hubName=' + hubName + '&roomId=' + roomId;
+        //return 'http://localhost:8088/containers/gnx-container/?signalRHubsUrl=' + signalRHubsUrl + '&hubName=' + hubName + '&roomId=' + roomId;
+
+        return 'http://localhost:8088/containers/commoncontainer/?signalRHubsUrl=' + signalRHubsUrl + '&hubName=' + hubName + '&roomId=' + roomId;
     },
 
 
