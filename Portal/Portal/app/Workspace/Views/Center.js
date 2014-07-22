@@ -110,7 +110,7 @@ Ext.define('Workspace.Views.Center', {
                 frame: true,
                 plain: true,
                 //style: 'background-color : transparent;',
-                bodyStyle: 'opacity:0.5;',
+                //bodyStyle: 'opacity:0.5;',
                 style: 'background-color : transparent;',
                 //style: 'background-color:"orange"',
                 listeners: {
@@ -140,9 +140,9 @@ Ext.define('Workspace.Views.Center', {
         }
 
         this.iFrameContainer = Ext.create('Ext.container.Container', {
-            style: {
-                backgroundColor: 'red'
-            },
+            //style: {
+            //    backgroundColor: 'red'
+            //},
             html: '<iframe src="' + this.getSignalRParams() + '" width="100%" height="100%" frameBorder="0"></iframe>'
         });
 

@@ -51,10 +51,7 @@ Ext.define('Workspace.AppLogic', {
             id: 'wmorde',
             roomId: roomId,
             region: 'center',
-            layout: 'fit',
-            style: {
-                backgroundColor: 'yellow'
-            }
+            layout: 'fit'
         });
 
         this.centerView.on('moduledropped', this.onModuleDropped, this);
