@@ -16,6 +16,12 @@
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.GadgetUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Thumbnail)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Desciption)
         </th>
         <th>
@@ -33,7 +39,10 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Desciption)
+            @Html.DisplayFor(modelItem => item.GadgetUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Thumbnail)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.IsPublic)

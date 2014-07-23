@@ -22,6 +22,10 @@ namespace Portal.Models
         public bool IsPublic { get; set; }
         [Display(Name = "OwnerId", AutoGenerateField=false)]
         public string OwnerId { get; set; }
+        [Display(Name = "GadgetUrl")]
+        public string GadgetUrl { get; set; }
+        [Display(Name = "Thumbnail")]
+        public string Thumbnail { get; set; }
 
     }
 }

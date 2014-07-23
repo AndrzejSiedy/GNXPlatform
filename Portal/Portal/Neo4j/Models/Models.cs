@@ -22,6 +22,8 @@ namespace Portal.Models
     public class Neo4jModule: Base
     {
         public string Name { get; set; }
+        public string GadgetUrl { get; set; }
+        public string Thumbnail { get; set; }
         public string Desciption { get; set; }
         public bool IsPublic { get; set; }
         public string OwnerId { get; set; }

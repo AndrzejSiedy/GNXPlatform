@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201406261156146_module-remove-imgBase64.Designer.cs">
       <DependentUpon>201406261156146_module-remove-imgBase64.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407231609392_extend_module.cs" />
+    <Compile Include="Migrations\201407231609392_extend_module.Designer.cs">
+      <DependentUpon>201407231609392_extend_module.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -427,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406261156146_module-remove-imgBase64.resx">
       <DependentUpon>201406261156146_module-remove-imgBase64.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407231609392_extend_module.resx">
+      <DependentUpon>201407231609392_extend_module.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -81,6 +81,8 @@ namespace Portal.Controllers
                 {
                     Id =  moduleModels.Id.ToString(),
                     Name = moduleModels.Name ,
+                    GadgetUrl = moduleModels.GadgetUrl,
+                    Thumbnail = moduleModels.Thumbnail,
                     Desciption = moduleModels.Desciption,
                     IsPublic = moduleModels.IsPublic,
                     OwnerId = moduleModels.OwnerId
