@@ -75,6 +75,23 @@ namespace Portal.Neo4j.Controllers
             return new NodeReference<T>(x.Reference.Id);
         }
 
+
+        public static void Update<T>(T obj) where T : Base
+        {
+
+            var match = "(n:" + typeof(T).Name + ")";
+            var where = "n.Id = {id}";
+
+            Neo4jConfig.client.Cypher
+                .Match(match)
+                .Where(where)
+                .Set("n = {data}")
+                .WithParam("id", obj.Id)
+                .WithParam("data", obj)
+                .ExecuteWithoutResults();
+
+        }
+
         public static void Delete<T>(string id) where T : Base
         {
             // include any connected relationships

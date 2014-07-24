@@ -57,7 +57,8 @@ namespace Portal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Desciption,IsPublic,OwnerId")] ModuleModels moduleModels)
+        //public async Task<ActionResult> Create([Bind(Include = "Id,Name,Desciption,IsPublic,OwnerId")] ModuleModels moduleModels)
+        public async Task<ActionResult> Create(ModuleModels moduleModels)
         {
             if (ModelState.IsValid)
             {
@@ -130,12 +131,30 @@ namespace Portal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Desciption,IsPublic,OwnerId")] ModuleModels moduleModels)
+        //public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Desciption,IsPublic,OwnerId")] ModuleModels moduleModels)
+        public async Task<ActionResult> Edit(ModuleModels moduleModels)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(moduleModels).State = EntityState.Modified;
                 await db.SaveChangesAsync();
+
+
+                Portal.Models.Neo4jModule neo4jModule = new Portal.Models.Neo4jModule()
+                {
+                    Id = moduleModels.Id.ToString(),
+                    Name = moduleModels.Name,
+                    GadgetUrl = moduleModels.GadgetUrl,
+                    Thumbnail = moduleModels.Thumbnail,
+                    Desciption = moduleModels.Desciption,
+                    IsPublic = moduleModels.IsPublic,
+                    OwnerId = moduleModels.OwnerId
+                };
+                //var moduleNode = Portal.Neo4j.Controllers.Operations.Create<Neo4jModule>(neo4jModule);
+
+                Portal.Neo4j.Controllers.Operations.Update<Neo4jModule>(neo4jModule);
+
+
                 return RedirectToAction("Index");
             }
             return View(moduleModels);
