@@ -51,12 +51,14 @@ Ext.define('Workspace.Views.Modules', {
                 //      a proxy to drag.
                 getDragData: function (e) {
 
-                    // should be same as drag start
-                    me.dragStarted();
-
                     var sourceEl = e.getTarget(v.itemSelector, 10), d;
 
                     if (sourceEl) {
+
+                        // should be same as drag start
+                        me.dragStarted();
+
+
                         d = sourceEl.cloneNode(true);
                         d.id = Ext.id();
                         return (v.dragData = {

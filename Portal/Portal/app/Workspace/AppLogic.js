@@ -38,7 +38,6 @@ Ext.define('Workspace.AppLogic', {
         this.modulesView = Ext.create('Workspace.Views.Modules', {
             width: 300,
             region: 'west',
-            autoScroll: true,
             split: true
         });
 
