@@ -38,7 +38,13 @@ Ext.define('Workspace.AppLogic', {
         this.modulesView = Ext.create('Workspace.Views.Modules', {
             width: 300,
             region: 'west',
-            split: true
+            split: true,
+            preventHeader: true,
+            collapsible: true,  // make collapsible
+            collapseMode: 'mini',
+            hideCollapseTool: true,
+            floatable: true, //so panel does not do floating preview on header / title click
+            titleCollapse: true //so panel expands / collapses on title bar click
         });
 
         

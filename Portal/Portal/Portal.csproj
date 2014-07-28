@@ -317,6 +317,7 @@
     <Content Include="Sandbox\dnd\Scripts\DragDropHelpers.js" />
     <Content Include="Sandbox\dnd\Scripts\EventHelpers.js" />
     <Content Include="Sandbox\dnd\Scripts\sprintf.js" />
+    <Content Include="Sandbox\Hgis.html" />
     <Content Include="Sandbox\TestS.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
