@@ -32,7 +32,7 @@ namespace Portal.Controllers
             var relNodes = Portal.Neo4j.Controllers.Operations.GetRelatedNodes<NodeReference<Neo4jUser>, Neo4jModule>(userNode.Reference, "OWNS_MODULE");
 
             //return db.ModuleModels.Where(m => m.OwnerId == id);
-            return relNodes;
+            return relNodes.OrderBy(m => m.Name);
         }
 
         [Route("api/ModuleModelsApiServer")]
