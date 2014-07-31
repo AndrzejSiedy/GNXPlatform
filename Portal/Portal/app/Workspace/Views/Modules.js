@@ -13,27 +13,6 @@ Ext.define('Workspace.Views.Modules', {
 
         Ext.apply(this, config);
         
-        var btnTest = Ext.create('Ext.button.Button', {
-            text: 'Get Neo4j',
-            handler: Ext.bind(function () {
-                this.getModules();
-            }, this)
-        });
-        var btnTest2 = Ext.create('Ext.button.Button', {
-            text: 'Get MS Server',
-            handler: Ext.bind(function () {
-                this.getModulesServer();
-            }, this)
-        });
-
-        var btnTest3 = Ext.create('Ext.button.Button', {
-            text: 'Load Data',
-            handler: Ext.bind(function () {
-                this.loadDataMSServer();
-            }, this)
-        });
-
-
         this.layout = "border";
 
         this.moduleStore = Ext.create('Ext.data.Store', {
@@ -88,7 +67,7 @@ Ext.define('Workspace.Views.Modules', {
             '<tpl for=".">',
                 '<a href="#" id="toDrag" draggable="true">This is a draggable item',
                     '<div style="margin-bottom: 10px;" class="thumb-wrap">',
-                      '<img src="{ImgUrl}"/>',
+                      '<img src="{ImgUrl}" width=25%; height=25%; />',
                       '<br/><span>{Name}</span>',
                     '</div>',
                 '</a>',
