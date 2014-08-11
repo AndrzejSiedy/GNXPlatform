@@ -11,7 +11,7 @@ Ext.define('Workspace.Data.ModuleModel', {
 		{ name: 'Desciption', type: 'string', defaultValue: null},
         { name: 'IsPublic', type: 'boolean', defaultValue: false},
         { name: 'OwnerId', type: 'string', defaultValue: false },
-        { name: 'ImgUrl', type: 'string', defaultValue: false}
+        { name: 'Thumbnail', type: 'string', defaultValue: false}
     ]
 
 });

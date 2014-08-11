@@ -65,9 +65,9 @@ Ext.define('Workspace.Views.Modules', {
 
         var imageTpl = new Ext.XTemplate(
             '<tpl for=".">',
-                '<a href="#" id="toDrag" draggable="true">This is a draggable item',
+                '<a href="#" id="toDrag" draggable="true">',
                     '<div style="margin-bottom: 10px;" class="thumb-wrap">',
-                      '<img src="{ImgUrl}" width=25%; height=25%; />',
+                      '<img src="{Thumbnail}" width=50%; height=50%; />',
                       '<br/><span>{Name}</span>',
                     '</div>',
                 '</a>',
@@ -146,7 +146,7 @@ Ext.define('Workspace.Views.Modules', {
             if (result) {
                 // assign fake icons for modules
                 for (var i = 0; i < result.length; i++) {
-                    result[i].ImgUrl = me.getModuleIcon(i);
+                    result[i].Thumbnail = result[i].Thumbnail == null ? me.noThumbnail : result[i].Thumbnail;
                 }
                 me.moduleStore.loadData(result);
 
@@ -245,24 +245,6 @@ Ext.define('Workspace.Views.Modules', {
 
     },
 
-    icons: [
-        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSQdLTeJPGZyNDwUAI2aQx1DtSlLMRSdZ1S2cVlsk7vZTaw87bY7A',
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQACOYEQBgjA8X0j05bH7A3MwEyw24_s13hgchCgchTnI8ZCDbYFg',
-        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQLBc-4mKwK1VU0wwVD9oebbc8esJ1Yziqc3J-owgDFvhtirvQc',
-        'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRClX6P-zML6-AGwTVsJyaCJFcQPjuNzvQ95lyLy8Y1gak1lMeE',
-        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTZgsLxxV1Pn7c9Yohpu0t8ge9evzgkg4UUQ_MRy8C4SwyKLgXZ',
-        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQqID5iNkHWRPYedZ-K37RrvCYJ2r7WVGxvbctYeWXD0j6Lm002Ig',
-        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS0cnjFPvDCvCFJwnqz1-C6itwxWH2Enwnu1vt1g8evh6i1lEly'
-
-    ],
-
-    getModuleIcon: function (idx) {
-        if (idx > this.icons.length) {
-            idx = 0;
-        }
-
-        return this.icons[idx];
-    }
-
+    noThumbnail: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS6Hq-QaY5OLlQpEAXbT3cyu7SVSyH9dxrL9Xm5qM-tHoaHsLsf5g'
 
 });
