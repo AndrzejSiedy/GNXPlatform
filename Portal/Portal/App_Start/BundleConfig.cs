@@ -62,17 +62,6 @@ namespace Portal
                 ));
 
 
-
-            //// //manos.malihu.gr/jquery-custom-content-scroller/
-            //bundles.Add(new StyleBundle("~/malihu-scrollerCss").Include(
-            //        "~/Scripts/malihu-scroller/jquery.mCustomScrollbar.css"
-            //    ));
-            //bundles.Add(new StyleBundle("~/malihu-scrollerJs").Include(
-            //        "~/Scripts/malihu-scroller/jquery.mCustomScrollbar.concat.min.js"
-            //    ));
-
-
-
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;
