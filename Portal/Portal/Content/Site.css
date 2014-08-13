@@ -32,8 +32,8 @@ textarea {
 }
 
 .body-content{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
     overflow: hidden !important;
 }
 

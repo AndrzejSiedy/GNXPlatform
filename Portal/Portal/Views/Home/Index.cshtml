@@ -18,15 +18,63 @@
 
 </script>
 
+<style>
+        #wrapper {
+            margin-right: auto;
+            margin-left: auto;
+            width: 100%;
+        }
+
+        #sub-content-center {
+            margin-top: 50px;
+            margin-right: 0px;
+            float: right;
+            width: 100%;
+            top: 0px;
+	        bottom: 30px;
+	        overflow: auto;
+	        position: absolute;
+	        left: 0;
+	        right: 0;
+        }
+
+
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#sub-content-center').layout();    });
+
+</script>
+
+
 
 @if (User.Identity.IsAuthenticated)
 {
 
-    @Scripts.Render("~/app/JakasNazwa")
-    
-       
-    
-    <div id="_HomeContent">
+    @*@Scripts.Render("~/app/JakasNazwa")*@
+      
+    @*<div id="_HomeContent">
+        dupa
+    </div>*@
+
+    <div id="wrapper">
+        <
+        <!-- the content -->
+        <div id="sub-content-center" style="background-color:blue;">
+
+                <div class="pane ui-layout-center">
+                    Center
+                    <p><a href="http://layout.jquery-dev.com/demos.html"><b>Go to the Demos page</b></a></p>
+                </div>
+                <div class="pane ui-layout-north">North</div>
+                <div class="pane ui-layout-south">South</div>
+                <div class="pane ui-layout-east">East</div>
+                <div class="pane ui-layout-west">West</div>
+
+        </div>
+        
     </div>
 }
 else
