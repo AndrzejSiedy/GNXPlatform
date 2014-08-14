@@ -41,26 +41,27 @@
             @*<a class="element" href="">GNX Home <sup>2.0</sup>@Html.ActionLink("Home", "Index", "Home")</a>
             <span class="element-divider"></span>*@
 
-            <a class="element" href='@Url.Action("Index", "Home")'>GNX Home <sup>2.0</sup></a>
+            <a class="element" href='@Url.Action("Index", "Home")'><span class="icon-home">&nbsp;</span>GNX Home <sup>2.0</sup></a>
             <span class="element-divider"></span>
 
-            <a class="element" href='@Url.Action("Index", "ModuleModels")'>Modules</a>
+            <a class="element" href='@Url.Action("Index", "ModuleModels")'><span class="icon-tree-view">&nbsp;</span>Modules</a>
+            <span class="element-divider"></span>
+
+            <a class="element" href='@Url.Action("Contact", "Home")'><span class="icon-mail">&nbsp;</span>Address</a>
             <span class="element-divider"></span>
 
             <a class="element" href='@Url.Action("About", "Home")'>About GNX</a>
-            <span class="element-divider"></span>
-
-            <a class="element" href='@Url.Action("Contact", "Home")'>Contact us</a>
             <span class="element-divider"></span>
 
             @Html.Partial("_LoginPartial")
 
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
+    @*<div class="body-content container">*@
+    <div class="body-content">
+            @RenderBody()
 
-    </div>
+        </div>
     <footer id="_footer" class="footer">
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
     </footer>
