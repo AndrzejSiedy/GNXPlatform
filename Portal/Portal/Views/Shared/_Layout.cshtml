@@ -2,7 +2,7 @@
 <html>
 <head>
 
-    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")"/>
+    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
@@ -35,11 +35,9 @@
 
 </head>
 <body class="metro">
-    
+
     <nav class="navbar navbar-inverse navbar-fixed-top navigation-bar">
         <div class="navigation-bar-content">
-            @*<a class="element" href="">GNX Home <sup>2.0</sup>@Html.ActionLink("Home", "Index", "Home")</a>
-            <span class="element-divider"></span>*@
 
             <a class="element" href='@Url.Action("Index", "Home")'><span class="icon-home">&nbsp;</span>GNX Home <sup>2.0</sup></a>
             <span class="element-divider"></span>
@@ -58,10 +56,10 @@
         </div>
     </nav>
     @*<div class="body-content container">*@
-    <div class="body-content">
-            @RenderBody()
+    <section class="body-content">
+        @RenderBody()
 
-        </div>
+    </section>
     <footer id="_footer" class="footer">
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
     </footer>
