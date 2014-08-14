@@ -7,12 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
-    <!-- Ext related css and libs-->
-
-    @*<link href="http://localhost/jsLibs/ExtJs/5.0.0/build/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" rel="stylesheet" />
-    <script src="http://localhost/jsLibs/ExtJs/5.0.0/build/ext-all.js"></script>
-    <link href="http://localhost/jsLibs/ExtJs/5.0.0/build/packages/ext-theme-crisp/build/ext-theme-crisp.js" rel="stylesheet" />*@
-
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -20,14 +14,16 @@
     @Scripts.Render("~/bundles/jqueryUiJs")
     @Styles.Render("~/bundles/jqueryUiCss")
 
+    @*<link rel="stylesheet" href="css/metro-bootstrap.css">src="js/metro/metro.min.js"></script>*@
+
+    @Styles.Render("~/Content/metro-ui/css")
+    @Scripts.Render("~/bundles/metro-ui")
+
 
     @*jQuery Layout plugin inspired by ExiJs border layout*@
     <link type="text/css" rel="stylesheet" href="//layout.jquery-dev.com/lib/css/layout-default-latest.css" />
     <script type="text/javascript" src="//layout.jquery-dev.com/lib/js/jquery.layout-latest.js"></script>
 
-
-    @*@Styles.Render("~/bundles/gridsterCss")
-    @Scripts.Render("~/bundles/gridsterJs")*@
 
     @Styles.Render("~/toastrCss")
     @Scripts.Render("~/toastrJs")
@@ -35,38 +31,35 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-
     @Scripts.Render("~/bundles/signalR")
 
-
-    
 </head>
-<body>
-    <header class="navbar navbar-inverse navbar-fixed-top">
-        <div id="_header" class="container">
-            <div class="navbar-header" >
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Just href</a></li>
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li id="_contactlink">@Html.ActionLink("Modules", "Index", "ModuleModels")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+<body class="metro">
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top navigation-bar">
+        <div class="navigation-bar-content">
+            @*<a class="element" href="">GNX Home <sup>2.0</sup>@Html.ActionLink("Home", "Index", "Home")</a>
+            <span class="element-divider"></span>*@
+
+            <a class="element" href='@Url.Action("Index", "Home")'>GNX Home <sup>2.0</sup></a>
+            <span class="element-divider"></span>
+
+            <a class="element" href='@Url.Action("Index", "ModuleModels")'>Modules</a>
+            <span class="element-divider"></span>
+
+            <a class="element" href='@Url.Action("About", "Home")'>About GNX</a>
+            <span class="element-divider"></span>
+
+            <a class="element" href='@Url.Action("Contact", "Home")'>Contact us</a>
+            <span class="element-divider"></span>
+
+            @Html.Partial("_LoginPartial")
+
         </div>
-    </header>
+    </nav>
     <div class="container body-content">
         @RenderBody()
-        
+
     </div>
     <footer id="_footer" class="footer">
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

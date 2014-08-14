@@ -111,6 +111,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.1.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.4\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -174,6 +177,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\MetroUICSSBundleConfig.cs" />
     <Compile Include="App_Start\Neo4jConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -240,6 +244,14 @@
     <Content Include="app\Workspace\Views\Modules.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\metro-ui\css\iconFont.min.css" />
+    <Content Include="Content\metro-ui\css\metro-bootstrap-responsive.css" />
+    <Content Include="Content\metro-ui\css\metro-bootstrap-responsive.min.css" />
+    <Content Include="Content\metro-ui\css\metro-bootstrap.css" />
+    <Content Include="Content\metro-ui\css\metro-bootstrap.min.css" />
+    <Content Include="Content\metro-ui\fonts\iconFont.dev.svg" />
+    <Content Include="Content\metro-ui\fonts\iconFont.svg" />
+    <Content Include="Content\metro-ui\fonts\metroSysIcons.svg" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -323,34 +335,17 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
-    <Content Include="Scripts\ducksboard-gridster\.bowerrc" />
-    <Content Include="Scripts\ducksboard-gridster\.gitignore" />
-    <Content Include="Scripts\ducksboard-gridster\CHANGELOG.md" />
-    <Content Include="Scripts\ducksboard-gridster\CONTRIBUTING.md" />
-    <Content Include="Scripts\ducksboard-gridster\LICENSE" />
-    <Content Include="Scripts\ducksboard-gridster\package.json" />
-    <Content Include="Scripts\ducksboard-gridster\README.md" />
+    <Content Include="Content\metro-ui\fonts\metroSysIcons.woff" />
+    <Content Include="Content\metro-ui\fonts\metroSysIcons.ttf" />
+    <Content Include="Content\metro-ui\fonts\iconFont.woff" />
+    <Content Include="Content\metro-ui\fonts\iconFont.ttf" />
+    <Content Include="Content\metro-ui\fonts\iconFont.json" />
+    <Content Include="Content\metro-ui\fonts\iconFont.eot" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\ducksboard-gridster\dist\jquery.gridster.css" />
-    <Content Include="Scripts\ducksboard-gridster\dist\jquery.gridster.js" />
-    <Content Include="Scripts\ducksboard-gridster\dist\jquery.gridster.min.css" />
-    <Content Include="Scripts\ducksboard-gridster\dist\jquery.gridster.min.js" />
-    <Content Include="Scripts\ducksboard-gridster\dist\jquery.gridster.with-extras.js" />
-    <Content Include="Scripts\ducksboard-gridster\dist\jquery.gridster.with-extras.min.js" />
-    <Content Include="Scripts\ducksboard-gridster\Gruntfile.js" />
-    <Content Include="Scripts\ducksboard-gridster\src\jquery.collision.js" />
-    <Content Include="Scripts\ducksboard-gridster\src\jquery.coords.js" />
-    <Content Include="Scripts\ducksboard-gridster\src\jquery.draggable.js" />
-    <Content Include="Scripts\ducksboard-gridster\src\jquery.gridster.css" />
-    <Content Include="Scripts\ducksboard-gridster\src\jquery.gridster.extras.js" />
-    <Content Include="Scripts\ducksboard-gridster\src\jquery.gridster.js" />
-    <Content Include="Scripts\ducksboard-gridster\src\utils.js" />
-    <Content Include="Scripts\ducksboard-gridster\test\jquery.gridder.html" />
-    <Content Include="Scripts\ducksboard-gridster\test\jquery.gridder_test.js" />
     <Content Include="Scripts\iScroll\iscroll.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -363,6 +358,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\metro-ui\jquery.ui.widget.js" />
+    <Content Include="Scripts\metro-ui\metro.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

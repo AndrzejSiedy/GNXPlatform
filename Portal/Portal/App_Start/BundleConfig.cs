@@ -23,13 +23,6 @@ namespace Portal
                         "~/Scripts/jquery-ui-1.10.4.js"));
 
 
-            // Gridster
-            bundles.Add(new StyleBundle("~/bundles/gridsterCss").Include(
-                        "~/Scripts/ducksboard-gridster/dist/jquery.gridster.css"));
-
-            bundles.Add(new ScriptBundle("~/bundles/gridsterJs").Include(
-                        "~/Scripts/ducksboard-gridster/dist/jquery.gridster.js"));
-
             bundles.Add(new ScriptBundle("~/bundles/signalR").Include(
                         "~/Scripts/jquery.signalR-2.1.0.js"));
 
@@ -49,22 +42,19 @@ namespace Portal
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/app/JakasNazwa").Include(
-                    "~/app/Workspace/app.js"
-                ));
+                    "~/app/Workspace/app.js"));
 
             // Toastr
             bundles.Add(new StyleBundle("~/toastrCss").Include(
-                    "~/Content/toastr.css"
-                ));
+                    "~/Content/toastr.css"));
 
             bundles.Add(new ScriptBundle("~/toastrJs").Include(
-                    "~/Scripts/toastr.min.js"
-                ));
+                    "~/Scripts/toastr.min.js"));
 
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

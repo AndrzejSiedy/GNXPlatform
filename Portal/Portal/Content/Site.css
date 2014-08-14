@@ -50,11 +50,35 @@ body {
     height: 100%;
     margin: 0 auto;
     width: 100%;
-    max-width: 900px;
+    /*max-width: 900px;*/
     min-width: 700px;
     _width: 700px; /* min-width for IE6 */
 }
 
 .pane {
     display: none; /* will appear when layout inits */
+}
+
+.navbar {
+    margin-bottom: 20px;
+    height: 50px;
+}
+
+#wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+#sub-content-center {
+    margin-top: 50px;
+    margin-right: 0px;
+    float: right;
+    width: 100%;
+    top: 0px;
+    bottom: 30px;
+    overflow: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
 }
