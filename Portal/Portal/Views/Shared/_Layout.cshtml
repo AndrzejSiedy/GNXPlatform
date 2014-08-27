@@ -5,7 +5,7 @@
     <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - GNX Platform</title>
 
 
     @Scripts.Render("~/bundles/jquery")
@@ -36,32 +36,37 @@
 </head>
 <body class="metro">
 
-    <nav class="navbar navbar-inverse navbar-fixed-top navigation-bar">
-        <div class="navigation-bar-content">
+    <header class="bg-dark" style="margin-top:-50px;">
+        <nav class="navigation-bar">
+            <nav class="navigation-bar-content">
+                <span class="element-divider place-right"></span>
+                @Html.Partial("_LoginPartial")
+                <a class="element1 pull-menu" href="#"></a>
+                @*collpsible menu visible in small width, or as normal navbar when enought space provided*@
+                <ul class="element-menu" style="margin-top:-50px;">
+                    <li>
+                        <a class="element" href='@Url.Action("Index", "Home")'><span class="icon-home">&nbsp;</span>GNX Home <sup>2.0</sup></a>
+                    </li>
+                    <li>
+                        <a class="element" href='@Url.Action("Index", "ModuleModels")'><span class="icon-tree-view">&nbsp;</span>Modules</a>
+                    </li>
+                    <li>
+                        <a class="element" href='@Url.Action("Contact", "Home")'><span class="icon-mail">&nbsp;</span>Address</a>
+                    </li>
+                    <li>
+                        <a class="element" href='@Url.Action("About", "Home")'>About GNX</a>
+                    </li>
+                </ul>
+            </nav>
+        </nav>
+    </header>
 
-            <a class="element" href='@Url.Action("Index", "Home")'><span class="icon-home">&nbsp;</span>GNX Home <sup>2.0</sup></a>
-            <span class="element-divider"></span>
-
-            <a class="element" href='@Url.Action("Index", "ModuleModels")'><span class="icon-tree-view">&nbsp;</span>Modules</a>
-            <span class="element-divider"></span>
-
-            <a class="element" href='@Url.Action("Contact", "Home")'><span class="icon-mail">&nbsp;</span>Address</a>
-            <span class="element-divider"></span>
-
-            <a class="element" href='@Url.Action("About", "Home")'>About GNX</a>
-            <span class="element-divider"></span>
-
-            @Html.Partial("_LoginPartial")
-
-        </div>
-    </nav>
-    @*<div class="body-content container">*@
-    <section class="body-content">
+    <section class="body-content container">
         @RenderBody()
 
     </section>
     <footer id="_footer" class="footer">
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <p>&copy; @DateTime.Now.Year - GNX Platform</p>
     </footer>
 
 
