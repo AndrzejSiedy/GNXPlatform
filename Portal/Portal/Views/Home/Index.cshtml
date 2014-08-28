@@ -89,39 +89,35 @@
         $(document).ready(function () {
             viewport = $('#sub-content-center').layout({
                 resizeWhileDragging: true
-                , initClosed: true
+                //, initClosed: true
 		        , animatePaneSizing: true
 		        , spacing_open: 0
 		        , spacing_closed: 0
+
                 , west: {
                     spacing_closed: 50
                     , spacing_open: 50
                     , size: '100%'
+                    , initClosed: false
                     , togglerLength_closed: '100%'
                     , togglerLength_open: '100%'
 
                     , togglerContent_open: '<div class="west-toggler-collapse"><span class="icon-arrow-up-3" style="font-size:22px;"/> Hide modules</div>'
                     , togglerContent_closed: '<div class="west-toggler-expand"><span class="icon-arrow-up-3" style="font-size:22px;"/> Show modules</div>'
 
-                    //, togglerContent_open: '<span class="west-toggler-collapse"> collapse me</span>'
-                    //, togglerContent_closed: '<span class="icon-arrow-down-3"> expand me</span>'
+                    //, onopen_start: $.layout.callbacks.pseudoClose
+                    //, onclose_start: $.layout.callbacks.pseudoClose
                 }
             });
 
 
-
-            //$("gnx-toggler").css("background-color", $("source").css("border"));
-            //$("target").css("background", $("source").css("background"));
+            // inject div dynamically example
+            //$("<p>Test</p>").appendTo(viewport.west.pane[0]);
+            
 
 
             // open west pane
             //viewport.open('west');
-
-
-
-
-
-
 
 
             //viewport.togglers.west
@@ -147,7 +143,7 @@
             @*<div class="pane ui-layout-north">North</div>
             <div class="pane ui-layout-south">South</div>
             <div class="pane ui-layout-east">East</div>*@
-            <div class="pane ui-layout-west"></div>
+            <div class="pane ui-layout-west">dynamic custom content goes here - we need to handle moving off screen iframe content on close/hide</div>
         </div>
 
     </div>
