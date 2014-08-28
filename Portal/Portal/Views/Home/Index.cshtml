@@ -26,6 +26,46 @@
 
 <style>
 
+    .west-toggler-collapse {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        color: #000;
+        font-size: 16px !important;
+        height: 200px;
+        width: 200px;
+        /*float: left;*/
+        margin-left: 10px;
+        /*vertical-align: top;*/
+    }
+
+    .west-toggler-expand {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #000;
+        font-size: 16px !important;
+        height: 200px;
+        width: 200px;
+        -left: -100px;
+        /*float: left;*/
+        margin-left: -150px;
+        padding-top: 10px;
+        /*vertical-align: bottom;*/
+    }
+
+    .gnx-toggler {
+        font-size: 30px;
+        vertical-align: top;
+    }
+
+    .ui-layout-toggler{
+        background-color: #1ba1e2 !important;
+    }
 
 
 </style>
@@ -46,7 +86,52 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
-            $('#sub-content-center').layout();
+            viewport = $('#sub-content-center').layout({
+                resizeWhileDragging: true
+                , initClosed: true
+		        , animatePaneSizing: true
+		        , spacing_open: 0
+		        , spacing_closed: 0
+                , west: {
+                    spacing_closed: 50
+                    , spacing_open: 50
+                    , size: '100%'
+                    , togglerLength_closed: '100%'
+                    , togglerLength_open: '100%'
+
+                    , togglerContent_open: '<div class="west-toggler-collapse"><span class="icon-arrow-up-3"/> hide modules</div>'
+                    , togglerContent_closed: '<div class="west-toggler-expand"><span class="icon-arrow-up-3"/> show modules</div>'
+
+                    //, togglerContent_open: '<span class="west-toggler-collapse"> collapse me</span>'
+                    //, togglerContent_closed: '<span class="icon-arrow-down-3"> expand me</span>'
+                }
+            });
+
+
+
+            //$("gnx-toggler").css("background-color", $("source").css("border"));
+            //$("target").css("background", $("source").css("background"));
+
+
+            // open west pane
+            //viewport.open('west');
+
+
+
+
+
+
+
+
+            //viewport.togglers.west
+			//// UN-BIND DEFAULT TOGGLER FUNCTIONALITY
+			//.unbind("click")
+			//// BIND CUSTOM WEST METHODS
+			//.click(function () {
+			//    console.warn('xxx');
+			//}).attr("title", "Maximize West").end()
+            //;
+
         });
 
     </script>
@@ -58,10 +143,10 @@
                 Center
                 <p><a href="http://layout.jquery-dev.com/demos.html"><b>Go to the Demos page</b></a></p>
             </div>
-            <div class="pane ui-layout-north">North</div>
+            @*<div class="pane ui-layout-north">North</div>
             <div class="pane ui-layout-south">South</div>
-            <div class="pane ui-layout-east">East</div>
-            <div class="pane ui-layout-west">West</div>
+            <div class="pane ui-layout-east">East</div>*@
+            <div class="pane ui-layout-west"></div>
         </div>
 
     </div>
