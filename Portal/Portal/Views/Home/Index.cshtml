@@ -16,6 +16,8 @@
 @*load hubs*@
 <script src="@TempData["signalRHubsUrl"]" type="text/javascript"></script>
 
+
+
 <script type="text/javascript">
     // set some global variables
     var signalRHubsUrl = '@TempData["signalRHubsUrl"]';
@@ -59,15 +61,14 @@
         /*vertical-align: bottom;*/
     }
 
-    .gnx-toggler {
+    /*.gnx-toggler {
         font-size: 30px;
         vertical-align: top;
-    }
+    }*/
 
-    .ui-layout-toggler{
-        background-color: #1ba1e2 !important;
-    }
-
+    /*.ui-layout-toggler{
+        background-color: #1ba1e2;
+    }*/
 
 </style>
 
@@ -84,6 +85,8 @@
             dupa
         </div>*@
 
+    
+    
     <script type="text/javascript">
 
         $(document).ready(function () {
@@ -110,14 +113,19 @@
                 }
             });
 
-
             // inject div dynamically example
-            //$("<p>Test</p>").appendTo(viewport.west.pane[0]);
-            
+            $("<p>" + Date.now() + "</p>").appendTo(viewport.west.pane[0]);
 
 
             // open west pane
             //viewport.open('west');
+            // copy background color from nav-container class
+            // so JQuery Layout UI pane togglers update dynamically
+            $('.ui-layout-toggler').css('background-color', $('#nav-container').css('background-color'));
+            $('.west-toggler-collapse').css('color', $('#nav-container').css('color'));
+            $('.west-toggler-expand').css('color', $('#nav-container').css('color'));
+            
+            
 
 
             //viewport.togglers.west
@@ -143,7 +151,9 @@
             @*<div class="pane ui-layout-north">North</div>
             <div class="pane ui-layout-south">South</div>
             <div class="pane ui-layout-east">East</div>*@
-            <div class="pane ui-layout-west">dynamic custom content goes here - we need to handle moving off screen iframe content on close/hide</div>
+            <div id="test1" class="pane ui-layout-west">
+                dynamic custom content goes here - we need to handle moving off screen iframe content on close/hide <br/>
+            </div>
         </div>
 
     </div>
