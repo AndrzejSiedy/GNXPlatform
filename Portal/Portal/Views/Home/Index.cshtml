@@ -16,6 +16,10 @@
 @*load hubs*@
 <script src="@TempData["signalRHubsUrl"]" type="text/javascript"></script>
 
+@*jQuery Freewall*@
+<script type="text/javascript" src="//vnjs.net/www/project/freewall/freewall.js"></script>
+
+
 
 
 <script type="text/javascript">
@@ -27,7 +31,6 @@
 </script>
 
 <style>
-
     .west-toggler-collapse {
         -webkit-transform: rotate(-90deg);
         -moz-transform: rotate(-90deg);
@@ -51,7 +54,6 @@
         transform: rotate(90deg);
         color: #ffffff;
         font-size: 14px !important;
-        
         height: 200px;
         width: 200px;
         -left: -100px;
@@ -70,10 +72,11 @@
         background-color: #1ba1e2;
     }*/
 
+
+    .free-wall {
+        margin: 5px;
+    }
 </style>
-
-
-
 
 
 @if (User.Identity.IsAuthenticated)
@@ -86,11 +89,18 @@
         </div>*@
 
     
-    
     <script type="text/javascript">
 
         $(document).ready(function () {
-            viewport = $('#sub-content-center').layout({
+
+
+            var westResizeCallback = function () {
+                if (wall) {
+                    wall.refresh();
+                }
+            }
+
+            var viewport = $('#sub-content-center').layout({
                 resizeWhileDragging: true
                 //, initClosed: true
 		        , animatePaneSizing: true
@@ -108,10 +118,12 @@
                     , togglerContent_open: '<div class="west-toggler-collapse"><span class="icon-arrow-up-3" style="font-size:22px;"/> Hide modules</div>'
                     , togglerContent_closed: '<div class="west-toggler-expand"><span class="icon-arrow-up-3" style="font-size:22px;"/> Show modules</div>'
 
-                    //, onopen_start: $.layout.callbacks.pseudoClose
-                    //, onclose_start: $.layout.callbacks.pseudoClose
+                    , onresize: westResizeCallback
+
                 }
             });
+
+            
 
             // inject div dynamically example
             $("<p>" + Date.now() + "</p>").appendTo(viewport.west.pane[0]);
@@ -119,12 +131,34 @@
 
             // open west pane
             //viewport.open('west');
+
             // copy background color from nav-container class
             // so JQuery Layout UI pane togglers update dynamically
             $('.ui-layout-toggler').css('background-color', $('#nav-container').css('background-color'));
             $('.west-toggler-collapse').css('color', $('#nav-container').css('color'));
             $('.west-toggler-expand').css('color', $('#nav-container').css('color'));
             
+
+            var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-color: " + $('#nav-container').css('color') + ";'>Module {index}</div>";
+            var w = 200, h = 100, html = '', limitItem = 49;
+            for (var i = 0; i < limitItem; ++i) {
+                html += temp.replace(/\{height\}/g, h).replace(/\{width\}/g, w).replace("{index}", i + 1);
+            }
+            $("#freewall").html(html);
+
+            var wall = new freewall("#freewall");
+            wall.reset({
+                selector: '.cell',
+                animate: true,
+                cellW: 200,
+                cellH: 100,
+                onResize: function () {
+                    wall.refresh();
+                }
+            });
+            wall.fitWidth();
+            // for scroll bar appear;
+            $(window).trigger("resize");
             
 
 
@@ -152,7 +186,7 @@
             <div class="pane ui-layout-south">South</div>
             <div class="pane ui-layout-east">East</div>*@
             <div id="test1" class="pane ui-layout-west">
-                dynamic custom content goes here - we need to handle moving off screen iframe content on close/hide <br/>
+                <div id="freewall" class="free-wall"></div>
             </div>
         </div>
 
