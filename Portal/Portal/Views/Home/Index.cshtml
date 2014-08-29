@@ -72,10 +72,24 @@
         background-color: #1ba1e2;
     }*/
 
-
     .free-wall {
         margin: 5px;
     }
+
+    .cell {
+        cursor: move;
+    }
+
+        .cell .cover {
+            padding: 15px;
+        }
+
+    .handle {
+        border: 1px dotted orange;
+        padding: 4px;
+    }
+
+
 </style>
 
 
@@ -111,6 +125,7 @@
                     spacing_closed: 50
                     , spacing_open: 50
                     , size: '100%'
+                    , minSize: 300
                     , initClosed: false
                     , togglerLength_closed: '100%'
                     , togglerLength_open: '100%'
@@ -139,7 +154,7 @@
             $('.west-toggler-expand').css('color', $('#nav-container').css('color'));
             
 
-            var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-color: " + $('#nav-container').css('color') + ";'>Module {index}</div>";
+            var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-color: " + $('#nav-container').css('background-color') + ";'>Module {index}</div>";
             var w = 200, h = 100, html = '', limitItem = 49;
             for (var i = 0; i < limitItem; ++i) {
                 html += temp.replace(/\{height\}/g, h).replace(/\{width\}/g, w).replace("{index}", i + 1);
@@ -148,6 +163,7 @@
 
             var wall = new freewall("#freewall");
             wall.reset({
+                draggable: true,
                 selector: '.cell',
                 animate: true,
                 cellW: 200,
