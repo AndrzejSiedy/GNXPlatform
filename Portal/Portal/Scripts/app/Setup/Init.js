@@ -16,6 +16,9 @@
 
         var w = new me.Wall();
         w.init();
+
+        var m = new me.Module();
+        m.init();
         
         me.initialized = true;
 

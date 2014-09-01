@@ -47,9 +47,11 @@ namespace Portal
 
             // Gnx modules
             bundles.Add(new ScriptBundle("~/app/Gnx").Include(
+                    "~/Scripts/app/Utils/Utils.js",
                     "~/Scripts/app/Setup/Init.js",
                     "~/Scripts/app/Setup/Layout.js",
-                    "~/Scripts/app/Setup/Wall.js"));
+                    "~/Scripts/app/Setup/Wall.js",
+                    "~/Scripts/app/Module/Module.js"));
 
             // Toastr
             bundles.Add(new StyleBundle("~/toastrCss").Include(

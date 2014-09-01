@@ -236,6 +236,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\app\Module\Module.js" />
     <Content Include="Scripts\app\Setup\Init.js" />
     <Content Include="Scripts\app\Setup\Layout.js" />
     <Content Include="Scripts\app\Setup\Wall.js" />
@@ -334,6 +335,7 @@
     <Content Include="Sandbox\Hgis.html" />
     <Content Include="Sandbox\HtmlPage1.html" />
     <Content Include="Sandbox\TestS.html" />
+    <Content Include="Scripts\app\Utils\Utils.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\toastr.scss" />
