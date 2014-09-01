@@ -1,10 +1,9 @@
 ﻿/**
- *  Init Gnx namespace
- *  Other modules, classes will extend it
+ *  Init Layout UI
 */
-(function ($, namespace, undefined) {
+Gnx.Layout = function () {
 
-    var me = namespace;
+    this.initialized = false;
 
     _initLayout = function () {
         var westResizeCallback = function () {
@@ -51,45 +50,13 @@
         $('.west-toggler-expand').css('color', $('#nav-container').css('color'));
     }
 
-    _initWall = function () {
-        var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-color: " + $('#nav-container').css('background-color') + "; color: " + $('#nav-container').css('color') + "'>Module {index}</div>";
-        var w = 200, h = 100, html = '', limitItem = 49;
-        for (var i = 0; i < limitItem; ++i) {
-            html += temp.replace(/\{height\}/g, h).replace(/\{width\}/g, w).replace("{index}", i + 1);
-        }
-        $("#freewall").html(html);
 
-        var wall = new freewall("#freewall");
-        wall.reset({
-            draggable: true,
-            selector: '.cell',
-            animate: true,
-            cellW: 200,
-            cellH: 100,
-            onResize: function () {
-                wall.refresh();
-            }
-        });
-        wall.fitWidth();
-        // for scroll bar appear;
-        $(window).trigger("resize");
-    }
-
-    /**
-     * Method initializes freewall and other setup stuff 
-     */
-    me.init = function () {
+    this.init = function () {
 
         _initLayout();
 
-        _initWall();
+        this.initialized = true;
 
-        
-        me.initialized = true;
-
-        return me.initialized;
+        return this.initialized;
     }
-
-    return me;
-
-})(jQuery, window.Gnx = window.Gnx || {});
+};

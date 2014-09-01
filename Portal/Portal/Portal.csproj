@@ -236,10 +236,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\Setup\Base.js" />
-    <Content Include="app\Setup\Init.js" />
-    <Content Include="app\Setup\Layout.js" />
-    <Content Include="app\Setup\Wall.js" />
+    <Content Include="Scripts\app\Setup\Init.js" />
+    <Content Include="Scripts\app\Setup\Layout.js" />
+    <Content Include="Scripts\app\Setup\Wall.js" />
     <Content Include="app\Workspace\app.js" />
     <Content Include="app\Workspace\AppLogic.js" />
     <Content Include="app\Workspace\Controllers\SignalRClient.js" />
