@@ -39,6 +39,8 @@
 
     @Scripts.Render("~/bundles/signalR")
 
+    
+
 </head>
 <body class="metro">
 
@@ -69,13 +71,12 @@
 
     <section class="body-content container">
         @RenderBody()
-
     </section>
     <footer id="_footer" class="footer">
         <p>&copy; @DateTime.Now.Year - GNX Platform</p>
     </footer>
 
-
+    @Scripts.Render("~/app/Gnx")
 
     @RenderSection("scripts", required: false)
 </body>

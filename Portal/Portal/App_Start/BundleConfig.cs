@@ -44,6 +44,11 @@ namespace Portal
             bundles.Add(new ScriptBundle("~/app/JakasNazwa").Include(
                     "~/app/Workspace/app.js"));
 
+
+            // Gnx modules
+            bundles.Add(new ScriptBundle("~/app/Gnx").Include(
+                    "~/app/Setup/Base.js"));
+
             // Toastr
             bundles.Add(new StyleBundle("~/toastrCss").Include(
                     "~/Content/toastr.css"));
