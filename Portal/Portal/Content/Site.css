@@ -8,7 +8,7 @@
     width: 100%;
 }
 
-.body-content{
+.body-content {
     padding-left: 0px !important;
     padding-right: 0px !important;
     overflow: hidden !important;
@@ -22,7 +22,7 @@
     bottom: 0;
     height: 30px;
     width: 100%;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 /*copied from FB*/
@@ -81,4 +81,9 @@ body {
     position: absolute;
     left: 0;
     right: 0;
+}
+
+
+.subpage-body {
+    margin: 15px;
 }
