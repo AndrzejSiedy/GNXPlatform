@@ -19,6 +19,12 @@
         
         me.initialized = true;
 
+        // bind to layout west panel resize
+        // event triggered from Layout class
+        $(document).on("layout-west-resize", function () {
+            w.refresh();
+        });
+
         return me.initialized;
     }
 

@@ -6,10 +6,13 @@ Gnx.Layout = function () {
     this.initialized = false;
 
     _initLayout = function () {
+
         var westResizeCallback = function () {
-            if (wall) {
-                wall.refresh();
-            }
+
+            $.event.trigger({
+                type: "layout-west-resize"
+            });
+
         }
 
         var viewport = $('#sub-content-center').layout({

@@ -5,6 +5,8 @@ Gnx.Wall = function () {
 
     this.initialized = false;
 
+    var me = this;
+
     _initWall = function () {
         var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-color: " + $('#nav-container').css('background-color') + "; color: " + $('#nav-container').css('color') + "'>Module {index}</div>";
         var w = 200, h = 100, html = '', limitItem = 49;
@@ -13,20 +15,26 @@ Gnx.Wall = function () {
         }
         $("#freewall").html(html);
 
-        var wall = new freewall("#freewall");
-        wall.reset({
+        me.wall = new freewall("#freewall");
+        me.wall.reset({
             draggable: true,
             selector: '.cell',
             animate: true,
             cellW: 200,
             cellH: 100,
             onResize: function () {
-                wall.refresh();
+                me.wall.refresh();
             }
         });
-        wall.fitWidth();
+        me.wall.fitWidth();
         // for scroll bar appear;
         $(window).trigger("resize");
+
+
+    }
+
+    this.refresh = function () {
+        me.wall.refresh();
     }
 
 
