@@ -6,28 +6,16 @@
 
     var me = namespace;
 
+    me.Layout = null;
+    me.Wall = null;
+    me.Module = null;
+
     /**
      * Method initializes freewall and other setup stuff 
      */
     me.init = function () {
 
-        var l = new me.Layout();
-        l.init();
-
-        var w = new me.Wall();
-        w.init();
-
-        var m = new me.Module();
-        m.init();
-        
         me.initialized = true;
-
-        // bind to layout west panel resize
-        // event triggered from Layout class
-        $(document).on("layout-west-resize", function () {
-            w.refresh();
-        });
-
         return me.initialized;
     }
 

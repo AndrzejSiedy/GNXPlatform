@@ -8,11 +8,7 @@ Gnx.Layout = function () {
     _initLayout = function () {
 
         var westResizeCallback = function () {
-
-            $.event.trigger({
-                type: "layout-west-resize"
-            });
-
+            Gnx.Event.fireEvent('layout-west-resize');
         }
 
         var viewport = $('#sub-content-center').layout({
