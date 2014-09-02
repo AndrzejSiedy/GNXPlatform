@@ -113,7 +113,6 @@ Gnx.Module = function () {
         //});
     }
 
-
     this.init = function () {
 
         this.initialized = true;

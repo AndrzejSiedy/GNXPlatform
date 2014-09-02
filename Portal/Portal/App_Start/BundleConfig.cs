@@ -49,9 +49,11 @@ namespace Portal
             bundles.Add(new ScriptBundle("~/app/Gnx").Include(
                     "~/Scripts/app/Utils/Utils.js",
                     "~/Scripts/app/Setup/Init.js",
+                    "~/Scripts/app/Utils/Event.js",
                     "~/Scripts/app/Setup/Layout.js",
                     "~/Scripts/app/Setup/Wall.js",
-                    "~/Scripts/app/Module/Module.js"));
+                    "~/Scripts/app/Module/Module.js",
+                    "~/Scripts/app/AppLogic.js"));
 
             // Toastr
             bundles.Add(new StyleBundle("~/toastrCss").Include(
