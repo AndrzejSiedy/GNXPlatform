@@ -3,6 +3,8 @@
 */
 Gnx.Wall = function () {
 
+
+    var _initialized = false;
     this.initialized = false;
 
     var me = this;
@@ -38,10 +40,15 @@ Gnx.Wall = function () {
 
 
     this.init = function () {
+        // prevent calling init method after it started already
+        if (_initialized) return;
 
         _initWall();
 
         this.initialized = true;
+        _initialized = true;
+        
+
 
         return this.initialized;
     }

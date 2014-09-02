@@ -9,12 +9,15 @@
 Gnx.Events = (function () {
 
     var me = this;
+    var _initialized = false;
     me.initialized = false;
 
     // Instance stores a reference to the Singleton
     var instance;
 
-    var init = function() {
+    var init = function () {
+
+        if (_initialized) return;
 
         // Singleton
         // Private methods and variables
@@ -22,6 +25,9 @@ Gnx.Events = (function () {
 
         // create DOM object to which we bind events
         var _dom = $('body').append($('<div id="' + _divId + '" style="visibility: hidden;display: none; width:1px;height:1px; top:-100px;">', {}));
+
+
+        _initialized = true;
 
         return {
             // trigger/fire event

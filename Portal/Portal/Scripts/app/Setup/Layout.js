@@ -3,6 +3,7 @@
 */
 Gnx.Layout = function () {
 
+    var _initialized = false;
     this.initialized = false;
 
     _initLayout = function () {
@@ -47,14 +48,19 @@ Gnx.Layout = function () {
         $('.ui-layout-toggler').css('background-color', $('#nav-container').css('background-color'));
         $('.west-toggler-collapse').css('color', $('#nav-container').css('color'));
         $('.west-toggler-expand').css('color', $('#nav-container').css('color'));
+
     }
 
 
     this.init = function () {
 
+        if (_initialized) return;
+
         _initLayout();
 
         this.initialized = true;
+
+        _initialized = true;
 
         return this.initialized;
     }
