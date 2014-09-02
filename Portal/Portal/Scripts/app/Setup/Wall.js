@@ -7,7 +7,7 @@ Gnx.Wall = function () {
 
     var me = this;
 
-    _initWall = function () {
+    var _initWall = function () {
         var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-color: " + $('#nav-container').css('background-color') + "; color: " + $('#nav-container').css('color') + "'>Module {index}</div>";
         var w = 200, h = 100, html = '', limitItem = 49;
         for (var i = 0; i < limitItem; ++i) {
@@ -29,7 +29,6 @@ Gnx.Wall = function () {
         me.wall.fitWidth();
         // for scroll bar appear;
         $(window).trigger("resize");
-
 
     }
 
