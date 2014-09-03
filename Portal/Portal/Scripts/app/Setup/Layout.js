@@ -36,9 +36,6 @@ Gnx.Layout = function () {
             }
         });
 
-        // inject div dynamically example
-        $("<p>" + Date.now() + "</p>").appendTo(viewport.west.pane[0]);
-
 
         // open west pane
         //viewport.open('west');
