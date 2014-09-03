@@ -12,8 +12,8 @@ Gnx.Module = function () {
         Gnx.Event.fireEvent('before-modules-get');
     };
 
-    var done = function () {
-        Gnx.Event.fireEvent('modules-get-done');
+    var done = function (data) {
+        Gnx.Event.fireEvent('modules-get-done', { records: data });
     };
 
 
@@ -43,18 +43,18 @@ Gnx.Module = function () {
             })
         }).done(function (result) {
 
-            done();
-
             if (result) {
                 // assign fake icons for modules
                 for (var i = 0; i < result.length; i++) {
                     result[i].Thumbnail = result[i].Thumbnail == null ? me.noThumbnail : result[i].Thumbnail;
                 }
-                console.warn('got modules?', result);
+                done(result);
 
             } else {
                 // Log or show an error message
+                done();
             }
+            
             return false;
         });
 
