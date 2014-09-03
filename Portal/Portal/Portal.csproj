@@ -236,6 +236,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\loading-blue.gif" />
     <Content Include="Scripts\app\Module\Module.js" />
     <Content Include="Scripts\app\AppLogic.js" />
     <Content Include="Scripts\app\Setup\Init.js" />

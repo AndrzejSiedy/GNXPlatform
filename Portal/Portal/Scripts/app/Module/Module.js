@@ -5,6 +5,18 @@ Gnx.Module = function () {
 
     this.initialized = false;
 
+    /*
+     * call modules wall to show load mask
+     */
+    var beforeSend = function () {
+        Gnx.Event.fireEvent('before-modules-get');
+    };
+
+    var done = function () {
+        Gnx.Event.fireEvent('modules-get-done');
+    };
+
+
     this.getModules = function () {
 
         var me = this;
@@ -24,14 +36,15 @@ Gnx.Module = function () {
             url: iFrameSrc,
             dataType: "json",
             traditional: true,
-            beforeSend: function () {
-                console.warn('before ajax');
-            },
+            beforeSend: beforeSend,
             data: addRequestVerificationToken({
                 // add some extra data to do proper logoff
                 token: token
             })
         }).done(function (result) {
+
+            done();
+
             if (result) {
                 // assign fake icons for modules
                 for (var i = 0; i < result.length; i++) {

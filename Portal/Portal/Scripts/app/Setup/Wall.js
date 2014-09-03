@@ -11,7 +11,7 @@ Gnx.Wall = function () {
 
     var _initWall = function () {
         var temp = "<div class='cell' style='width:{width}px; height: {height}px; background-color: " + $('#nav-container').css('background-color') + "; color: " + $('#nav-container').css('color') + "'>Module {index}</div>";
-        var w = 200, h = 100, html = '', limitItem = 49;
+        var w = 200, h = 100, html = '', limitItem = 3;
         for (var i = 0; i < limitItem; ++i) {
             html += temp.replace(/\{height\}/g, h).replace(/\{width\}/g, w).replace("{index}", i + 1);
         }
@@ -19,7 +19,7 @@ Gnx.Wall = function () {
 
         me.wall = new freewall("#freewall");
         me.wall.reset({
-            draggable: true,
+            draggable: true, 
             selector: '.cell',
             animate: true,
             cellW: 200,
@@ -38,6 +38,24 @@ Gnx.Wall = function () {
         me.wall.refresh();
     }
 
+    var showLoadMask = function (divId) {
+
+        $('#west-pane-div').showLoadMask();
+
+        $("#freewall").fadeTo("fast", 0.2, function () {
+            // Animation complete.
+        });
+
+    }
+
+    var hideLoadMask = function () {
+        
+        $('#west-pane-div').hideLoadMask();
+
+        $("#freewall").fadeTo("fast", 1.0, function () {
+            // Animation complete.
+        });
+    }
 
     this.init = function () {
         // prevent calling init method after it started already
@@ -48,6 +66,9 @@ Gnx.Wall = function () {
         this.initialized = true;
         _initialized = true;
         
+
+        Gnx.Event.on('before-modules-get', showLoadMask);
+        Gnx.Event.on('modules-get-done', hideLoadMask);
 
 
         return this.initialized;
