@@ -39,6 +39,9 @@
 
         _appStarted = true;
 
+        // get modules on all init
+        m.getModules();
+
     }
 
 
