@@ -9,11 +9,37 @@ Gnx.Wall = function () {
     var _initialized = false;
     this.initialized = false;
 
+    var t = '<div class="cell element tile double">' + 
+            '<div class="tile-content image">' + 
+                '<img src="{Thumbnail}">' +
+            '</div>' +
+            '<div class="brand bg-dark opacity">' +
+                '<span class="text">' + 
+                    '{Name}' +
+                '</span>' +
+                '<span class="text">' +
+                    '{Desciption}' +
+                '</span>' +
+            '</div>' +
+            '<ul class="navigationMenu">' +
+                '<li>' +
+	                '<a class="bg-dark opacity" href="#"><i class="icon-arrow-right on-right"/>' +
+                    '</a>' +
+                '</li>' +
+                //'<li>' +
+    	        //    '<a class="about" href="#">' +
+                //        '<span>About</span>' +
+                //    '</a>' +
+                //'</li>' + 
+            '</ul>' +
+        '</div>';
+
+
     // Module settings
     this.settings = {
-        width: 200,
-        height: 100,
-        template: "<div class='cell' style='width:{width}px; height: {height}px; background-color: " + $('#nav-container').css('background-color') + "; color: " + $('#nav-container').css('color') + "'>Module {Name}</div>"
+        width: 140,
+        height: 120,
+        template: t
     };
 
     var me = this;
@@ -37,6 +63,7 @@ Gnx.Wall = function () {
         me.wall.fitWidth();
         // for scroll bar appear;
         $(window).trigger("resize");
+        
 
     }
 
@@ -83,6 +110,20 @@ Gnx.Wall = function () {
         for (var i = 0; i < l; i++) {
             _appendBlock(recs[i]);
         }
+
+
+        // hide all menus
+        $('.navigationMenu').hide();
+
+        // bind hover on/off events
+        $('.cell').hover(
+            function () {
+                $(this).find('.navigationMenu').fadeIn();
+            },
+            function () {
+                $(this).find('.navigationMenu').fadeOut(10);
+            }
+        );
     }
 
     /**
@@ -93,7 +134,14 @@ Gnx.Wall = function () {
         var w = me.settings.width;
         var templ = me.settings.template;
 
-        var html = templ.replace(/\{height\}/g, h).replace(/\{width\}/g, w).replace("{Name}", rec.Name);
+        var html = templ
+            .replace(/\{height\}/g, h)
+            .replace(/\{width\}/g, w)
+            .replace("{Name}", rec.Name)
+            .replace("{Thumbnail}", rec.Thumbnail)
+            .replace("{Desciption}", rec.Desciption)
+            .replace("null", '');
+        
         me.wall.appendBlock(html);
     }
 
