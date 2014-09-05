@@ -17,7 +17,7 @@
 <script src="@TempData["signalRHubsUrl"]" type="text/javascript"></script>
 
 @*jQuery Freewall*@
-<script type="text/javascript" src="//vnjs.net/www/project/freewall/freewall.js"></script>
+@*<script type="text/javascript" src="//vnjs.net/www/project/freewall/freewall.js"></script>*@
 
 
 
@@ -131,7 +131,7 @@
                 <div class="pane ui-layout-south">South</div>
                 <div class="pane ui-layout-east">East</div>*@
             <div id="west-pane-div" class="pane ui-layout-west">
-                <div style="position: absolute; top: 0px; left: 0px; height: 100%; width:100%; overflow:auto; padding: 15px;">
+                <div style="position: relative; height: 100%; width:100%; overflow:auto;">
                     <div id="freewall" class="free-wall"></div>
                 </div>
             </div>
