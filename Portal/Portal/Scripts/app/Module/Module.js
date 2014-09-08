@@ -3,6 +3,8 @@
 */
 Gnx.Module = function () {
 
+    var self = this;
+
     this.initialized = false;
 
     /*
@@ -13,9 +15,14 @@ Gnx.Module = function () {
     };
 
     var done = function (data) {
-        Gnx.Event.fireEvent('modules-get-done', { records: data });
+
+        self.modules = data || [];
+
+        Gnx.Event.fireEvent('modules-get-done', { records: self.modules });
     };
 
+    // list of currently loaded modules
+    this.modules = [];
 
     this.getModules = function () {
 
