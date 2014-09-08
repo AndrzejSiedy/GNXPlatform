@@ -244,8 +244,9 @@
     <Content Include="Scripts\app\Module\Module.js" />
     <Content Include="Scripts\app\AppLogic.js" />
     <Content Include="Scripts\app\Setup\Init.js" />
-    <Content Include="Scripts\app\Setup\Layout.js" />
-    <Content Include="Scripts\app\Setup\Wall.js" />
+    <Content Include="Scripts\app\Views\ModuleInfo.js" />
+    <Content Include="Scripts\app\Views\Layout.js" />
+    <Content Include="Scripts\app\Views\Wall.js" />
     <Content Include="app\Workspace\app.js" />
     <Content Include="app\Workspace\AppLogic.js" />
     <Content Include="app\Workspace\Controllers\SignalRClient.js" />
