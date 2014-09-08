@@ -9,7 +9,7 @@ Gnx.Wall = function () {
     var _initialized = false;
     this.initialized = false;
 
-    var t = '<div class="cell element tile double">' +
+    var t = '<div class="cell element tile double" data-module-uuid="{ModuleUuid}">' +
 
             '<div class="tile-content image">' + 
                 '<img class="tile-image" src="{Thumbnail}">' +
@@ -24,14 +24,16 @@ Gnx.Wall = function () {
             '</div>' +
             '<div class="tile-menu">' +
                 '<div style="text-align: right; position:relative; width: 100%; border-width: 1px 0 0 0; ">' +
-                    '<button class="image-button primary">' +
+                    // we duplicate data-module-uuid="{ModuleUuid}" property to prevent DOM quering
+                    '<button class="image-button primary tile-menu-add" data-module-uuid="{ModuleUuid}">' +
                         'Add' + 
                         '<i class="icon-arrow-right bg-cobalt"></i>' +
                     '</button>' +
                 '</div>' +
 
                 '<div style="text-align: right; position:relative; width: 100%; border-width: 1px 0 0 0; ">' +
-                    '<button class="image-button primary">' +
+                    // we duplicate data-module-uuid="{ModuleUuid}" property to prevent DOM quering
+                    '<button class="image-button primary tile-menu-info" data-module-uuid="{ModuleUuid}">' +
                         'Info' +
                         '<i class="icon-help bg-cobalt"></i>' +
                     '</button>' +
@@ -93,7 +95,6 @@ Gnx.Wall = function () {
         me.wall.fitWidth();
         // for scroll bar appear;
         $(window).trigger("resize");
-        
 
     }
 
@@ -145,6 +146,11 @@ Gnx.Wall = function () {
         // hide all menus
         $('.tile-menu').hide();
 
+        _bindTileCompEvents();
+        
+    }
+
+    var _bindTileCompEvents = function () {
         // bind hover on/off events
         $('.cell').hover(
             function () {
@@ -154,6 +160,18 @@ Gnx.Wall = function () {
                 $(this).find('.tile-menu').fadeOut(10);
             }
         );
+
+        $('.tile-menu-add').click(
+            function () {
+                console.warn('add clicked', $(this).attr('data-module-uuid'));
+            }
+        );
+
+        $('.tile-menu-info').click(
+           function () {
+               alert('info clicked');
+           }
+       );
     }
 
     /**
@@ -165,11 +183,12 @@ Gnx.Wall = function () {
         var templ = me.settings.template;
 
         var html = templ
-            .replace(/\{height\}/g, h)
+            .replace(/\{height\}/g, h) // regex replace all occurences
             .replace(/\{width\}/g, w)
-            .replace("{Name}", rec.Name)
+            .replace("{Name}", rec.Name) // replace first found
             .replace("{Thumbnail}", rec.Thumbnail)
             .replace("{Desciption}", rec.Desciption)
+            .replace(/\{ModuleUuid\}/g, rec.Id)
             .replace("null", '');
         
         me.wall.appendBlock(html);
