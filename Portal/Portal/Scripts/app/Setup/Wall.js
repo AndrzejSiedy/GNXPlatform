@@ -9,9 +9,10 @@ Gnx.Wall = function () {
     var _initialized = false;
     this.initialized = false;
 
-    var t = '<div class="cell element tile double">' + 
+    var t = '<div class="cell element tile double">' +
+
             '<div class="tile-content image">' + 
-                '<img src="{Thumbnail}">' +
+                '<img class="tile-image" src="{Thumbnail}">' +
             '</div>' +
             '<div class="brand bg-dark opacity">' +
                 '<span class="text">' + 
@@ -21,28 +22,42 @@ Gnx.Wall = function () {
                     '{Desciption}' +
                 '</span>' +
             '</div>' +
-            '<ul class="navigationMenu">' +
-                '<li>' +
-	                '<a class="bg-dark opacity" href="#"><i class="icon-arrow-right on-right"/>' +
-                    '</a>' +
-                '</li>' +
-                //'<li>' +
-    	        //    '<a class="about" href="#">' +
-                //        '<span>About</span>' +
-                //    '</a>' +
-                //'</li>' + 
-            '</ul>' +
+            //'<ul class="navigationMenu">' +
+            //    '<li>' +
+	        //        '<a class="bg-dark opacity" href="#"><i class="icon-arrow-right on-right"/>' +
+            //        '</a>' +
+            //    '</li>' +
+            //    //'<li>' +
+    	    //    //    '<a class="about" href="#">' +
+            //    //        '<span>About</span>' +
+            //    //    '</a>' +
+            //    //'</li>' + 
+            //'</ul>' +
         '</div>';
-
+    
 
     // Module settings
     this.settings = {
-        width: 140,
+        width: 250,
         height: 120,
         template: t
     };
 
     var me = this;
+
+    var _onResize = function () {
+        me.wall.refresh();
+
+        // use timeouted flow to set tiles size
+        setTimeout(function () {
+            $('.cell').each(function () {
+                // set tile size
+                $(this).find('.tile-content').width($(this).width())
+                // set tile image size
+                $(this).find('.tile-image').width($(this).width())
+            });
+        }, 300);
+    };
 
     /**
      * private
@@ -54,11 +69,9 @@ Gnx.Wall = function () {
             draggable: true, 
             selector: '.cell',
             animate: true,
-            //cellW: 200,
-            //cellH: 100,
-            onResize: function () {
-                me.wall.refresh();
-            }
+            cellW: 250,
+            cellH: 120,
+            onResize: _onResize
         });
         me.wall.fitWidth();
         // for scroll bar appear;
@@ -170,6 +183,8 @@ Gnx.Wall = function () {
 
     this.refresh = function () {
         me.wall.refresh();
+
+        _onResize();
     }
 
     this.removeAll = function () {
