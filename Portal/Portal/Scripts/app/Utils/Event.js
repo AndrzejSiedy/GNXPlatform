@@ -31,9 +31,10 @@ Gnx.Events = (function () {
 
         return {
             // trigger/fire event
-            fireEvent: function (evtName, data) {
+            fireEvent: function (evtName, data, callbackFn) {
                 var opts = {
-                    type: evtName
+                    type: evtName,
+                    callbackFn: callbackFn
                 }
                 //$.extend(opts.data, data);
                 $("#" + _divId).trigger(opts, [data = data || {}]);
