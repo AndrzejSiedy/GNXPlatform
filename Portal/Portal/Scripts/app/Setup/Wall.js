@@ -22,6 +22,23 @@ Gnx.Wall = function () {
                     '{Desciption}' +
                 '</span>' +
             '</div>' +
+            '<div class="tile-menu">' +
+                '<div style="text-align: right; position:relative; width: 100%; border-width: 1px 0 0 0; ">' +
+                    '<button class="image-button primary">' +
+                        'Add' + 
+                        '<i class="icon-arrow-right bg-cobalt"></i>' +
+                    '</button>' +
+                '</div>' +
+
+                '<div style="text-align: right; position:relative; width: 100%; border-width: 1px 0 0 0; ">' +
+                    '<button class="image-button primary">' +
+                        'Info' +
+                        '<i class="icon-help bg-cobalt"></i>' +
+                    '</button>' +
+                '</div>' +
+            '</div>' +
+
+
             //'<ul class="navigationMenu">' +
             //    '<li>' +
 	        //        '<a class="bg-dark opacity" href="#"><i class="icon-arrow-right on-right"/>' +
@@ -52,7 +69,7 @@ Gnx.Wall = function () {
         setTimeout(function () {
             $('.cell').each(function () {
                 // set tile size
-                $(this).find('.tile-content').width($(this).width())
+                $(this).find('.tile-menu').width($(this).width())
                 // set tile image size
                 $(this).find('.tile-image').width($(this).width())
             });
@@ -126,15 +143,15 @@ Gnx.Wall = function () {
 
 
         // hide all menus
-        $('.navigationMenu').hide();
+        $('.tile-menu').hide();
 
         // bind hover on/off events
         $('.cell').hover(
             function () {
-                $(this).find('.navigationMenu').fadeIn();
+                $(this).find('.tile-menu').fadeIn();
             },
             function () {
-                $(this).find('.navigationMenu').fadeOut(10);
+                $(this).find('.tile-menu').fadeOut(10);
             }
         );
     }
