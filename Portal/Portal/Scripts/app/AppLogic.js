@@ -23,6 +23,7 @@
         l.init();
 
         // Freewall jQuery plugin for west (modules) pane
+        // all css and modules view
         var w = me.Wall = new me.Wall();
         w.init();
 
@@ -30,6 +31,10 @@
         // filter, paging, CRUD
         var m = me.Module = new me.Module();
         m.init();
+
+        // ModuleInfo Ui
+        var mi = me.ModuleInfo = new me.ModuleInfo();
+        mi.init();
 
         // bind to layout west panel resize
         // event triggered from Layout class

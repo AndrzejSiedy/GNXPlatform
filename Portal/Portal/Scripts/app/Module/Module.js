@@ -133,9 +133,25 @@ Gnx.Module = function () {
         //});
     }
 
+
+    var _getModuleByAttr = function (key, value) {
+        for (var i = 0; i < self.modules.length; i++) {
+            if (self.modules[i][key] == value) return self.modules[i];
+        }
+
+        return null;
+    }
+
+    var _onModuleInfoRequest = function (evt, data) {
+        var rec = _getModuleByAttr('Id', data.uuid)
+        if (evt.callbackFn) evt.callbackFn(_getModuleByAttr('Id', data.uuid))
+    }
+
     this.init = function () {
 
         this.initialized = true;
+
+        Gnx.Event.on('module-info-request', _onModuleInfoRequest);
 
         return this.initialized;
     }
