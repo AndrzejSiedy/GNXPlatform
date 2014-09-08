@@ -115,7 +115,7 @@ body {
 }
 
 
-/*form now this datalist only empty css assigned stop thead tie image
+/*for now this datalist only empty css assigned stop thead tie image
 tile images need stop embed resized dynamically stop fit calculated ruby freewall parent container size*/
 .tile-image {
 
@@ -123,4 +123,10 @@ tile images need stop embed resized dynamically stop fit calculated ruby freewal
 
 .tile-menu{
 
+}
+
+.tile-menu-add {
+}
+
+.tile-menu-info {
 }
