@@ -21,6 +21,7 @@ Gnx.Wall = function () {
                 '<span class="text">' +
                     '{Desciption}' +
                 '</span>' +
+
             '</div>' +
             '<div class="tile-menu">' +
                 '<div style="text-align: right; position:relative; width: 100%; border-width: 1px 0 0 0; ">' +
@@ -39,19 +40,6 @@ Gnx.Wall = function () {
                     '</button>' +
                 '</div>' +
             '</div>' +
-
-
-            //'<ul class="navigationMenu">' +
-            //    '<li>' +
-	        //        '<a class="bg-dark opacity" href="#"><i class="icon-arrow-right on-right"/>' +
-            //        '</a>' +
-            //    '</li>' +
-            //    //'<li>' +
-    	    //    //    '<a class="about" href="#">' +
-            //    //        '<span>About</span>' +
-            //    //    '</a>' +
-            //    //'</li>' + 
-            //'</ul>' +
         '</div>';
     
 
@@ -65,6 +53,10 @@ Gnx.Wall = function () {
     var me = this;
 
     var _onResize = function () {
+        _refreshView();
+    };
+
+    var _refreshView = function () {
         me.wall.refresh();
 
         // use timeouted flow to set tiles size
@@ -76,7 +68,7 @@ Gnx.Wall = function () {
                 $(this).find('.tile-image').width($(this).width())
             });
         }, 300);
-    };
+    }
 
     /**
      * private
@@ -161,17 +153,17 @@ Gnx.Wall = function () {
             }
         );
 
-        $('.tile-menu-add').click(
-            function () {
-                console.warn('add clicked', $(this).attr('data-module-uuid'));
-            }
-        );
+        $('.tile-menu-add').click(_onAddMenuClicked);
 
-        $('.tile-menu-info').click(
-           function () {
-               alert('info clicked');
-           }
-       );
+        $('.tile-menu-info').click(_onInfoMenuClicked);
+    }
+
+    var _onAddMenuClicked = function () {
+        console.warn('add clicked', $(this).attr('data-module-uuid'));
+    }
+
+    var _onInfoMenuClicked = function () {
+        Gnx.Event.fireEvent('show-module-info', { uuid: $(this).attr('data-module-uuid') })
     }
 
     /**

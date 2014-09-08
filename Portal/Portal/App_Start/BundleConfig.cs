@@ -41,8 +41,8 @@ namespace Portal
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new ScriptBundle("~/app/JakasNazwa").Include(
-                    "~/app/Workspace/app.js"));
+            //bundles.Add(new ScriptBundle("~/app/JakasNazwa").Include(
+            //        "~/app/Workspace/app.js"));
 
 
             // Gnx modules
@@ -50,8 +50,9 @@ namespace Portal
                     "~/Scripts/app/Utils/Utils.js",
                     "~/Scripts/app/Setup/Init.js",
                     "~/Scripts/app/Utils/Event.js",
-                    "~/Scripts/app/Setup/Layout.js",
-                    "~/Scripts/app/Setup/Wall.js",
+                    "~/Scripts/app/Views/Layout.js",
+                    "~/Scripts/app/Views/Wall.js",
+                    "~/Scripts/app/Views/ModuleInfo.js",
                     "~/Scripts/app/Module/Module.js",
                     "~/Scripts/app/AppLogic.js"));
 
