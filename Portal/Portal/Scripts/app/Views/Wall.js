@@ -43,9 +43,9 @@ Gnx.Wall = function () {
 
     var imageTemplate = '<div class="image-container" style="width:100%; height:100%;">' +
                     '<img src="{Thumbnail}">' +
-                    '<div class="overlay">' +
-                        '{Name}' +
-                    '</div>' +
+                    //'<div class="overlay">' +
+                    //    '{Name}' +
+                    //'</div>' +
                 '</div>';
 
     var infoTemplate = '<div class="tile-info-section" style="width:100%; height:100%;">' +
