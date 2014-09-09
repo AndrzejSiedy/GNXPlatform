@@ -21,8 +21,7 @@ Gnx.ModuleInfo = function () {
     }
 
     var _dialogTemplate = '<div><p><b>{Name}</b></p>{Desciption}</div><br/>' +
-        '<div class="rating fg-amber">' +
-        '</div>';
+        '<div class="rating small fg-amber"></div>';
 
     var _showModuleInfo = function (rec) {
 
