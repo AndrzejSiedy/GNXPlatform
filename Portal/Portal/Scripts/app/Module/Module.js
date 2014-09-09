@@ -160,6 +160,22 @@ Gnx.Module = function () {
         if (rec) {
             Gnx.Event.fireEvent('add-gadget', { record: rec });
         }
+
+        var t = '<div class="image-container" style="width:100%; height:100%;">' +
+                    '<div>{Name}</div>' +
+                    '<img src="{Thumbnail}">' +
+                '</div>'
+
+        var html = t
+            .replace("{Name}", rec.Name) // replace first found
+            .replace("{Thumbnail}", rec.Thumbnail) // replace first found
+            .replace("null", '');
+
+        var not = $.Notify({
+            caption: "Added Gadget",
+            content: html,
+            timeout: 2000 // 10 seconds
+        });
     }
 
     this.init = function () {
