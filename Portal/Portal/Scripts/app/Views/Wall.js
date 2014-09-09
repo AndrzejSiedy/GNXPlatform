@@ -9,29 +9,59 @@ Gnx.Wall = function () {
     var _initialized = false;
     this.initialized = false;
 
-    var t = '<div class="cell element tile double" data-module-uuid="{ModuleUuid}">' +
+    //var t = '<div class="cell element tile double" data-module-uuid="{ModuleUuid}">' +
+    //        '<div class="tile-content image">' + 
+    //            '<img class="tile-image" src="{Thumbnail}">' +
+    //        '</div>' +
+    //        '<div class="brand bg-dark opacity">' +
+    //            '<span class="text">' + 
+    //                '{Name}' +
+    //            '</span>' +
+    //            //'<span class="text">' +
+    //            //    '{Desciption}' +
+    //            //'</span>' +
+    //            '<div class="rating small fg-amber"></div>' + 
+    //        '</div>' +
+    //        '<div class="tile-menu">' +
+    //            '<div style="text-align: right; position:relative; width: 100%; border-width: 1px 0 0 0; ">' +
+    //                // we duplicate data-module-uuid="{ModuleUuid}" property to prevent DOM quering
+    //                '<button class="image-button primary tile-menu-add" data-module-uuid="{ModuleUuid}">' +
+    //                    'Add' + 
+    //                    '<i class="icon-arrow-right bg-cobalt"></i>' +
+    //                '</button>' +
+    //            '</div>' +
+    //            '<div style="text-align: right; position:relative; width: 100%; border-width: 1px 0 0 0; ">' +
+    //                // we duplicate data-module-uuid="{ModuleUuid}" property to prevent DOM quering
+    //                '<button class="image-button primary tile-menu-info" data-module-uuid="{ModuleUuid}">' +
+    //                    'Info' +
+    //                    '<i class="icon-help bg-cobalt"></i>' +
+    //                '</button>' +
+    //            '</div>' +
+    //        '</div>' +
+    //    '</div>';
 
-            '<div class="tile-content image">' + 
-                '<img class="tile-image" src="{Thumbnail}">' +
-            '</div>' +
-            '<div class="brand bg-dark opacity">' +
-                '<span class="text">' + 
-                    '{Name}' +
-                '</span>' +
-                '<span class="text">' +
-                    '{Desciption}' +
-                '</span>' +
 
-            '</div>' +
-            '<div class="tile-menu">' +
+    var imageTemplate = '<div class="image-container" style="width:100%; height:100%;">' +
+                    '<img src="{Thumbnail}">' +
+                    '<div class="overlay">' +
+                        '{Name}' +
+                    '</div>' +
+                '</div>';
+
+    var infoTemplate = '<div class="tile-info-section" style="width:100%; height:100%;">' +
+            '{Name}<br/>' +
+            '<div class="rating small fg-amber"></div>' +
+        '</div>';
+
+
+    var tileMenuTemplate = '<div class="tile-menu">' +
                 '<div style="text-align: right; position:relative; width: 100%; border-width: 1px 0 0 0; ">' +
                     // we duplicate data-module-uuid="{ModuleUuid}" property to prevent DOM quering
                     '<button class="image-button primary tile-menu-add" data-module-uuid="{ModuleUuid}">' +
-                        'Add' + 
+                        'Add' +
                         '<i class="icon-arrow-right bg-cobalt"></i>' +
                     '</button>' +
                 '</div>' +
-
                 '<div style="text-align: right; position:relative; width: 100%; border-width: 1px 0 0 0; ">' +
                     // we duplicate data-module-uuid="{ModuleUuid}" property to prevent DOM quering
                     '<button class="image-button primary tile-menu-info" data-module-uuid="{ModuleUuid}">' +
@@ -39,14 +69,27 @@ Gnx.Wall = function () {
                         '<i class="icon-help bg-cobalt"></i>' +
                     '</button>' +
                 '</div>' +
-            '</div>' +
-        '</div>';
+            '</div>';
+
+    var t = "<div class='cell shadow' style='width:{width}px; height: {height}px; padding:5px;'  data-module-uuid='{ModuleUuid}'>" +
+                tileMenuTemplate +
+            "<div class='tile-wrapper'>" +
+                "<div class='tile-middle'>" +
+                    imageTemplate +
+                "</div>" +
+                "<div class='tile-bottom'>" +
+                    infoTemplate +
+                "</div>" +
+            "</div>" +
+           
+        "</div>"
     
+
 
     // Module settings
     this.settings = {
-        width: 250,
-        height: 120,
+        width: 240,
+        height: 200,
         template: t
     };
 
@@ -60,14 +103,13 @@ Gnx.Wall = function () {
         me.wall.refresh();
 
         // use timeouted flow to set tiles size
-        setTimeout(function () {
-            $('.cell').each(function () {
-                // set tile size
-                $(this).find('.tile-menu').width($(this).width())
-                // set tile image size
-                $(this).find('.tile-image').width($(this).width())
-            });
-        }, 300);
+        //setTimeout(function () {
+        //    $('.cell').each(function () {
+        //        // set width for tile-info-section
+        //        $(this).find('.tile-info-section').width($(this).width())
+                
+        //    });
+        //}, 300);
     }
 
     /**
@@ -80,8 +122,8 @@ Gnx.Wall = function () {
             draggable: true, 
             selector: '.cell',
             animate: true,
-            cellW: 250,
-            cellH: 120,
+            cellW: me.settings.width,
+            cellH: me.settings.height,
             onResize: _onResize
         });
         me.wall.fitWidth();
@@ -139,6 +181,18 @@ Gnx.Wall = function () {
         $('.tile-menu').hide();
 
         _bindTileCompEvents();
+
+        $(".rating").rating({
+            static: false,
+            score: 2,
+            stars: 5,
+            showHint: true,
+            showScore: false,
+            click: function (value, rating) {
+                //alert("Rating clicked with value " + value);
+                rating.rate(value);
+            }
+        });
         
     }
 
@@ -177,8 +231,8 @@ Gnx.Wall = function () {
         var html = templ
             .replace(/\{height\}/g, h) // regex replace all occurences
             .replace(/\{width\}/g, w)
-            .replace("{Name}", rec.Name) // replace first found
-            .replace("{Thumbnail}", rec.Thumbnail)
+            .replace(/\{Name\}/g, rec.Name) 
+            .replace("{Thumbnail}", rec.Thumbnail) // replace first found
             .replace("{Desciption}", rec.Desciption)
             .replace(/\{ModuleUuid\}/g, rec.Id)
             .replace("null", '');
