@@ -251,12 +251,6 @@
     <Content Include="Scripts\app\Views\ModuleInfo.js" />
     <Content Include="Scripts\app\Views\Layout.js" />
     <Content Include="Scripts\app\Views\Wall.js" />
-    <Content Include="app\Workspace\app.js" />
-    <Content Include="app\Workspace\AppLogic.js" />
-    <Content Include="app\Workspace\Controllers\SignalRClient.js" />
-    <Content Include="app\Workspace\Data\ModuleModel.js" />
-    <Content Include="app\Workspace\Views\Center.js" />
-    <Content Include="app\Workspace\Views\Modules.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\metro-ui\css\iconFont.min.css" />
@@ -329,8 +323,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
-    <Content Include="Content\toastr.css" />
-    <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -350,8 +342,6 @@
     <Content Include="Scripts\app\Utils\Utils.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Content\toastr.scss" />
-    <Content Include="Content\toastr.less" />
     <Content Include="Content\metro-ui\fonts\metroSysIcons.woff" />
     <Content Include="Content\metro-ui\fonts\metroSysIcons.ttf" />
     <Content Include="Content\metro-ui\fonts\iconFont.woff" />
@@ -380,8 +370,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\toastr.js" />
-    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Sandbox\Test.aspx" />
     <Content Include="Web.config" />
@@ -419,7 +407,6 @@
     <Content Include="Views\ModuleModels\Details.cshtml" />
     <Content Include="Views\ModuleModels\Edit.cshtml" />
     <Content Include="Views\ModuleModels\Index.cshtml" />
-    <Content Include="Scripts\toastr.min.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

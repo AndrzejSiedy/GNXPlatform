@@ -59,16 +59,28 @@ Gnx.SignalRClient = function () {
     }
 
     var _joinedRoom = function () {
-        toastr["info"]("Joinded", "Main Module joinded SignalR room");
+        var not = $.Notify({
+            caption: "Joinded",
+            content: "Main Module joinded SignalR room",
+            timeout: 1000
+        });
         Gnx.Event.fireEvent('joinedSignalR', { roomId: this.roomId, clientName: this.clientName });
     };
 
     var _userLoggedInSuccess = function () {
-        toastr["info"]("userLoggedInSuccess", "Main Module heard SignalR room");
+        var not = $.Notify({
+            caption: "Login",
+            content: "User login success",
+            timeout: 1000
+        });
     };
 
     var _userLoggedOffSuccess = function () {
-        toastr["info"]("userLoggedOffSuccess", "Main Module heard SignalR room");
+        var not = $.Notify({
+            caption: "Logoff",
+            content: "User logoff success",
+            timeout: 1000
+        });
     };
 
     // Call SignalR service to pass information to gnx-container that module should be loaded
