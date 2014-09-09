@@ -5,20 +5,28 @@ Gnx.Module = function () {
 
     var self = this;
 
+    /**
+     * private
+     */
+    var _initialized = false;
     this.initialized = false;
 
     /*
      * call modules wall to show load mask
      */
-    var beforeSend = function () {
+    var _beforeSend = function () {
         Gnx.Event.fireEvent('before-modules-get');
     };
 
-    var done = function (data) {
+    var _done = function (data) {
 
         self.modules = data || [];
 
         Gnx.Event.fireEvent('modules-get-done', { records: self.modules });
+    };
+
+    var _addShindigModule = function () {
+
     };
 
     // list of currently loaded modules
@@ -43,7 +51,7 @@ Gnx.Module = function () {
             url: iFrameSrc,
             dataType: "json",
             traditional: true,
-            beforeSend: beforeSend,
+            beforeSend: _beforeSend,
             data: addRequestVerificationToken({
                 // add some extra data to do proper logoff
                 token: token
@@ -55,11 +63,11 @@ Gnx.Module = function () {
                 for (var i = 0; i < result.length; i++) {
                     result[i].Thumbnail = result[i].Thumbnail == null ? me.noThumbnail : result[i].Thumbnail;
                 }
-                done(result);
+                _done(result);
 
             } else {
                 // Log or show an error message
-                done();
+                _done();
             }
             
             return false;
@@ -147,11 +155,21 @@ Gnx.Module = function () {
         if (evt.callbackFn) evt.callbackFn(_getModuleByAttr('Id', data.uuid))
     }
 
+    var _onAddModuleRequest = function (evt, data) {
+        var rec = _getModuleByAttr('Id', data.uuid);
+        if (rec) {
+            Gnx.Event.fireEvent('add-gadget', { record: rec });
+        }
+    }
+
     this.init = function () {
+        // prevent calling init method after it started already
+        if (_initialized) return;
 
         this.initialized = true;
 
         Gnx.Event.on('module-info-request', _onModuleInfoRequest);
+        Gnx.Event.on('add-module', _onAddModuleRequest);
 
         return this.initialized;
     }

@@ -213,11 +213,12 @@ Gnx.Wall = function () {
     }
 
     var _onAddMenuClicked = function () {
-        console.warn('add clicked', $(this).attr('data-module-uuid'));
+        // this is heard by Gnx.Module which gets module data and informs Gnx.SignalRClient
+        Gnx.Event.fireEvent('add-module', { uuid: $(this).attr('data-module-uuid') });
     }
 
     var _onInfoMenuClicked = function () {
-        Gnx.Event.fireEvent('show-module-info', { uuid: $(this).attr('data-module-uuid') })
+        Gnx.Event.fireEvent('show-module-info', { uuid: $(this).attr('data-module-uuid') });
     }
 
     /**
