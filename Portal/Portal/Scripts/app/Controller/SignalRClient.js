@@ -73,9 +73,6 @@ Gnx.SignalRClient = function () {
 
     // Call SignalR service to pass information to gnx-container that module should be loaded
     var _onAddGadget = function(evt, data){
-
-        console.warn('_onAddGadget', data, arguments);
-
         var signalRMessage = {
             roomId: roomId,
             data: data.record
