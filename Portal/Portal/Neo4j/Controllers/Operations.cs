@@ -426,7 +426,7 @@ namespace Portal.Neo4j.Controllers
             //            {
             //                { "Id", module.Id },
             //                { "Name", module.Name },
-            //                { "Desciption", module.Desciption },
+            //                { "Description", module.Description },
             //                { "IsPublic", module.IsPublic },
             //                { "OwnerId", module.OwnerId }
             //            }

@@ -24,7 +24,7 @@ namespace Portal.Models
         public string Name { get; set; }
         public string GadgetUrl { get; set; }
         public string Thumbnail { get; set; }
-        public string Desciption { get; set; }
+        public string Description { get; set; }
         public bool IsPublic { get; set; }
         public string OwnerId { get; set; }
         public string ImgUrl { get; set; }

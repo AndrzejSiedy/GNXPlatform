@@ -20,7 +20,7 @@ Gnx.ModuleInfo = function () {
         Gnx.Event.fireEvent('module-info-request', { uuid: uuid }, _gotModuleDataCallback);
     }
 
-    var _dialogTemplate = '<div><p><b>{Name}</b></p>{Desciption}</div><br/>' +
+    var _dialogTemplate = '<div><p><b>{Name}</b></p>{Description}</div><br/>' +
         '<div class="rating small fg-amber"></div>';
 
     var _showModuleInfo = function (rec) {
@@ -30,7 +30,7 @@ Gnx.ModuleInfo = function () {
         //.replace(/\{height\}/g, h) // regex replace all occurences
         //.replace(/\{width\}/g, w)
         .replace("{Name}", rec.Name) // replace first found
-        .replace("{Desciption}", rec.Desciption) // replace first found
+        .replace("{Description}", rec.Description) // replace first found
         .replace("null", '');
 
         $.Dialog({
@@ -54,7 +54,8 @@ Gnx.ModuleInfo = function () {
                 //alert("Rating clicked with value " + value);
                 rating.rate(value);
             }
-        });
+        });
+
 
     }
 

@@ -213,6 +213,10 @@
     <Compile Include="Migrations\201407231609392_extend_module.Designer.cs">
       <DependentUpon>201407231609392_extend_module.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409091247568_updateDescrCol.cs" />
+    <Compile Include="Migrations\201409091247568_updateDescrCol.Designer.cs">
+      <DependentUpon>201409091247568_updateDescrCol.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -444,6 +448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201407231609392_extend_module.resx">
       <DependentUpon>201407231609392_extend_module.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409091247568_updateDescrCol.resx">
+      <DependentUpon>201409091247568_updateDescrCol.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

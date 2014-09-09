@@ -17,7 +17,7 @@ namespace Portal.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
         [Display(Name = "Description")]
-        public string Desciption { get; set; }
+        public string Description { get; set; }
         [Display(Name = "IsPublic")]
         public bool IsPublic { get; set; }
         [Display(Name = "OwnerId", AutoGenerateField=false)]

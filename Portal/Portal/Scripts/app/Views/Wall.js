@@ -18,7 +18,7 @@ Gnx.Wall = function () {
     //                '{Name}' +
     //            '</span>' +
     //            //'<span class="text">' +
-    //            //    '{Desciption}' +
+    //            //    '{Description}' +
     //            //'</span>' +
     //            '<div class="rating small fg-amber"></div>' + 
     //        '</div>' +
@@ -233,7 +233,7 @@ Gnx.Wall = function () {
             .replace(/\{width\}/g, w)
             .replace(/\{Name\}/g, rec.Name) 
             .replace("{Thumbnail}", rec.Thumbnail) // replace first found
-            .replace("{Desciption}", rec.Desciption)
+            .replace("{Description}", rec.Description)
             .replace(/\{ModuleUuid\}/g, rec.Id)
             .replace("null", '');
         

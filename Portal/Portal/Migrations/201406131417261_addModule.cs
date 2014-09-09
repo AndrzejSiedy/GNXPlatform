@@ -13,7 +13,7 @@ namespace Portal.Migrations
                     {
                         Id = c.Guid(nullable: false, identity: true),
                         Name = c.String(),
-                        Desciption = c.String(),
+                        Description = c.String(),
                         IsPublic = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);

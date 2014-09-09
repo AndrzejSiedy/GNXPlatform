@@ -57,7 +57,7 @@ namespace Portal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Create([Bind(Include = "Id,Name,Desciption,IsPublic,OwnerId")] ModuleModels moduleModels)
+        //public async Task<ActionResult> Create([Bind(Include = "Id,Name,Description,IsPublic,OwnerId")] ModuleModels moduleModels)
         public async Task<ActionResult> Create(ModuleModels moduleModels)
         {
             if (ModelState.IsValid)
@@ -84,7 +84,7 @@ namespace Portal.Controllers
                     Name = moduleModels.Name ,
                     GadgetUrl = moduleModels.GadgetUrl,
                     Thumbnail = moduleModels.Thumbnail,
-                    Desciption = moduleModels.Desciption,
+                    Description = moduleModels.Description,
                     IsPublic = moduleModels.IsPublic,
                     OwnerId = moduleModels.OwnerId
                 };
@@ -131,7 +131,7 @@ namespace Portal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Desciption,IsPublic,OwnerId")] ModuleModels moduleModels)
+        //public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Description,IsPublic,OwnerId")] ModuleModels moduleModels)
         public async Task<ActionResult> Edit(ModuleModels moduleModels)
         {
             if (ModelState.IsValid)
@@ -146,7 +146,7 @@ namespace Portal.Controllers
                     Name = moduleModels.Name,
                     GadgetUrl = moduleModels.GadgetUrl,
                     Thumbnail = moduleModels.Thumbnail,
-                    Desciption = moduleModels.Desciption,
+                    Description = moduleModels.Description,
                     IsPublic = moduleModels.IsPublic,
                     OwnerId = moduleModels.OwnerId
                 };
