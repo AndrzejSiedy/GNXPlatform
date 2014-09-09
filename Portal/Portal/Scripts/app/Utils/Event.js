@@ -3,7 +3,7 @@
 * Usage example:
 *   evt callback: fn = function(evt, data){console.warn('evt callback', evt, data);}
 *   bind to event: Gnx.Event.on('evtName', fn);
-*   fire/trigger event with data: Gnx.Event.fireEvent('evtName', {x:1, y:'a'});
+*   fire/trigger event with data: Gnx.Event.fireEvent('evtName', {x:1, y:'a'}, callbackFn);
 *   unbind event: Gnx.Event.un('evtName', fn);
 */
 Gnx.Events = (function () {
