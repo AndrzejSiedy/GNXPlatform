@@ -237,8 +237,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\loading-blue.gif" />
-    <Content Include="Content\SideMenu\img\navigation.jpg" />
-    <Content Include="Content\SideMenu\styles.css" />
     <Content Include="Sandbox\modTile2.html" />
     <Content Include="Sandbox\modTile.html" />
     <Content Include="Scripts\app\Module\Module.js" />
@@ -354,7 +352,6 @@
     <Content Include="Content\metro-ui\fonts\iconFont.ttf" />
     <Content Include="Content\metro-ui\fonts\iconFont.json" />
     <Content Include="Content\metro-ui\fonts\iconFont.eot" />
-    <Content Include="Content\SideMenu\img\Thumbs.db" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
