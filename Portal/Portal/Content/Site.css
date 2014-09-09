@@ -121,12 +121,58 @@ tile images need stop embed resized dynamically stop fit calculated ruby freewal
 
 }
 
-.tile-menu{
-
+.tile-menu {
+    display: block;
+    float: right;
+    z-index: 3;
+    position: absolute;
+    right: 5px;
+    top: 5px;
 }
 
 .tile-menu-add {
 }
 
 .tile-menu-info {
+}
+
+.tile-info-section {
+
+}
+
+
+
+
+/*Tile layout CSS - stop fit middle section with Thumbnail
+command bottom section with extra info, rating etc.*/
+.tile-wrapper {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.tile-top {
+    height: 1px;
+    width: 100%;
+    /*background: grey;*/
+}
+
+.tile-middle {
+    top: 0px;
+    bottom: 80px;
+    width: 100%;
+    height: 70%;
+    /*background: black;*/
+}
+
+.tile-bottom {
+    bottom: 0;
+    /*height: 80px;*/
+    height: 30%;
+    width: 100%;
+    /*background: green;*/
+}
+
+.top, .middle, .bottom {
+    position: absolute;
 }
