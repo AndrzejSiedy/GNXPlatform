@@ -36,6 +36,14 @@
         var mi = me.ModuleInfo = new me.ModuleInfo();
         mi.init();
 
+        // init shindig container - will be placed in center panel
+        var sc = me.Center = new me.Center();
+        sc.init();
+
+        // init SignalRClient
+        var sR = me.SignalRClient = new me.SignalRClient();
+        sR.init(signalRHubsUrl, hubName, roomId);
+
         // bind to layout west panel resize
         // event triggered from Layout class
         me.Event.on('layout-west-resize', function () {

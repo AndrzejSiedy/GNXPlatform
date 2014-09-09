@@ -243,9 +243,11 @@
     <Content Include="Content\Images\loading-blue.gif" />
     <Content Include="Sandbox\modTile2.html" />
     <Content Include="Sandbox\modTile.html" />
+    <Content Include="Scripts\app\Controller\SignalRClient.js" />
     <Content Include="Scripts\app\Module\Module.js" />
     <Content Include="Scripts\app\AppLogic.js" />
     <Content Include="Scripts\app\Setup\Init.js" />
+    <Content Include="Scripts\app\Views\Center.js" />
     <Content Include="Scripts\app\Views\ModuleInfo.js" />
     <Content Include="Scripts\app\Views\Layout.js" />
     <Content Include="Scripts\app\Views\Wall.js" />

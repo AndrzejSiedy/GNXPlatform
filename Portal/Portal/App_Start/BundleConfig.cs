@@ -52,8 +52,10 @@ namespace Portal
                     "~/Scripts/app/Utils/Event.js",
                     "~/Scripts/app/Views/Layout.js",
                     "~/Scripts/app/Views/Wall.js",
+                    "~/Scripts/app/Views/Center.js",
                     "~/Scripts/app/Views/ModuleInfo.js",
                     "~/Scripts/app/Module/Module.js",
+                    "~/Scripts/app/Controller/SignalRClient.js",
                     "~/Scripts/app/AppLogic.js"));
 
             // Toastr
