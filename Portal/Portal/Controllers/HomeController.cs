@@ -13,11 +13,11 @@ namespace Portal.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public PartialViewResult About()
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return PartialView();
         }
 
         public ActionResult Contact()

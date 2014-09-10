@@ -23,7 +23,7 @@
 
     @*jQuery Layout plugin inspired by ExiJs border layout*@
     <link type="text/css" rel="stylesheet" href="//layout.jquery-dev.com/lib/css/layout-default-latest.css" />
-    <script type="text/javascript" src="//layout.jquery-dev.com/lib/js/jquery-ui-latest.js"></script>
+    @*<script type="text/javascript" src="//layout.jquery-dev.com/lib/js/jquery-ui-latest.js"></script>*@
     <script type="text/javascript" src="//layout.jquery-dev.com/lib/js/jquery.layout-latest.js"></script>
     @*<script type="text/javascript" src="//layout.jquery-dev.net/lib/js/jquery.layout.slideOffscreen-1.1.js"></script>*@
 
@@ -36,6 +36,61 @@
     @Scripts.Render("~/bundles/modernizr")
 
     @Scripts.Render("~/bundles/signalR")
+
+    @{
+
+        TempData["signalRHubsUrl"] = System.Configuration.ConfigurationManager.AppSettings["signalRHubsUrl"];
+        TempData["hubName"] = System.Configuration.ConfigurationManager.AppSettings["hubName"];
+        TempData["roomId"] = Guid.NewGuid();
+
+        // get shinding config
+        TempData["shindigContainerUrl"] = System.Configuration.ConfigurationManager.AppSettings["shindigContainerUrl"];
+    }
+
+
+
+    @*load hubs*@
+    <script src="@TempData["signalRHubsUrl"]" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        // set some global variables
+        var signalRHubsUrl = '@TempData["signalRHubsUrl"]';
+        var hubName = '@TempData["hubName"]';
+        var roomId = '@TempData["roomId"]';
+
+        var shindigContainerUrl = '@TempData["shindigContainerUrl"]';
+    </script>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+            $("#_body").hide();
+            $("#_home").show();
+
+            $("#_homeMenu").click(function (event) {
+                history.pushState('', 'Home', '/#/home');
+                $("#_about").hide("slow", function () {
+                    $("#_home").show("slow", function () {
+                        
+                    });
+                });
+                
+            });
+
+            $("#_aboutMenu").click(function (event) {
+                history.pushState('', 'About', '/#/about');
+                $('#_home').hide("slow", function () {
+                    $("#_about").show("slow");
+                });
+                
+            });
+
+        });
+
+    </script>
 
 
 </head>
@@ -50,7 +105,7 @@
                 @*collpsible menu visible in small width, or as normal navbar when enought space provided*@
                 <ul class="element-menu" style="margin-top:-50px;">
                     <li>
-                        <a class="element" href='@Url.Action("Index", "Home")'><span class="icon-home">&nbsp;</span>GNX Home <sup>v 1.0</sup></a>
+                        <a id="_homeMenu"  class="element" href='#'><span class="icon-home">&nbsp;</span>GNX Home <sup>v 1.0</sup></a>
                     </li>
                     <li>
                         <a class="element" href='@Url.Action("Index", "ModuleModels")'><span class="icon-tree-view">&nbsp;</span>Modules</a>
@@ -59,7 +114,7 @@
                         <a class="element" href='@Url.Action("Contact", "Home")'><span class="icon-mail">&nbsp;</span>Address</a>
                     </li>
                     <li>
-                        <a class="element" href='@Url.Action("About", "Home")'>About GNX</a>
+                        <a id="_aboutMenu" class="element" href='#'>About GNX</a>
                     </li>
                 </ul>
             </nav>
@@ -67,8 +122,19 @@
     </header>
 
     <section id="bodySection" class="body-content container">
-        @RenderBody()
+        <div id="_body">
+            @RenderBody()
+        </div>
+
+        <div id="_home" style="display: none; width: 100%; height:100%;">
+            @{Html.RenderPartial("_Home");}
+        </div>
+        
+        <div id="_about" style="display: none; width: 100%; height:100%;">
+            @{Html.RenderPartial("_About");}
+        </div>
     </section>
+
     <footer id="_footer" class="footer">
         <p>&copy; @DateTime.Now.Year - GNX Platform</p>
     </footer>
