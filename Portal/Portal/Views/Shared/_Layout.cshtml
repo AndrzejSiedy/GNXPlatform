@@ -9,6 +9,7 @@
 
 
     @Scripts.Render("~/bundles/jquery")
+    
     @Scripts.Render("~/bundles/bootstrap")
 
     @Scripts.Render("~/bundles/jqueryUiJs")
@@ -36,6 +37,41 @@
 
     @Scripts.Render("~/bundles/signalR")
 
+    <script>
+
+        $(document).ready(function () {
+
+            $("#_home").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/Home/Index",
+                    type: 'POST',
+                    datatype: 'html',
+                    data: {},
+                    success: function (data) {
+                        $("#bodySection").html('');
+                        $("#bodySection").html(data);
+
+                    }
+                });
+            });
+
+            $("#_about").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "/Home/About",
+                    type: 'POST',
+                    datatype: 'html',
+                    data: {},
+                    success: function (data) {
+                        $("#bodySection").html('');
+                        $("#bodySection").html(data);
+
+                    }
+                });
+            });
+        });
+    </script>
     
 
 </head>
@@ -50,7 +86,7 @@
                 @*collpsible menu visible in small width, or as normal navbar when enought space provided*@
                 <ul class="element-menu" style="margin-top:-50px;">
                     <li>
-                        <a class="element" href='@Url.Action("Index", "Home")'><span class="icon-home">&nbsp;</span>GNX Home <sup>v 1.0</sup></a>
+                        <a id="_home"  class="element" href='#'><span class="icon-home">&nbsp;</span>GNX Home <sup>v 1.0</sup></a>
                     </li>
                     <li>
                         <a class="element" href='@Url.Action("Index", "ModuleModels")'><span class="icon-tree-view">&nbsp;</span>Modules</a>
@@ -59,20 +95,21 @@
                         <a class="element" href='@Url.Action("Contact", "Home")'><span class="icon-mail">&nbsp;</span>Address</a>
                     </li>
                     <li>
-                        <a class="element" href='@Url.Action("About", "Home")'>About GNX</a>
+                        <a id="_about" class="element" href='#'>About GNX</a>
                     </li>
                 </ul>
             </nav>
         </nav>
     </header>
 
-    <section class="body-content container">
+    <section id="bodySection" class="body-content container">
         @RenderBody()
     </section>
     <footer id="_footer" class="footer">
         <p>&copy; @DateTime.Now.Year - GNX Platform</p>
     </footer>
 
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/app/Gnx")
 
     @RenderSection("scripts", required: false)
