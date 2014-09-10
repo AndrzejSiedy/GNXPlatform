@@ -21,7 +21,7 @@ namespace Portal
                         "~/Content/themes/jquery-ui.all.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryUiJs").Include(
-                        "~/Scripts/jquery-ui-1.10.4.js"));
+                        "~/Scripts/jquery-ui-1.11.1.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/signalR").Include(
