@@ -21,11 +21,13 @@ namespace Portal
                         "~/Content/themes/jquery-ui.all.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryUiJs").Include(
-                        "~/Scripts/jquery-ui-1.11.1.js"));
+                        "~/Scripts/jquery-ui-1.10.4.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/signalR").Include(
                         "~/Scripts/jquery.signalR-2.1.0.js"));
+
+
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
@@ -56,13 +58,6 @@ namespace Portal
                     "~/Scripts/app/Module/Module.js",
                     "~/Scripts/app/Controller/SignalRClient.js",
                     "~/Scripts/app/AppLogic.js"));
-
-            // Toastr
-            bundles.Add(new StyleBundle("~/toastrCss").Include(
-                    "~/Content/toastr.css"));
-
-            bundles.Add(new ScriptBundle("~/toastrJs").Include(
-                    "~/Scripts/toastr.min.js"));
 
 
             // Set EnableOptimizations to false for debugging. For more information,
