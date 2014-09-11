@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<!DOCTYPE html>
 <html>
 <head>
@@ -170,3 +171,88 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+=======
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="shortcut icon" href="@Url.Content("~/favicon.ico")" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - GNX Platform</title>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/bundles/jqueryUiJs")
+    @Styles.Render("~/bundles/jqueryUiCss")
+
+    @*<link rel="stylesheet" href="css/metro-bootstrap.css">src="js/metro/metro.min.js"></script>*@
+
+    @Styles.Render("~/Content/metro-ui/css")
+    @Scripts.Render("~/bundles/metro-ui")
+
+
+    @*jQuery Layout plugin inspired by ExiJs border layout*@
+    <link type="text/css" rel="stylesheet" href="//layout.jquery-dev.com/lib/css/layout-default-latest.css" />
+    <script type="text/javascript" src="//layout.jquery-dev.com/lib/js/jquery-ui-latest.js"></script>
+    <script type="text/javascript" src="//layout.jquery-dev.com/lib/js/jquery.layout-latest.js"></script>
+    @*<script type="text/javascript" src="//layout.jquery-dev.net/lib/js/jquery.layout.slideOffscreen-1.1.js"></script>*@
+
+    @*jQuery Freewall*@
+    <script type="text/javascript" src="//vnjs.net/www/project/freewall/freewall.js"></script>
+    
+
+
+    @Styles.Render("~/toastrCss")
+    @Scripts.Render("~/toastrJs")
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/signalR")
+
+    
+
+</head>
+<body class="metro">
+
+    <header class="bg-dark" style="margin-top:-50px;">
+        <nav id="nav-container" class="navigation-bar fg-lightBlue dark">
+            <nav class="navigation-bar-content">
+                <span class="element-divider place-right"></span>
+                @Html.Partial("_LoginPartial")
+                <a class="element1 pull-menu" href="#"></a>
+                @*collpsible menu visible in small width, or as normal navbar when enought space provided*@
+                <ul class="element-menu" style="margin-top:-50px;">
+                    <li>
+                        <a class="element" href='@Url.Action("Index", "Home")'><span class="icon-home">&nbsp;</span>GNX Home <sup>v 1.0</sup></a>
+                    </li>
+                    <li>
+                        <a class="element" href='@Url.Action("Index", "ModuleModels")'><span class="icon-tree-view">&nbsp;</span>Modules</a>
+                    </li>
+                    <li>
+                        <a class="element" href='@Url.Action("Contact", "Home")'><span class="icon-mail">&nbsp;</span>Address</a>
+                    </li>
+                    <li>
+                        <a class="element" href='@Url.Action("About", "Home")'>About GNX</a>
+                    </li>
+                </ul>
+            </nav>
+        </nav>
+    </header>
+
+    <section class="body-content container">
+        @RenderBody()
+    </section>
+    <footer id="_footer" class="footer">
+        <p>&copy; @DateTime.Now.Year - GNX Platform</p>
+    </footer>
+
+    @Scripts.Render("~/app/Gnx")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+>>>>>>> parent of 9786d40... Remove toastr js lib - use Metro UI Notify

@@ -57,6 +57,13 @@ namespace Portal
                     "~/Scripts/app/Controller/SignalRClient.js",
                     "~/Scripts/app/AppLogic.js"));
 
+            // Toastr
+            bundles.Add(new StyleBundle("~/toastrCss").Include(
+                    "~/Content/toastr.css"));
+
+            bundles.Add(new ScriptBundle("~/toastrJs").Include(
+                    "~/Scripts/toastr.min.js"));
+
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
