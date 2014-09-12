@@ -50,16 +50,19 @@
                 @*collpsible menu visible in small width, or as normal navbar when enought space provided*@
                 <ul class="element-menu" style="margin-top:-50px;">
                     <li>
-                        <a class="element" href='@Url.Action("Index", "Home")'><span class="icon-home">&nbsp;</span>GNX Home <sup>v 1.0</sup></a>
+                        <a class="element" href="#/welcome"><span class=" icon-home">&nbsp;</span>GNX Home <sup>v 1.0</sup></a>
                     </li>
-                    <li>
+                    @*<li>
                         <a class="element" href='@Url.Action("Index", "ModuleModels")'><span class="icon-tree-view">&nbsp;</span>Modules</a>
+                    </li>*@
+                    <li>
+                        <a class="element" href="#/app"><span class="icon-grid-view">&nbsp;</span>Demo</a>
                     </li>
                     <li>
-                        <a class="element" href='@Url.Action("Contact", "Home")'><span class="icon-mail">&nbsp;</span>Address</a>
+                        <a class="element" href="#/contact">Contact</a>
                     </li>
                     <li>
-                        <a class="element" href='@Url.Action("About", "Home")'>About GNX</a>
+                        <a class="element" href="#/about">About GNX</a>
                     </li>
                 </ul>
             </nav>

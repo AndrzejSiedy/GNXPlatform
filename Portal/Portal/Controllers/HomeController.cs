@@ -13,18 +13,32 @@ namespace Portal.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public PartialViewResult About()
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            return PartialView();
         }
 
-        public ActionResult Contact()
+        public PartialViewResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return PartialView();
+        }
+
+        public PartialViewResult Welcome()
+        {
+            ViewBag.Message = "Your welcome page.";
+
+            return PartialView();
+        }
+
+        public PartialViewResult App()
+        {
+            ViewBag.Message = "Your app page.";
+
+            return PartialView();
         }
     }
 }
