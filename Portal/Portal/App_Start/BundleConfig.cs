@@ -31,8 +31,6 @@ namespace Portal
             bundles.Add(new ScriptBundle("~/bundles/signalR").Include(
                         "~/Scripts/jquery.signalR-2.1.0.js"));
 
-
-
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -45,10 +43,6 @@ namespace Portal
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
-
-            //bundles.Add(new ScriptBundle("~/app/JakasNazwa").Include(
-            //        "~/app/Workspace/app.js"));
-
 
             // Gnx modules
             bundles.Add(new ScriptBundle("~/app/Gnx").Include(
