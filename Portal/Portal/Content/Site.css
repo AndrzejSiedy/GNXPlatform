@@ -176,3 +176,67 @@ command bottom section with extra info, rating etc.*/
 .top, .middle, .bottom {
     position: absolute;
 }
+
+
+
+
+
+
+.west-toggler-collapse {
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+        color: #ffffff;
+        font-size: 14px !important;
+        height: 200px;
+        width: 200px;
+        /*float: left;*/
+        margin-left: 10px;
+        /*vertical-align: top;*/
+    }
+
+    .west-toggler-expand {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        color: #ffffff;
+        font-size: 14px !important;
+        height: 200px;
+        width: 200px;
+        -left: -100px;
+        /*float: left;*/
+        margin-left: -150px;
+        padding-top: 10px;
+        /*vertical-align: bottom;*/
+    }
+
+    /*.gnx-toggler {
+        font-size: 30px;
+        vertical-align: top;
+    }*/
+
+    /*.ui-layout-toggler{
+        background-color: #1ba1e2;
+    }*/
+
+    /*.free-wall {
+        margin: 1px !important;
+    }
+
+    .cell {
+        cursor: move;
+        margin: 1px;
+    }
+
+    .cell .cover {
+        padding: 1px;
+    }*/
+
+    .handle {
+        border: 1px dotted orange;
+        padding: 4px;
+    }
