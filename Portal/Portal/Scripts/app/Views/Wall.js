@@ -84,8 +84,6 @@ Gnx.Wall = function () {
            
         "</div>"
     
-
-
     // Module settings
     this.settings = {
         width: 240,
@@ -101,15 +99,6 @@ Gnx.Wall = function () {
 
     var _refreshView = function () {
         me.wall.refresh();
-
-        // use timeouted flow to set tiles size
-        //setTimeout(function () {
-        //    $('.cell').each(function () {
-        //        // set width for tile-info-section
-        //        $(this).find('.tile-info-section').width($(this).width())
-                
-        //    });
-        //}, 300);
     }
 
     /**
@@ -255,8 +244,7 @@ Gnx.Wall = function () {
 
         _initWall();
 
-        this.initialized = true;
-        _initialized = true;
+        this.initialized = _initialized = true;
         
         Gnx.Event.on('before-modules-get', _onBeforeModulesGet);
         Gnx.Event.on('modules-get-done', _onModulesGetSuccess);

@@ -39,7 +39,7 @@ Gnx.Module = function () {
         var __RequestVerificationToken = $.getAntiForgeryToken(window.parent).value;
         var iFrameSrc = '';
 
-        var iFrameSrc = 'api/ModuleModelsApi';
+        var iFrameSrc = '../api/ModuleModelsApi';
         var token = __RequestVerificationToken;
 
         function addRequestVerificationToken(data) {

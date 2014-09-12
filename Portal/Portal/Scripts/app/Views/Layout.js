@@ -3,8 +3,11 @@
 */
 Gnx.Layout = function () {
 
+    var self = this;
     var _initialized = false;
     this.initialized = false;
+
+    this.viewport = null;
 
     _initLayout = function () {
 
@@ -12,9 +15,8 @@ Gnx.Layout = function () {
             Gnx.Event.fireEvent('layout-west-resize');
         }
 
-        var viewport = $('#sub-content-center').layout({
+        self.viewport = $('#sub-content-center').layout({
             resizeWhileDragging: true
-            //, initClosed: true
             , animatePaneSizing: true
             , spacing_open: 0
             , spacing_closed: 0
@@ -36,10 +38,6 @@ Gnx.Layout = function () {
             }
         });
 
-
-        // open west pane
-        //viewport.open('west');
-
         // copy background color from nav-container class
         // so JQuery Layout UI pane togglers update dynamically
         $('.ui-layout-toggler').css('background-color', $('#nav-container').css('background-color'));
@@ -55,9 +53,7 @@ Gnx.Layout = function () {
 
         _initLayout();
 
-        this.initialized = true;
-
-        _initialized = true;
+        this.initialized = _initialized = true;
 
         return this.initialized;
     }

@@ -31,9 +31,7 @@ Gnx.Center = function () {
 
         _init();
 
-        this.initialized = true;
-
-        _initialized = true;
+        this.initialized = _initialized = true;
 
         return this.initialized;
     }

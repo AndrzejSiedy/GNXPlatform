@@ -27,8 +27,6 @@ Gnx.ModuleInfo = function () {
 
 
         var html = _dialogTemplate
-        //.replace(/\{height\}/g, h) // regex replace all occurences
-        //.replace(/\{width\}/g, w)
         .replace("{Name}", rec.Name) // replace first found
         .replace("{Description}", rec.Description) // replace first found
         .replace("null", '');
@@ -51,7 +49,6 @@ Gnx.ModuleInfo = function () {
             showHint: true,
             showScore: true,
             click: function (value, rating) {
-                //alert("Rating clicked with value " + value);
                 rating.rate(value);
             }
         });
