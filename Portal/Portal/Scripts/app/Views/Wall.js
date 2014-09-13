@@ -81,8 +81,7 @@ Gnx.Wall = function () {
                     infoTemplate +
                 "</div>" +
             "</div>" +
-           
-        "</div>"
+        "</div>";
     
     // Module settings
     this.settings = {

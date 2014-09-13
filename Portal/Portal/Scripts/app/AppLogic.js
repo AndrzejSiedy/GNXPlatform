@@ -46,7 +46,7 @@
 
         // bind to layout west panel resize
         // event triggered from Layout class
-        me.Event.on('layout-west-resize', function () {
+        me.Event.on('layout-west-resize-end', function () {
             me.Wall.refresh();
         });
 

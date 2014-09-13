@@ -12,7 +12,11 @@ Gnx.Layout = function () {
     _initLayout = function () {
 
         var westResizeCallback = function () {
-            Gnx.Event.fireEvent('layout-west-resize');
+            Gnx.Event.fireEvent('layout-west-resize-start');
+        }
+
+        var westResizeEndCallback = function () {
+            Gnx.Event.fireEvent('layout-west-resize-end');
         }
 
         self.viewport = $('#sub-content-center').layout({
@@ -26,6 +30,7 @@ Gnx.Layout = function () {
                 , spacing_open: 50
                 , size: '100%'
                 , minSize: 300
+                , maxSize: '80%'
                 , initClosed: false
                 , togglerLength_closed: '100%'
                 , togglerLength_open: '100%'
@@ -33,8 +38,9 @@ Gnx.Layout = function () {
                 , togglerContent_open: '<div class="west-toggler-collapse"><span class="icon-arrow-up-3" style="font-size:22px;"/> Hide modules</div>'
                 , togglerContent_closed: '<div class="west-toggler-expand"><span class="icon-arrow-up-3" style="font-size:22px;"/> Show modules</div>'
 
-                , onresize: westResizeCallback
-
+                //, onresize: westResizeCallback
+                , onresize_start: westResizeCallback
+                , onresize_end: westResizeEndCallback
             }
         });
 
