@@ -96,7 +96,7 @@ $.fn.showLoadMask = function () {
         this.data("_loadMaskId_", lmId);
         // html template
         var html = '<div id="' + lmId + '" style="position: absolute;top: 0px;left: 0px;height: 100%;width: 100%;background-color: transparent;display: none;">' +
-                        '<img src="/Content/Images/loading-blue.gif" alt="Loading" style="position: absolute;left: 50%;top: 50%;margin-left: -100px;margin-top: -50px;height: auto;width: 100px;" />' +
+                        '<img src="../Content/Images/loading-blue.gif" alt="Loading" style="position: absolute;left: 50%;top: 50%;margin-left: -100px;margin-top: -50px;height: auto;width: 100px;" />' +
                     '</div>';
         this.append(html);
     }

@@ -157,13 +157,16 @@ Gnx.Module = function () {
 
     var _onAddModuleRequest = function (evt, data) {
         var rec = _getModuleByAttr('Id', data.uuid);
+
         if (rec) {
             Gnx.Event.fireEvent('add-gadget', { record: rec });
         }
 
         var t = '<div class="image-container" style="width:100%; height:100%;">' +
-                    '<div>{Name}</div>' +
-                    '<img src="{Thumbnail}">' +
+                    '<img src="{Thumbnail}" class="span2"">' +
+                    '<div class="overlay">' +
+                        '{Name}' +
+                    '</div>' +
                 '</div>'
 
         var html = t
@@ -174,6 +177,8 @@ Gnx.Module = function () {
         var not = $.Notify({
             caption: "Added Gadget",
             content: html,
+            width: 100,
+            height: 100,
             timeout: 2000 // 10 seconds
         });
     }
