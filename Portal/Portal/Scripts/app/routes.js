@@ -41,6 +41,12 @@
             $(".view").hide();
             $("#contact-view").show("slide", { direction: "left" }, 500);
         });
+
+
+        this.get("#/module", function (context) {
+            $(".view").hide();
+            $("#module-view").show("slide", { direction: "left" }, 500);
+        });
         
     });
 
