@@ -15,6 +15,10 @@ namespace Portal
                         // it is a place where we initiate GNX app after DOM gets rendered first time
                         "~/Scripts/app/routes.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
+                        "~/Scripts/knockout-{version}.debug.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*"));
