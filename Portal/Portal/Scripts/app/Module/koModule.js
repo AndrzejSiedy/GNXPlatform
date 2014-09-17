@@ -1,0 +1,110 @@
+﻿var moduleRegisterViewModel;
+
+// use as register module views view model
+function Module(Name, Description, GadgetUrl, Thumbnail, IsPublic) {
+
+    var self = this;
+
+    // observable are update elements upon changes, also update on element data changes [two way binding]
+    //self.Id = ko.observable(id);
+    self.Name = ko.observable(Name);
+    self.Description = ko.observable(Description);
+    self.GadgetUrl = ko.observable(GadgetUrl);
+    self.Thumbnail = ko.observable(Thumbnail);
+    self.IsPublic = ko.observable(IsPublic);
+
+    self.addModule = function () {
+        var dataObject = ko.toJSON(this);
+
+        var __RequestVerificationToken = $.getAntiForgeryToken(window.parent).value;
+        var token = __RequestVerificationToken;
+
+        function addRequestVerificationToken(data) {
+            data.__RequestVerificationToken = token;
+            return data;
+        };
+        $.ajax({
+            type: "POST",
+            url: '/api/ModuleModelsApi',
+            dataType: "json",
+            traditional: true,
+            data: addRequestVerificationToken({
+                // add some extra data to do proper logoff
+                token: token
+            }),
+            success: function (data) {
+                moduleRegisterViewModel.moduleListViewModel.modules.push(new Module(data.Name, data.Description, data.GadgetUrl, data.Thumbnail, data.IsPublic));
+                self.Name('');
+                self.Description('');
+                self.GadgetUrl('');
+                self.Thumbnail('');
+                self.IsPublic(false);
+            }
+        })
+    };
+}
+
+// use as module list view's view model
+function ModuleList() {
+
+    var self = this;
+
+    // observable arrays are update binding elements upon array changes
+    self.modules = ko.observableArray([]);
+
+    self.getModules = function () {
+        self.modules.removeAll();
+
+        var __RequestVerificationToken = $.getAntiForgeryToken(window.parent).value;
+        var token = __RequestVerificationToken;
+        function addRequestVerificationToken(data) {
+            data.__RequestVerificationToken = token;
+            return data;
+        };
+
+        $.ajax({
+            type: "GET",
+            url: '/api/ModuleModelsApi',
+            dataType: "json",
+            traditional: true,
+            data: addRequestVerificationToken({
+                // add some extra data to do proper logoff
+                token: token
+            }),
+            success: function (data) {
+                $.each(data, function (key, value) {
+                    self.modules.push(new Module(value.Name, value.Description, value.GadgetUrl, value.Thumbnail, value.IsPublic));
+                });
+            }
+        })
+
+
+        // retrieve modules list from server side and push each object to model's modules list
+        //$.getJSON('/api/ModuleModelsApi', function (data) {
+        //    $.each(data, function (key, value) {
+        //        self.modules.push(new Module(value.Name, value.Description, value.GadgetUrl, value.Thumbnail, value.IsPublic));
+        //    });
+        //});
+    };
+
+
+    // remove module. current data context object is passed to function automatically.
+    self.removeModule = function (module) {
+
+        console.warn('remove module', module);
+
+        //$.ajax({
+        //    url: '/api/ModuleModelsApi/' + student.Id(),
+        //    type: 'delete',
+        //    contentType: 'application/json',
+        //    success: function () {
+        //        self.students.remove(student);
+        //    }
+        //});
+    };
+}
+
+
+// create index view view model which contain two models for partial views
+moduleRegisterViewModel = { addModuleViewModel: new Module(), moduleListViewModel: new ModuleList() };
+

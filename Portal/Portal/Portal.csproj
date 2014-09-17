@@ -277,6 +277,7 @@
     <Content Include="Sandbox\modTile2.html" />
     <Content Include="Sandbox\modTile.html" />
     <Content Include="Scripts\app\Controller\SignalRClient.js" />
+    <Content Include="Scripts\app\Module\koModule.js" />
     <Content Include="Scripts\app\Module\Module.js" />
     <Content Include="Scripts\app\AppLogic.js" />
     <Content Include="Scripts\app\Setup\Init.js" />
@@ -388,6 +389,8 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
     <Content Include="Views\ModuleModels\_Index.cshtml" />
+    <Content Include="Views\ModuleModels\_Create.cshtml" />
+    <Content Include="Views\ModuleModels\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

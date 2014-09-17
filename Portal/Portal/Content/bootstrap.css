@@ -2131,9 +2131,9 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-warning {
-  color: #ffffff;
-  background-color: #f0ad4e;
-  border-color: #eea236;
+  color: #ffffff !important;
+  background-color: #f0ad4e !important;
+  border-color: #eea236 !important;
 }
 
 .btn-warning:hover,
@@ -2172,9 +2172,9 @@ fieldset[disabled] .btn-warning.active {
 }
 
 .btn-danger {
-  color: #ffffff;
-  background-color: #d9534f;
-  border-color: #d43f3a;
+  color: #ffffff !important;
+  background-color: #d9534f !important;
+  border-color: #d43f3a !important;
 }
 
 .btn-danger:hover,
@@ -2182,15 +2182,15 @@ fieldset[disabled] .btn-warning.active {
 .btn-danger:active,
 .btn-danger.active,
 .open .dropdown-toggle.btn-danger {
-  color: #ffffff;
-  background-color: #d2322d;
-  border-color: #ac2925;
+  color: #ffffff !important;
+  background-color: #d2322d !important;
+  border-color: #ac2925 !important;
 }
 
 .btn-danger:active,
 .btn-danger.active,
 .open .dropdown-toggle.btn-danger {
-  background-image: none;
+  background-image: none !important;
 }
 
 .btn-danger.disabled,
@@ -2208,14 +2208,14 @@ fieldset[disabled] .btn-danger:active,
 .btn-danger.disabled.active,
 .btn-danger[disabled].active,
 fieldset[disabled] .btn-danger.active {
-  background-color: #d9534f;
-  border-color: #d43f3a;
+  background-color: #d9534f !important;
+  border-color: #d43f3a !important;
 }
 
 .btn-success {
-  color: #ffffff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+  color: #ffffff !important;
+  background-color: #5cb85c !important;
+  border-color: #4cae4c !important;
 }
 
 .btn-success:hover,
@@ -2254,9 +2254,9 @@ fieldset[disabled] .btn-success.active {
 }
 
 .btn-info {
-  color: #ffffff;
-  background-color: #5bc0de;
-  border-color: #46b8da;
+  color: #ffffff !important;
+  background-color: #5bc0de !important;
+  border-color: #46b8da !important;
 }
 
 .btn-info:hover,
@@ -3366,7 +3366,7 @@ input[type="button"].btn-block {
 .btn-warning .caret,
 .btn-danger .caret,
 .btn-info .caret {
-  border-top-color: #fff;
+  border-top-color: #fff !important;
 }
 
 .dropup .btn-default .caret {
@@ -3378,7 +3378,7 @@ input[type="button"].btn-block {
 .dropup .btn-warning .caret,
 .dropup .btn-danger .caret,
 .dropup .btn-info .caret {
-  border-bottom-color: #fff;
+  border-bottom-color: #fff !important;
 }
 
 .btn-group,

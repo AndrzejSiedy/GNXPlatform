@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Portal.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace Portal
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            MetroUICSSBundleConfig.RegisterBundles();
 
             Neo4jConfig.Register(ConfigurationManager.AppSettings["Neo4j"].ToString());
         }

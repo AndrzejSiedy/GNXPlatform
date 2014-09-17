@@ -58,6 +58,7 @@ namespace Portal
                     "~/Scripts/app/Views/Center.js",
                     "~/Scripts/app/Views/ModuleInfo.js",
                     "~/Scripts/app/Module/Module.js",
+                    "~/Scripts/app/Module/koModule.js",
                     "~/Scripts/app/Controller/SignalRClient.js",
                     "~/Scripts/app/AppLogic.js"));
 
