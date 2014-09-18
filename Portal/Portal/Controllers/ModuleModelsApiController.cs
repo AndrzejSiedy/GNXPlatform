@@ -143,6 +143,7 @@ namespace Portal.Controllers
         [ResponseType(typeof(ModuleModels))]
         public async Task<IHttpActionResult> DeleteModuleModels(Guid id)
         {
+            // MS SQL Server section
             ModuleModels moduleModels = await db.ModuleModels.FindAsync(id);
             if (moduleModels == null)
             {
@@ -151,6 +152,11 @@ namespace Portal.Controllers
 
             db.ModuleModels.Remove(moduleModels);
             await db.SaveChangesAsync();
+
+
+            // Neo4j section
+            Portal.Neo4j.Controllers.Operations.Delete<Neo4jModule>(id.ToString());
+
 
             return Ok(moduleModels);
         }
