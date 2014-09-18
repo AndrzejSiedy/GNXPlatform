@@ -14,7 +14,10 @@ function Module(Name, Description, GadgetUrl, Thumbnail, IsPublic) {
     self.IsPublic = ko.observable(IsPublic);
 
     self.addModule = function () {
+
         var dataObject = ko.toJSON(this);
+
+        
 
         var __RequestVerificationToken = $.getAntiForgeryToken(window.parent).value;
         var token = __RequestVerificationToken;
@@ -23,15 +26,20 @@ function Module(Name, Description, GadgetUrl, Thumbnail, IsPublic) {
             data.__RequestVerificationToken = token;
             return data;
         };
+
+
+        var output = dataObject;
+        // add request validation token - can be mixed in with other data
+        $.extend(output, { token: token });
+
+        console.warn('dataObject', output);
         $.ajax({
             type: "POST",
             url: '/api/ModuleModelsApi',
+            contentType: 'application/json; charset=utf-8',
             dataType: "json",
-            traditional: true,
-            data: addRequestVerificationToken({
-                // add some extra data to do proper logoff
-                token: token
-            }),
+            //traditional: true,
+            data: dataObject,
             success: function (data) {
                 moduleRegisterViewModel.moduleListViewModel.modules.push(new Module(data.Name, data.Description, data.GadgetUrl, data.Thumbnail, data.IsPublic));
                 self.Name('');
@@ -78,13 +86,6 @@ function ModuleList() {
             }
         })
 
-
-        // retrieve modules list from server side and push each object to model's modules list
-        //$.getJSON('/api/ModuleModelsApi', function (data) {
-        //    $.each(data, function (key, value) {
-        //        self.modules.push(new Module(value.Name, value.Description, value.GadgetUrl, value.Thumbnail, value.IsPublic));
-        //    });
-        //});
     };
 
 
