@@ -76,32 +76,29 @@ namespace Portal.Neo4j.Controllers
         }
 
 
-        public static void Update<T>(T obj) where T : Base
+        public static void Update<T>(T obj) where T : Neo4jBase
         {
-
-            var match = "(n:" + typeof(T).Name + ")";
-            var where = "n.Id = {id}";
-
+            // based on http://geekswithblogs.net/codesailor/archive/2014/01/05/155074.aspx
+            var inputString = string.Format("({0}:{1})", "record", typeof(T).Name);     
             Neo4jConfig.client.Cypher
-                .Match(match)
-                .Where(where)
-                .Set("n = {data}")
-                .WithParam("id", obj.Id)
-                .WithParam("data", obj)
-                .ExecuteWithoutResults();
+				.Match(inputString)
+                .Where((T record) => record.Id == obj.Id)                     
+				.Set("record = {updatedRecord}")
+                .WithParam("updatedRecord", obj)                     
+				.ExecuteWithoutResults();        
 
         }
 
-        public static void Delete<T>(string id) where T : Base
+        public static void Delete<T>(string id) where T : Neo4jBase
         {
+            // based on http://geekswithblogs.net/codesailor/archive/2014/01/05/155074.aspx
+
             // include any connected relationships
-            
+            var inputString = string.Format("({0}:{1})", "record", typeof(T).Name) + "-[r]-()";
             Neo4jConfig.client.Cypher
-                .Match("n:" + typeof(T).Name)
-                .OptionalMatch("(n)-[r]-()")
-                .Where("n.Id = {id}")
-                .WithParam("id", id)
-                .Delete("r, n")
+                .Match(inputString)
+                .Where((T record) => record.Id == id)
+                .Delete("record,r")
                 .ExecuteWithoutResults();
         }
 
@@ -301,8 +298,8 @@ namespace Portal.Neo4j.Controllers
         }
 
         public static void SetRelation<T1, T2>(T1 sourceNode, T2 targetNode, string relName, dynamic relData)
-            where T1 : Base
-            where T2 : Base
+            where T1 : Neo4jBase
+            where T2 : Neo4jBase
         {
 
             var matchSourceNode = "(sourceNode:" + typeof(T1).Name + ")";
