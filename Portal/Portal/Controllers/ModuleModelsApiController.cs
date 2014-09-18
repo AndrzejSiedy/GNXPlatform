@@ -69,6 +69,7 @@ namespace Portal.Controllers
                 return BadRequest();
             }
 
+            // MS SQL Server section
             db.Entry(moduleModels).State = EntityState.Modified;
 
             try
@@ -77,7 +78,7 @@ namespace Portal.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ModuleModelsExists(id))
+                if (!ModuleModelsExists(moduleModels.Id))
                 {
                     return NotFound();
                 }
@@ -86,6 +87,19 @@ namespace Portal.Controllers
                     throw;
                 }
             }
+
+            // Neo4j section
+            Portal.Models.Neo4jModule neo4jModule = new Portal.Models.Neo4jModule()
+            {
+                Id = moduleModels.Id.ToString(),
+                Name = moduleModels.Name,
+                GadgetUrl = moduleModels.GadgetUrl,
+                Thumbnail = moduleModels.Thumbnail,
+                Description = moduleModels.Description,
+                IsPublic = moduleModels.IsPublic,
+                OwnerId = moduleModels.OwnerId
+            };
+            Portal.Neo4j.Controllers.Operations.Update<Neo4jModule>(neo4jModule);
 
             return StatusCode(HttpStatusCode.NoContent);
         }

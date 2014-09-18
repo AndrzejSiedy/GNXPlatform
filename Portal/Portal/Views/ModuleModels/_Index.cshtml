@@ -11,20 +11,20 @@
             ko.applyBindings(moduleRegisterViewModel);
 
             // load student data
-            moduleRegisterViewModel.moduleListViewModel.getModules();
+            moduleRegisterViewModel.modulesViewModel.getModules();
         });
     </script>
 
 
 
-    <div class="row" style="overflow:auto;">
-        <div class="col-lg-4">
-            <div class="panel-body" data-bind="with: addModuleViewModel">
+    <div class="row" style="overflow:auto;" data-bind="with: modulesViewModel">
+        <div class="col-lg-3">
+            <div class="panel-body">
                 @Html.Partial("~/Views/ModuleModels/_Create.cshtml")
             </div>
         </div>
-        <div class="col-lg-4">
-            <div class="panel-body" data-bind="with: moduleListViewModel">
+        <div class="col-lg-9">
+            <div class="panel-body">
                 @Html.Partial("~/Views/ModuleModels/_List.cshtml")
             </div>
         </div>
