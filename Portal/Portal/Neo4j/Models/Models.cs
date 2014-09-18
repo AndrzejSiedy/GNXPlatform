@@ -9,17 +9,17 @@ using Neo4jClient.Cypher;
 namespace Portal.Models
 {
 
-    public class Base
+    public class Neo4jBase
     {
         public string Id { get; set; }
 
     }
-    public class Neo4jUser: Base
+    public class Neo4jUser: Neo4jBase
     {
         public string UserName { get; set; }
     }
 
-    public class Neo4jModule: Base
+    public class Neo4jModule: Neo4jBase
     {
         public string Name { get; set; }
         public string GadgetUrl { get; set; }
