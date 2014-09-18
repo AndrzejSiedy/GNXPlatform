@@ -94,13 +94,47 @@ namespace Portal.Controllers
         [ResponseType(typeof(ModuleModels))]
         public async Task<IHttpActionResult> PostModuleModels(ModuleModels moduleModels)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            // set OwnerId for now OwnerId == CreatorId
+            moduleModels.Id = Guid.NewGuid();
+            moduleModels.OwnerId = Microsoft.AspNet.Identity.IdentityExtensions.GetUserId(User.Identity);
+
+            // MS SQL Server part - will be removed at some point, as intention is to keep them in Neo4j DB
             db.ModuleModels.Add(moduleModels);
             await db.SaveChangesAsync();
+
+            Portal.Models.Neo4jModule neo4jModule = new Portal.Models.Neo4jModule()
+            {
+                Id = moduleModels.Id.ToString(),
+                Name = moduleModels.Name,
+                GadgetUrl = moduleModels.GadgetUrl,
+                Thumbnail = moduleModels.Thumbnail,
+                Description = moduleModels.Description,
+                IsPublic = moduleModels.IsPublic,
+                OwnerId = moduleModels.OwnerId
+            };
+            var moduleNode = Portal.Neo4j.Controllers.Operations.Create<Neo4jModule>(neo4jModule);
+
+            var relation = new Neo4j.Relations.OwnsModule(moduleNode);
+
+            // create retaion between owner node and module
+            // get user node
+            try
+            {
+                var userNodesRef = Portal.Neo4j.Controllers.Operations.GetAsNode<Neo4jUser>(moduleModels.OwnerId);
+                // create relation
+                var relRef = Neo4jConfig.client.CreateRelationship(userNodesRef.Reference, relation);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+
 
             return CreatedAtRoute("DefaultApi", new { id = moduleModels.Id }, moduleModels);
         }
