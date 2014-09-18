@@ -54,6 +54,9 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
     };
 
 
+    // for partial table data update without reloading it
+    // see http://jsfiddle.net/q9D36/
+
     self.saveModule = function () {
         var dataObject = {
             Id: self.Id(),
@@ -72,15 +75,18 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
             dataType: 'json',
             data: JSON.stringify(dataObject),
             success: function () {
-                console.warn('updated')
-                //self.Id(null);
-                //self.Name('');
-                //self.Description('');
-                //self.GadgetUrl('');
-                //self.Thumbnail('');
-                //self.IsPublic(false);
+                
+                // update collection - table data
+                // with out getting data from service
+                var itm = self.modules().filter(function (item) {
+                    return item.Id() == dataObject.Id;
+                });
+                itm[0].Name(dataObject.Name);
+                itm[0].Description(dataObject.Description);
+                itm[0].GadgetUrl(dataObject.GadgetUrl);
+                itm[0].Thumbnail(dataObject.Thumbnail);
+                itm[0].IsPublic(dataObject.IsPublic);
 
-                self.getModules();
             }
         });
 
