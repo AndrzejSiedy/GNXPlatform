@@ -1,12 +1,12 @@
 ﻿var moduleRegisterViewModel;
 
 // use as register module views view model
-function Module(Name, Description, GadgetUrl, Thumbnail, IsPublic) {
+function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
 
     var self = this;
 
     // observable are update elements upon changes, also update on element data changes [two way binding]
-    //self.Id = ko.observable(id);
+    self.Id = ko.observable(Id);
     self.Name = ko.observable(Name);
     self.Description = ko.observable(Description);
     self.GadgetUrl = ko.observable(GadgetUrl);
@@ -41,7 +41,8 @@ function Module(Name, Description, GadgetUrl, Thumbnail, IsPublic) {
             //traditional: true,
             data: dataObject,
             success: function (data) {
-                moduleRegisterViewModel.moduleListViewModel.modules.push(new Module(data.Name, data.Description, data.GadgetUrl, data.Thumbnail, data.IsPublic));
+                moduleRegisterViewModel.moduleListViewModel.modules.push(new Module(data.Id, data.Name, data.Description, data.GadgetUrl, data.Thumbnail, data.IsPublic));
+                self.Id('');
                 self.Name('');
                 self.Description('');
                 self.GadgetUrl('');
@@ -73,6 +74,7 @@ function ModuleList() {
         $.ajax({
             type: "GET",
             url: '/api/ModuleModelsApi',
+            contentType: 'application/json; charset=utf-8',
             dataType: "json",
             traditional: true,
             data: addRequestVerificationToken({
@@ -81,7 +83,7 @@ function ModuleList() {
             }),
             success: function (data) {
                 $.each(data, function (key, value) {
-                    self.modules.push(new Module(value.Name, value.Description, value.GadgetUrl, value.Thumbnail, value.IsPublic));
+                    self.modules.push(new Module(value.Id, value.Name, value.Description, value.GadgetUrl, value.Thumbnail, value.IsPublic));
                 });
             }
         })
@@ -92,16 +94,17 @@ function ModuleList() {
     // remove module. current data context object is passed to function automatically.
     self.removeModule = function (module) {
 
-        console.warn('remove module', module);
+        console.warn('remove module', module, module.Id());
 
-        //$.ajax({
-        //    url: '/api/ModuleModelsApi/' + student.Id(),
-        //    type: 'delete',
-        //    contentType: 'application/json',
-        //    success: function () {
-        //        self.students.remove(student);
-        //    }
-        //});
+        $.ajax({
+            url: '/api/ModuleModelsApi/' + module.Id(),
+            type: 'DELETE',
+            contentType: 'application/json; charset=utf-8',
+            dataType: "json",
+            success: function () {
+                self.modules.remove(module);
+            }
+        });
     };
 }
 
