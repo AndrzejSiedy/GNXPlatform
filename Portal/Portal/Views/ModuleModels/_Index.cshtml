@@ -8,10 +8,10 @@
         // on document ready
         $(document).ready(function () {
             // bind view model to referring view
-            ko.applyBindings(moduleRegisterViewModel);
+            ko.applyBindings(Gnx.KoViewModels);
 
             // load student data
-            moduleRegisterViewModel.modulesViewModel.getModules();
+            Gnx.KoViewModels.modulesViewModel.getModules();
         });
     </script>
 

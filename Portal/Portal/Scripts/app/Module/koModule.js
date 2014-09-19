@@ -1,6 +1,4 @@
 ﻿
-var moduleRegisterViewModel;
-
 
 // use as register module views view model
 function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
@@ -22,6 +20,7 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
 
         this.Id = ko.observable(Id);
         var dataObject = ko.toJSON(this);
+
         var __RequestVerificationToken = $.getAntiForgeryToken(window.parent).value;
         var token = __RequestVerificationToken;
 
@@ -53,7 +52,6 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
         })
     };
 
-
     // for partial table data update without reloading it
     // see http://jsfiddle.net/q9D36/
 
@@ -66,7 +64,6 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
             Thumbnail: self.Thumbnail(),
             IsPublic: self.IsPublic()
         }
-        console.warn('save me', dataObject);
 
         $.ajax({
             url: '/api/ModuleModelsApi/' + self.Id(),
@@ -79,7 +76,7 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
                 // update collection - table data
                 // with out getting data from service
                 var itm = self.modules().filter(function (item) {
-                    return item.Id() == dataObject.Id;
+                    return item.Id() === dataObject.Id;
                 });
                 itm[0].Name(dataObject.Name);
                 itm[0].Description(dataObject.Description);
@@ -223,5 +220,5 @@ function ModuleList() {
 
 
 // create index view view model which contain two models for partial views
-moduleRegisterViewModel = { modulesViewModel: new Module() };
+Gnx.KoViewModels = { modulesViewModel: new Module() };
 
