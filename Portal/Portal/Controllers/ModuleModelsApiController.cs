@@ -101,7 +101,7 @@ namespace Portal.Controllers
             };
             Portal.Neo4j.Controllers.Operations.Update<Neo4jModule>(neo4jModule);
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(moduleModels);
         }
 
         // POST: api/ModuleModelsApi
