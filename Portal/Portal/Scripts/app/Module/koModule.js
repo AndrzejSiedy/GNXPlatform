@@ -1,11 +1,24 @@
-﻿
+﻿function ModuleModel(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
+    var self = this;
+
+    // observable are update elements upon changes, also update on element data changes [two way binding]
+    self.Id = ko.observable(Id);
+    self.Name = ko.observable(Name);
+    self.Description = ko.observable(Description);
+    self.GadgetUrl = ko.observable(GadgetUrl);
+    self.Thumbnail = ko.observable(Thumbnail);
+    self.IsPublic = ko.observable(IsPublic);
+}
 
 // use as register module views view model
-function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
+function ModuleViewModel(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
 
     var self = this;
 
     // observable are update elements upon changes, also update on element data changes [two way binding]
+
+    self.currentModule = new ModuleModel();
+
     self.Id = ko.observable(Id);
     self.Name = ko.observable(Name);
     self.Description = ko.observable(Description);
@@ -18,8 +31,7 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
 
     self.addModule = function () {
 
-        this.Id = ko.observable(Id);
-        var dataObject = ko.toJSON(this);
+        var dataObject = ko.toJSON(this.currentModule);
 
         var __RequestVerificationToken = $.getAntiForgeryToken(window.parent).value;
         var token = __RequestVerificationToken;
@@ -41,13 +53,14 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
             //traditional: true,
             data: dataObject,
             success: function (data) {
-                self.modules.push(new Module(data.Id, data.Name, data.Description, data.GadgetUrl, data.Thumbnail, data.IsPublic));
-                self.Id(null);
-                self.Name('');
-                self.Description('');
-                self.GadgetUrl('');
-                self.Thumbnail('');
-                self.IsPublic(false);
+                self.modules.push(new ModuleModel(data.Id, data.Name, data.Description, data.GadgetUrl, data.Thumbnail, data.IsPublic));
+
+                self.currentModule.Id(undefined);
+                self.currentModule.Name(undefined);
+                self.currentModule.Description(undefined);
+                self.currentModule.GadgetUrl(undefined);
+                self.currentModule.Thumbnail(undefined);
+                self.currentModule.IsPublic(undefined);
             }
         })
     };
@@ -57,16 +70,17 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
 
     self.saveModule = function () {
         var dataObject = {
-            Id: self.Id(),
-            Name: self.Name(),
-            Description: self.Description(),
-            GadgetUrl: self.GadgetUrl(),
-            Thumbnail: self.Thumbnail(),
-            IsPublic: self.IsPublic()
+            Id: self.currentModule.Id(),
+            Name: self.currentModule.Name(),
+            Description: self.currentModule.Description(),
+            GadgetUrl: self.currentModule.GadgetUrl(),
+            Thumbnail: self.currentModule.Thumbnail(),
+            IsPublic: self.currentModule.IsPublic()
         }
 
+
         $.ajax({
-            url: '/api/ModuleModelsApi/' + self.Id(),
+            url: '/api/ModuleModelsApi/' + self.currentModule.Id(),
             type: 'PUT',
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
@@ -83,6 +97,13 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
                 itm[0].GadgetUrl(dataObject.GadgetUrl);
                 itm[0].Thumbnail(dataObject.Thumbnail);
                 itm[0].IsPublic(dataObject.IsPublic);
+
+                self.currentModule.Id(undefined);
+                self.currentModule.Name(undefined);
+                self.currentModule.Description(undefined);
+                self.currentModule.GadgetUrl(undefined);
+                self.currentModule.Thumbnail(undefined);
+                self.currentModule.IsPublic(undefined);
 
             }
         });
@@ -111,7 +132,7 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
             }),
             success: function (data) {
                 $.each(data, function (key, value) {
-                    self.modules.push(new Module(value.Id, value.Name, value.Description, value.GadgetUrl, value.Thumbnail, value.IsPublic));
+                    self.modules.push(new ModuleViewModel(value.Id, value.Name, value.Description, value.GadgetUrl, value.Thumbnail, value.IsPublic));
                 });
             }
         })
@@ -120,20 +141,23 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
 
     // edit module is bind to row click on list
     self.editModule = function (module) {
-        self.Id(module.Id());
-        self.Name(module.Name());
-        self.Description(module.Description());
-        self.GadgetUrl(module.GadgetUrl());
-        self.Thumbnail(module.Thumbnail());
-        self.IsPublic(module.IsPublic());
+
+        self.currentModule.Id(module.Id());
+        self.currentModule.Name(module.Name());
+        self.currentModule.Description(module.Description());
+        self.currentModule.GadgetUrl(module.GadgetUrl());
+        self.currentModule.Thumbnail(module.Thumbnail());
+        self.currentModule.IsPublic(module.IsPublic());
     }
 
 
     // remove module. current data context object is passed to function automatically.
-    self.removeModule = function (module) {
-        console.warn('remove', module);
+    self.removeModule = function () {
+
+        var id = self.currentModule.Id();
+
         $.ajax({
-            url: '/api/ModuleModelsApi/' + module.Id(),
+            url: '/api/ModuleModelsApi/' + id,
             type: 'DELETE',
             contentType: 'application/json; charset=utf-8',
             dataType: "json",
@@ -141,15 +165,15 @@ function Module(Id, Name, Description, GadgetUrl, Thumbnail, IsPublic) {
 
                 // we need filter
                 self.modules.remove(function (item) {
-                    return item.Id() == module.Id();
+                    return item.Id() == id;
                 });
 
-                self.Id(null);
-                self.Name('');
-                self.Description('');
-                self.GadgetUrl('');
-                self.Thumbnail('');
-                self.IsPublic(false);
+                self.currentModule.Id(undefined);
+                self.currentModule.Name(undefined);
+                self.currentModule.Description(undefined);
+                self.currentModule.GadgetUrl(undefined);
+                self.currentModule.Thumbnail(undefined);
+                self.currentModule.IsPublic(undefined);
             }
         });
 
@@ -220,5 +244,5 @@ function ModuleList() {
 
 
 // create index view view model which contain two models for partial views
-Gnx.KoViewModels = { modulesViewModel: new Module() };
+Gnx.KoViewModels = { modulesViewModel: new ModuleViewModel(), moduleModel: new ModuleModel() };
 

@@ -4,35 +4,35 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>ModuleModels</h4>
-            <hr />
-            <div class="form-group">
-                <label for="inpName">Name</label>
-                <input id="inpName" type="text" class="form-control" data-bind="value: Name" />
-            </div>
-
-            <div class="form-group">
-                <label for="inpDescription">Description</label>
-                <input id="inpDescription" type="text" class="form-control" data-bind="value: Description" />
-            </div>
-
-            <div class="form-group">
-                <label for="inpGadgetUrl">Gadget Url</label>
-                <input id="inpGadgetUrl" type="text" class="form-control" data-bind="value: GadgetUrl" />
-            </div>
-
-            <div class="form-group">
-                <label for="inpThumbnail">Thumbnail</label>
-                <input id="inpThumbnail" type="text" class="form-control" data-bind="value: Thumbnail" />
-            </div>
-
-            <div class="form-group">
-                <label for="inpIsPublic">Is Public</label>
-                <input id="inpIsPublic" type="checkbox" class="form-control" data-bind="checked: IsPublic" />
-            </div>
-          
+    <div class="form-horizontal" >
+        <h4>ModuleModels</h4>
+        <hr />
+        <div class="form-group">
+            <label for="inpName">Name</label>
+            <input id="inpName" type="text" class="form-control" data-bind="value: currentModule.Name" />
         </div>
+
+        <div class="form-group">
+            <label for="inpDescription">Description</label>
+            <input id="inpDescription" type="text" class="form-control" data-bind="value: currentModule.Description" />
+        </div>
+
+        <div class="form-group">
+            <label for="inpGadgetUrl">Gadget Url</label>
+            <input id="inpGadgetUrl" type="text" class="form-control" data-bind="value: currentModule.GadgetUrl" />
+        </div>
+
+        <div class="form-group">
+            <label for="inpThumbnail">Thumbnail</label>
+            <input id="inpThumbnail" type="text" class="form-control" data-bind="value: currentModule.Thumbnail" />
+        </div>
+
+        <div class="form-group">
+            <label for="inpIsPublic">Is Public</label>
+            <input id="inpIsPublic" type="checkbox" class="form-control" data-bind="checked: currentModule.IsPublic" />
+        </div>
+
+    </div>
     }
     <input type="button" id="btnAddModule" class="btn btn-default bg-blue fg-white" value="Add Module" data-bind="click: addModule" />
     <input type="button" id="btnSaveModule" class="btn btn-warning" value="Save Module" data-bind="click: saveModule" />
